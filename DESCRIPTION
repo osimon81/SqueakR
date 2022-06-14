@@ -1,0 +1,25 @@
+Package: SqueakR
+Type: Package
+Title: Experiment Superstructure for 'DeepSqueak'
+Version: 1.0.0
+Authors@R: 
+    person("Simon", "Ogundare", , "simon.ogundare@columbia.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-6243-2779"))
+Description: A collection of functions intended to produce convenient visualizations for rodent vocalizations
+    exported from 'DeepSqueak'. These visualizations include call frequency-clustered graphs, and
+    density graphs grouped by frequency, custom labels identified in 'DeepSqueak', and call duration.
+License: MIT + file LICENSE
+Encoding: UTF-8
+RoxygenNote: 7.2.0
+Imports:
+    dplyr,
+    ggeasy,
+    gghighlight,
+    ggplot2,
+    ggpubr,
+    readxl,
+    rlang,
+    ggcorrplot
+Suggests: 
+    knitr,
+    rmarkdown,
