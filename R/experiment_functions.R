@@ -27,7 +27,7 @@ add_timepoint_data <- function(data_path, t1 = "", t2 = "") {
   }
 
   data_subset <- filter(data_subset, `Begin Time (s)` >= as.double(t1), `End Time (s)` <= as.double(t2))
-  message("Restricting data to timepoints...")
+  message("Restricting data to range: ", as.character(t1), " to ", as.character(t2), " seconds...")
   return(data_subset)
 }
 
@@ -134,6 +134,7 @@ add_to_experiment <- function(experiment, added_data) {
   message("Adding summarized data to experiment object...")
   experiment$experimental_data <- experiment$experimental_data %>%
     append(list(call_data = added_data))
+  experiment <- update_experiment(experiment)
   return(experiment)
 }
 
@@ -190,7 +191,17 @@ save_experiment <- function(experiment, save_path) {
   return(experiment)
 }
 
-
+#' @title Describe Experiment
+#'
+#' @description Lists a condensed summary of data stored in the experiment object.
+#'
+#' @param experiment The experiment object to be saved
+#'
+#' @return A list of information about the experiment
+#'
+#' @examples describe_experiment(experiment = experiment_object)
+#'
+#' @export
 describe_experiment <- function(experiment) {
   message("Experimental name: ", experiment$name)
   message("Last saved: ", as.character(experiment$last_saved))

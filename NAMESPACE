@@ -3,6 +3,7 @@
 export(add_timepoint_data)
 export(add_to_experiment)
 export(create_experiment)
+export(describe_experiment)
 export(experiment_pipeline)
 export(plotCorrelations)
 export(plotDeltaHistogram)
