@@ -1,4 +1,4 @@
-######### Datda Cleaning Functions #########
+######### Data Cleaning Functions #########
 
 #' @title Add Timepoint Data
 #'

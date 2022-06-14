@@ -1,0 +1,66 @@
+---
+title: "SqueakR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{SqueakR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+
+The SqueakR package is a centralized, experiment-centered approach to organizing and analyzing data exported from [`DeepSqueak`](https://github.com/DrCoffey/DeepSqueak). Of its diverse functions, SqueakR is capable of generating quick plots from vocalization data detected from `DeepSqueak`. On top of these visualizations, the package contains functions which combine all exported DeepSqueak data from multiple recordings into a single experimental object, allowing subsequent analysis to be conducted directly from R.
+
+# Installation
+
+## From GitHub
+
+To use SqueakR, we need to install the package. To do so, run the code below. Ensure the `devtools` package is installed before running the following:
+
+```{r install, eval=FALSE}
+library(devtools)
+install_github("osimon81/SqueakR")
+```
+
+Next, load the package:
+
+```{r setup}
+library(SqueakR)
+```
+
+
+# The Experimental Object
+
+This package allows all data necessary for visualizations to be stored in a single object. However, to do so, the experimental object must be created. To create an `experiment`, run the following code:
+
+```{r create experiment}
+experiment <- create_experiment(experiment_name = "my_experiment")
+```
+
+This code creates a new `experiment` object, with the name `my_experiment`. When the object is saved, it will be saved using this name, along with a timestamp. At this point, there's nothing stored in this `experiment` object except its name, but let's inspect how `experiment` is structured:
+
+```{r}
+str(experiment)
+```
+
+We can see from the `str()` function that the `experiment` object has 5 main groups listed in it:
+- name: The name we just set for this experiment
+- last_saved: A timestamp for the last time this experiment was saved (in this case, this is the time the object was created)
+- groups: An empty variable which will be configured to show the experimental groups
+- experimenters: An empty variable which will be configured to show the experimenters who collected data
+- experimental_data: An empty list which will store all of the data for this experiment
+
+## Creating an Experiment
+
+
+
+
+
+
