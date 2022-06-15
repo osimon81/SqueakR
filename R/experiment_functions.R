@@ -68,7 +68,7 @@ score_timepoint_data <- function(data_subset, group, experimenter) {
                             peak_frequency = list(mean = mean(data_subset$`Peak Freq (kHz)`),
                                               standard_deviation = sd(data_subset$`Peak Freq (kHz)`),
                                               range = range(data_subset$`Peak Freq (kHz)`)[2] - range(data_subset$`Peak Freq (kHz)`)[1]),
-                            power_mean = list(mean = mean(data_subset$`Mean Power (dB/Hz)`),
+                            power = list(mean = mean(data_subset$`Mean Power (dB/Hz)`),
                                               standard_deviation = sd(data_subset$`Mean Power (dB/Hz)`),
                                               range = range(data_subset$`Mean Power (dB/Hz)`)[2] - range(data_subset$`Mean Power (dB/Hz)`)[1]),
                             principal_frequency = list(mean = mean(data_subset$`Principal Frequency (kHz)`),

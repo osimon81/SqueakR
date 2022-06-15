@@ -7,8 +7,7 @@
 plotEthnogram(
   data_path,
   graph_title = "Call Ethnogram",
- 
-    graph_subtitle = "Calls are identified by a vertical line, denoting regions of dense and sparse calls."
+  graph_subtitle = "Calls are indicated by a vertical line."
 )
 }
 \arguments{

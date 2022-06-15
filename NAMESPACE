@@ -2,6 +2,7 @@
 
 export(add_timepoint_data)
 export(add_to_experiment)
+export(analyze_factor)
 export(create_experiment)
 export(describe_experiment)
 export(experiment_pipeline)
@@ -28,3 +29,4 @@ import(ggplot2)
 import(ggpubr)
 import(grDevices)
 import(readxl)
+import(rlist)

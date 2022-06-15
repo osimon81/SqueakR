@@ -18,7 +18,8 @@ Imports:
     ggplot2,
     ggpubr,
     readxl,
-    ggcorrplot
+    ggcorrplot,
+    rlist
 Suggests:
     knitr,
     rmarkdown,
