@@ -1,3 +1,4 @@
+data(deepsqueak, envir=environment())
 
 #' @title Export PDF
 #'
@@ -9,8 +10,10 @@
 #'
 #' @return A PDF containing a series of relevant ethnograms and density graphs assessing the recording.
 #'
-#' @examples plotSummaryPDF(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-#' save_path = tempdir(), experimenter = "experimenter_name")
+#' @examples plotSummaryPDF(
+#'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+#'   save_path = tempdir(), experimenter = "experimenter_name"
+#' )
 #'
 #' @import readxl
 #' @import ggplot2
@@ -31,25 +34,34 @@ plotSummaryPDF <- function(data_path,
   message("Adding charts to PDF...")
 
   plot(ggarrange(plotEthnogram(data_path),
-                 ncol = 1, nrow = 1))
+    ncol = 1, nrow = 1
+  ))
   plot(ggarrange(plotEthnogramSplitByTonality(data_path),
-                 ncol = 1, nrow = 1))
+    ncol = 1, nrow = 1
+  ))
   plot(ggarrange(plotDensityStackedByFrequency(data_path),
-                 plotDensityStackedByCustom(data_path),
-                 ncol = 1, nrow = 2))
+    plotDensityStackedByCustom(data_path),
+    ncol = 1, nrow = 2
+  ))
   plot(ggarrange(plotDensityStackedByDuration(data_path),
-                 ncol = 1, nrow = 1))
+    ncol = 1, nrow = 1
+  ))
   plot(ggarrange(plotDensitySplitByFrequency(data_path),
-                 ncol = 1, nrow = 1))
+    ncol = 1, nrow = 1
+  ))
   plot(ggarrange(plotDensitySplitByCustom(data_path),
-                 ncol = 1, nrow = 1))
+    ncol = 1, nrow = 1
+  ))
   plot(ggarrange(plotDensitySplitByDuration(data_path),
-                 ncol = 1, nrow = 1))
+    ncol = 1, nrow = 1
+  ))
   plot(ggarrange(plotPrincipalBoxplot(data_path),
-                 plotDeltaHistogram(data_path),
-                 ncol = 1, nrow = 2))
+    plotDeltaHistogram(data_path),
+    ncol = 1, nrow = 2
+  ))
   plot(ggarrange(plotCorrelations(data_path),
-                 ncol = 1, nrow = 1))
+    ncol = 1, nrow = 1
+  ))
   dev.off()
   message("Saving PDF...")
 }

@@ -24,7 +24,9 @@ A ggplot2 visualization of the ethnogram shown in the viewer window, which can b
 Plots an ethnogram, representing when detected calls occur through the length of the recording.
 }
 \examples{
-plotEthnogram(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-graph_title = "myTitle", graph_subtitle = "myDescription")
+plotEthnogram(
+  data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+  graph_title = "myTitle", graph_subtitle = "myDescription"
+)
 
 }

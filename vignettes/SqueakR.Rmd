@@ -4,6 +4,8 @@ output:
   html_document:
     toc: true
     toc_float: true
+    df_print: paged
+    theme: darkly
 vignette: >
   %\VignetteIndexEntry{SqueakR}
   %\VignetteEngine{knitr::rmarkdown}
@@ -27,7 +29,7 @@ The SqueakR package is a centralized, experiment-centered approach to organizing
 
 ## From GitHub
 
-To use SqueakR, we need to install the package. To do so, run the code below. Ensure the `devtools` package is installed before running the following:
+To use SqueakR, we need to install the package. To install the package from GitHub, run the code below. Ensure the `devtools` package is installed before running the following:
 
 ```{r install, eval=FALSE}
 library(devtools)
@@ -375,6 +377,11 @@ analyze_factor(experiment = experiment, analysis_factor = "delta_frequency")
 In the above plot, we compare delta frequency (the average range of frequencies for all calls in a given time range) between different groups. The data look similar because they are based on the same Excel file, just at different time-points, but this highlights the versatility of data extraction using DeepSqueak, in that call data can be processed in not only a between-groups manner but also a within-groups manner.
 
 We can assess other comparisons in this way, by ensuring that we set the `analysis_factor` variable to the name of the columns previously specified in "quotes." Keeping this format ensures that SqueakR knows which data to compare.
+
+
+
+
+
 
 
 

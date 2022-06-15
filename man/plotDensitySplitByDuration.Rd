@@ -27,7 +27,9 @@ A ggplot2 visualization of the density graph shown in the viewer window, which c
 Plots a density graph, separating each duration group into a separate plot in the figure.
 }
 \examples{
-plotDensitySplitByDuration(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-graph_title = "myTitle", graph_subtitle = "myDescription")
+plotDensitySplitByDuration(
+  data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+  graph_title = "myTitle", graph_subtitle = "myDescription"
+)
 
 }

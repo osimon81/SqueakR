@@ -7,7 +7,7 @@
 update_experiment(experiment)
 }
 \arguments{
-\item{experiment_name}{The name of the experiment}
+\item{experiment}{The experiment object}
 }
 \value{
 A list object containing statistics and metadata for the entire experiment.
@@ -19,6 +19,6 @@ Auto-populates `groups` and `experimenters` fields in experiment object
 by checking experimental data (within the experiment object) for new data.
 }
 \examples{
-update_experiment(experiment_object)
+update_experiment(experiment)
 
 }

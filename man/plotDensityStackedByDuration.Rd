@@ -27,7 +27,9 @@ A ggplot2 visualization of the density graph shown in the viewer window, which c
 Plots a density graph, grouped by duration of each call (rounded to the nearest 0.01 second), collapsed into a single graph.
 }
 \examples{
-plotDensityStackedByDuration(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-graph_title = "myTitle", graph_subtitle = "myDescription")
+plotDensityStackedByDuration(
+  data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+  graph_title = "myTitle", graph_subtitle = "myDescription"
+)
 
 }

@@ -1,3 +1,4 @@
+data(deepsqueak, envir=environment())
 
 #' @title Analyze Factor
 #'
@@ -18,15 +19,17 @@
 analyze_factor <- function(experiment, analysis_factor) {
   group_organized <- list.group(experiment$experimental_data, group)
 
-  expt_groups <- list(group1 = c(),
-                      group2 = c(),
-                      group3 = c(),
-                      group4 = c(),
-                      group5 = c())
+  expt_groups <- list(
+    group1 = c(),
+    group2 = c(),
+    group3 = c(),
+    group4 = c(),
+    group5 = c()
+  )
 
   names(expt_groups) <- unique(names(group_organized))
 
-  for(h in 1:length(group_organized)) {
+  for (h in 1:length(group_organized)) {
     for (i in 1:length(group_organized[[h]])) {
       if (analysis_factor == "call_length") {
         expt_groups[[h]] <- c(expt_groups[[h]], group_organized[[h]][i]$call_data$raw$`Call Length (s)`)
@@ -58,7 +61,7 @@ analyze_factor <- function(experiment, analysis_factor) {
 
   for (i in 1:length(expt_groups)) {
     if (is.null(expt_groups[[i]])) {
-      expt_groups[i] = NA
+      expt_groups[i] <- NA
     }
   }
 
@@ -72,7 +75,7 @@ analyze_factor <- function(experiment, analysis_factor) {
 
   means <- unlist(lapply(expt_groups, mean, na.rm = TRUE))
   stdevs <- unlist(lapply(expt_groups, sd, na.rm = TRUE))
-  stderr <- stdevs/sqrt(ns)
+  stderr <- stdevs / sqrt(ns)
 
 
 
@@ -82,16 +85,21 @@ analyze_factor <- function(experiment, analysis_factor) {
 
 
   ggplot() +
-    geom_col(mapping = aes(x = names(df), y = unlist(df[1,]), fill = names(df)), color = "black") +
-    geom_errorbar(mapping = aes(x = names(df), y = unlist(df[1,]),
-                                ymin = means - 2*stderr, ymax = means + 2*stderr, width=.2)) +
-    geom_text(aes(x = names(df), y = 0,
-                  label=paste0("n = ", ns)), position=position_dodge(width=0.9), vjust=-0.5) +
+    geom_col(mapping = aes(x = names(df), y = unlist(df[1, ]), fill = names(df)), color = "black") +
+    geom_errorbar(mapping = aes(
+      x = names(df), y = unlist(df[1, ]),
+      ymin = means - 2 * stderr, ymax = means + 2 * stderr, width = .2
+    )) +
+    geom_text(aes(
+      x = names(df), y = 0,
+      label = paste0("n = ", ns)
+    ), position = position_dodge(width = 0.9), vjust = -0.5) +
     xlab("Group") +
     ylab("Mean value") +
     ggtitle("Quickplot: Comparison between groups") +
-    scale_fill_hue(name="Group") +
-    labs(caption = ("Error bars represent the mean ±2 standard errors."),
-         subtitle = paste0("Factor being compared: ", analysis_factor))
-
+    scale_fill_hue(name = "Group") +
+    labs(
+      caption = ("Error bars represent the mean +/- 2 standard errors."),
+      subtitle = paste0("Factor being compared: ", analysis_factor)
+    )
 }

@@ -1,3 +1,5 @@
+data(deepsqueak, envir=environment())
+
 ######### Data Cleaning Functions #########
 
 #' @title Add Timepoint Data
@@ -10,8 +12,10 @@
 #'
 #' @return An object containing the call data (under time constraints if specified)
 #'
-#' @examples add_timepoint_data(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-#' t1 = 3, t2 = 12)
+#' @examples add_timepoint_data(
+#'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+#'   t1 = 3, t2 = 12
+#' )
 #'
 #' @import readxl
 #' @import dplyr
@@ -20,10 +24,10 @@ add_timepoint_data <- function(data_path, t1 = "", t2 = "") {
   message("Adding call features Excel file to workspace...")
   data_subset <- loadSpecData(data_path)
   if (t1 == "") {
-    t1 = min(data_subset$`Begin Time (s)`)
+    t1 <- min(data_subset$`Begin Time (s)`)
   }
   if (t2 == "") {
-    t2 = max(data_subset$`End Time (s)`)
+    t2 <- max(data_subset$`End Time (s)`)
   }
 
   data_subset <- filter(data_subset, `Begin Time (s)` >= as.double(t1), `End Time (s)` <= as.double(t2))
@@ -42,48 +46,72 @@ add_timepoint_data <- function(data_path, t1 = "", t2 = "") {
 #'
 #' @return A list object containing statistics and metadata for each file.
 #'
-#' @examples score_timepoint_data(data_subset = my_subsetted_data, group = "Control",
-#' experimenter = "Experimenter 1")
+#' @examples score_timepoint_data(
+#'   data_subset = my_subsetted_data, group = "Control",
+#'   experimenter = "Experimenter 1"
+#' )
 #'
 #' @import readxl
 #' @import dplyr
 #' @export
 score_timepoint_data <- function(data_subset, group, experimenter) {
   message("Summarizing call features for datapoint...")
-  timepoint_metrics <- list(group = group,
-                            experimenter = experimenter,
-                            calls_n = count(data_subset)[[1]],
-                            call_length = list(mean = mean(data_subset$`Call Length (s)`),
-                                               standard_deviation = sd(data_subset$`Call Length (s)`),
-                                               range = range(data_subset$`Call Length (s)`)[2] - range(data_subset$`Call Length (s)`)[1]),
-                            delta_frequency = list(mean = mean(data_subset$`Delta Freq (kHz)`),
-                                                   standard_deviation = sd(data_subset$`Delta Freq (kHz)`),
-                                                   range = range(data_subset$`Delta Freq (kHz)`)[2] - range(data_subset$`Delta Freq (kHz)`)[1]),
-                            high_frequency = list(mean = mean(data_subset$`High Freq (kHz)`),
-                                                  standard_deviation = sd(data_subset$`High Freq (kHz)`),
-                                                  range = range(data_subset$`High Freq (kHz)`)[2] - range(data_subset$`High Freq (kHz)`)[1]),
-                            low_frequency = list(mean = mean(data_subset$`Low Freq (kHz)`),
-                                                 standard_deviation = sd(data_subset$`Low Freq (kHz)`),
-                                                 range = range(data_subset$`Low Freq (kHz)`)[2] - range(data_subset$`Low Freq (kHz)`)[1]),
-                            peak_frequency = list(mean = mean(data_subset$`Peak Freq (kHz)`),
-                                              standard_deviation = sd(data_subset$`Peak Freq (kHz)`),
-                                              range = range(data_subset$`Peak Freq (kHz)`)[2] - range(data_subset$`Peak Freq (kHz)`)[1]),
-                            power = list(mean = mean(data_subset$`Mean Power (dB/Hz)`),
-                                              standard_deviation = sd(data_subset$`Mean Power (dB/Hz)`),
-                                              range = range(data_subset$`Mean Power (dB/Hz)`)[2] - range(data_subset$`Mean Power (dB/Hz)`)[1]),
-                            principal_frequency = list(mean = mean(data_subset$`Principal Frequency (kHz)`),
-                                                       standard_deviation = sd(data_subset$`Principal Frequency (kHz)`),
-                                                       range = range(data_subset$`Principal Frequency (kHz)`)[2] - range(data_subset$`Principal Frequency (kHz)`)[1]),
-                            sinuosity = list(mean = mean(data_subset$`Sinuosity`),
-                                             standard_deviation = sd(data_subset$`Sinuosity`),
-                                             range = range(data_subset$`Sinuosity`)[2] - range(data_subset$`Sinuosity`)[1]),
-                            slope = list(mean = mean(data_subset$`Slope (kHz/s)`),
-                                         standard_deviation = sd(data_subset$`Slope (kHz/s)`),
-                                         range = range(data_subset$`Slope (kHz/s)`)[2] - range(data_subset$`Slope (kHz/s)`)[1]),
-                            tonality = list(mean = mean(data_subset$`Tonality`),
-                                            standard_deviation = sd(data_subset$`Tonality`),
-                                            range = range(data_subset$`Tonality`)[2] - range(data_subset$`Tonality`)[1]),
-                            raw = data_subset)
+  timepoint_metrics <- list(
+    group = group,
+    experimenter = experimenter,
+    calls_n = count(data_subset)[[1]],
+    call_length = list(
+      mean = mean(data_subset$`Call Length (s)`),
+      standard_deviation = sd(data_subset$`Call Length (s)`),
+      range = range(data_subset$`Call Length (s)`)[2] - range(data_subset$`Call Length (s)`)[1]
+    ),
+    delta_frequency = list(
+      mean = mean(data_subset$`Delta Freq (kHz)`),
+      standard_deviation = sd(data_subset$`Delta Freq (kHz)`),
+      range = range(data_subset$`Delta Freq (kHz)`)[2] - range(data_subset$`Delta Freq (kHz)`)[1]
+    ),
+    high_frequency = list(
+      mean = mean(data_subset$`High Freq (kHz)`),
+      standard_deviation = sd(data_subset$`High Freq (kHz)`),
+      range = range(data_subset$`High Freq (kHz)`)[2] - range(data_subset$`High Freq (kHz)`)[1]
+    ),
+    low_frequency = list(
+      mean = mean(data_subset$`Low Freq (kHz)`),
+      standard_deviation = sd(data_subset$`Low Freq (kHz)`),
+      range = range(data_subset$`Low Freq (kHz)`)[2] - range(data_subset$`Low Freq (kHz)`)[1]
+    ),
+    peak_frequency = list(
+      mean = mean(data_subset$`Peak Freq (kHz)`),
+      standard_deviation = sd(data_subset$`Peak Freq (kHz)`),
+      range = range(data_subset$`Peak Freq (kHz)`)[2] - range(data_subset$`Peak Freq (kHz)`)[1]
+    ),
+    power = list(
+      mean = mean(data_subset$`Mean Power (dB/Hz)`),
+      standard_deviation = sd(data_subset$`Mean Power (dB/Hz)`),
+      range = range(data_subset$`Mean Power (dB/Hz)`)[2] - range(data_subset$`Mean Power (dB/Hz)`)[1]
+    ),
+    principal_frequency = list(
+      mean = mean(data_subset$`Principal Frequency (kHz)`),
+      standard_deviation = sd(data_subset$`Principal Frequency (kHz)`),
+      range = range(data_subset$`Principal Frequency (kHz)`)[2] - range(data_subset$`Principal Frequency (kHz)`)[1]
+    ),
+    sinuosity = list(
+      mean = mean(data_subset$`Sinuosity`),
+      standard_deviation = sd(data_subset$`Sinuosity`),
+      range = range(data_subset$`Sinuosity`)[2] - range(data_subset$`Sinuosity`)[1]
+    ),
+    slope = list(
+      mean = mean(data_subset$`Slope (kHz/s)`),
+      standard_deviation = sd(data_subset$`Slope (kHz/s)`),
+      range = range(data_subset$`Slope (kHz/s)`)[2] - range(data_subset$`Slope (kHz/s)`)[1]
+    ),
+    tonality = list(
+      mean = mean(data_subset$`Tonality`),
+      standard_deviation = sd(data_subset$`Tonality`),
+      range = range(data_subset$`Tonality`)[2] - range(data_subset$`Tonality`)[1]
+    ),
+    raw = data_subset
+  )
   return(timepoint_metrics)
 }
 
@@ -107,11 +135,13 @@ score_timepoint_data <- function(data_subset, group, experimenter) {
 #' @export
 create_experiment <- function(experiment_name) {
   message("Creating new experiment...")
-  experiment <- list(name = experiment_name,
-                     last_saved = Sys.time(),
-                     groups = c(),
-                     experimenters = c(),
-                     experimental_data = list())
+  experiment <- list(
+    name = experiment_name,
+    last_saved = Sys.time(),
+    groups = c(),
+    experimenters = c(),
+    experimental_data = list()
+  )
   return(experiment)
 }
 
@@ -126,7 +156,7 @@ create_experiment <- function(experiment_name) {
 #' The `groups` and `experimenters` field will auto-populate based on added data using
 #' the `update_experiment()` function.
 #'
-#' @examples create_experiment(experiment_name = "My-Project")
+#' @examples add_to_experiment(experiment_name = "My-Project", added_data = my_data)
 #'
 #' @import dplyr
 #' @export
@@ -143,13 +173,13 @@ add_to_experiment <- function(experiment, added_data) {
 #' @description Auto-populates `groups` and `experimenters` fields in experiment object
 #' by checking experimental data (within the experiment object) for new data.
 #'
-#' @param experiment_name The name of the experiment
+#' @param experiment The experiment object
 #'
 #' @return A list object containing statistics and metadata for the entire experiment.
 #' The `groups` and `experimenters` field will auto-populate based on added data using
 #' the `update_experiment()` function.
 #'
-#' @examples update_experiment(experiment_object)
+#' @examples update_experiment(experiment)
 #'
 #' @export
 update_experiment <- function(experiment) {
@@ -157,11 +187,11 @@ update_experiment <- function(experiment) {
   extracted_groups <- c()
   extracted_experimenters <- c()
 
-  for(i in 1:length(experiment$experimental_data)) {
+  for (i in 1:length(experiment$experimental_data)) {
     extracted_groups <- append(extracted_groups, experiment$experimental_data[i]$call_data$group)
   }
 
-  for(i in 1:length(experiment$experimental_data)) {
+  for (i in 1:length(experiment$experimental_data)) {
     extracted_experimenters <- append(extracted_experimenters, experiment$experimental_data[i]$call_data$experimenter)
   }
 
@@ -208,17 +238,13 @@ describe_experiment <- function(experiment) {
   message("Experimenters: ", paste(experiment$experimenters, collapse = ", "))
   message("Experimental groups: ", paste(experiment$groups, collapse = ", "))
   message("Total call datapoints: ", as.character(length(experiment$experimental_data)))
-  for(this_group in experiment$groups) {
-    group_count = 0
-    for(i in 1:length(experiment$experimental_data)) {
+  for (this_group in experiment$groups) {
+    group_count <- 0
+    for (i in 1:length(experiment$experimental_data)) {
       if (experiment$experimental_data[i]$call_data$group == this_group) {
-        group_count = group_count + 1
+        group_count <- group_count + 1
       }
     }
     message("Data for ", this_group, ": ", as.character(group_count))
   }
 }
-
-
-
-

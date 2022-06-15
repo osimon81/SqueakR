@@ -20,7 +20,9 @@ A list object containing statistics and metadata for each file.
 Transforms data into a list of mean, standard deviation, and range of several call metrics.
 }
 \examples{
-score_timepoint_data(data_subset = my_subsetted_data, group = "Control",
-experimenter = "Experimenter 1")
+score_timepoint_data(
+  data_subset = my_subsetted_data, group = "Control",
+  experimenter = "Experimenter 1"
+)
 
 }

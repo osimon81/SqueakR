@@ -1,3 +1,5 @@
+data(deepsqueak, envir=environment())
+
 library(readxl)
 library(ggplot2)
 library(gghighlight)
@@ -5,6 +7,8 @@ library(ggpubr)
 library(dplyr)
 library(ggeasy)
 library(ggcorrplot)
+
+globalVariables(names(deepsqueak))
 
 ######### Hidden functions #########
 
@@ -15,8 +19,7 @@ library(ggcorrplot)
 loadSpecData <- function(data_path) {
   if (is.list(data_path)) {
     excel_file <- data_path
-  }
-  else if (is.list(data_path) == FALSE) {
+  } else if (is.list(data_path) == FALSE) {
     excel_file <- read_excel(data_path)
   }
   return(excel_file)
@@ -38,8 +41,10 @@ loadSpecData <- function(data_path) {
 #'
 #' @return A ggplot2 visualization of the ethnogram shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotEthnogram(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-#' graph_title = "myTitle", graph_subtitle = "myDescription")
+#' @examples plotEthnogram(
+#'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+#'   graph_title = "myTitle", graph_subtitle = "myDescription"
+#' )
 #'
 #' @import readxl
 #' @import ggplot2
@@ -56,15 +61,19 @@ plotEthnogram <- function(data_path,
     select(`Begin Time (s)`)
   ggplot(data = excel_file) +
     theme_classic() +
-    theme(axis.text.y=element_blank(),
-          axis.ticks.y=element_blank()) +
+    theme(
+      axis.text.y = element_blank(),
+      axis.ticks.y = element_blank()
+    ) +
     geom_errorbar(aes(x = `Begin Time (s)`, ymin = 0, ymax = 0.2), width = 0) +
-    labs(title=graph_title,
-         subtitle=graph_subtitle,
-         caption=paste0("n = ", count(excel_file)[1], " observed calls."),
-         x="Time Coordinate (s)", y = "") +
+    labs(
+      title = graph_title,
+      subtitle = graph_subtitle,
+      caption = paste0("n = ", count(excel_file)[1], " observed calls."),
+      x = "Time Coordinate (s)", y = ""
+    ) +
     easy_remove_y_axis() +
-    theme(aspect.ratio=1/18)
+    theme(aspect.ratio = 1 / 18)
 }
 
 
@@ -79,8 +88,10 @@ plotEthnogram <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the ethnogram shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotEthnogramSplitByTonality(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-#' graph_title = "myTitle", graph_subtitle = "myDescription")
+#' @examples plotEthnogramSplitByTonality(
+#'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+#'   graph_title = "myTitle", graph_subtitle = "myDescription"
+#' )
 #'
 #' @import readxl
 #' @import ggplot2
@@ -90,23 +101,28 @@ plotEthnogram <- function(data_path,
 #' @import ggeasy
 #' @export
 plotEthnogramSplitByTonality <- function(data_path,
-                                       graph_title = "Ethnogram Split By Tonality",
-                                       graph_subtitle = "Clearer calls with a lower signal-to-noise ratio appear as brighter lines.") {
+                                         graph_title = "Ethnogram Split By Tonality",
+                                         graph_subtitle = "Clearer calls with a lower signal-to-noise
+                                         ratio appear as brighter lines.") {
   excel_file <- loadSpecData(data_path)
   excel_file <- excel_file %>%
     select(`Begin Time (s)`, Tonality)
-  excel_file["Tonality"] <- round(excel_file["Tonality"],1)
+  excel_file["Tonality"] <- round(excel_file["Tonality"], 1)
   ggplot(data = excel_file) +
     theme_bw() +
-    theme(axis.text.y=element_blank(),
-          axis.ticks.y=element_blank()) +
+    theme(
+      axis.text.y = element_blank(),
+      axis.ticks.y = element_blank()
+    ) +
     geom_errorbar(aes(x = `Begin Time (s)`, ymin = 0, ymax = 0.2, color = Tonality), width = 0) +
     facet_wrap(~Tonality, nrow = length(unique(excel_file$Tonality))) +
-    labs(title=graph_title,
-         subtitle=graph_subtitle,
-         caption=paste0("n = ", count(excel_file)[1], " observed calls."),
-         x="Time Coordinate (s)", y = "",
-         key="Tonality") +
+    labs(
+      title = graph_title,
+      subtitle = graph_subtitle,
+      caption = paste0("n = ", count(excel_file)[1], " observed calls."),
+      x = "Time Coordinate (s)", y = "",
+      key = "Tonality"
+    ) +
     easy_remove_y_axis()
 }
 
@@ -125,8 +141,10 @@ plotEthnogramSplitByTonality <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the density graph shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotDensityStackedByFrequency(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-#' graph_title = "myTitle", graph_subtitle = "myDescription")
+#' @examples plotDensityStackedByFrequency(
+#'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+#'   graph_title = "myTitle", graph_subtitle = "myDescription"
+#' )
 #'
 #' @import readxl
 #' @import ggplot2
@@ -136,22 +154,24 @@ plotEthnogramSplitByTonality <- function(data_path,
 #' @import ggeasy
 #' @export
 plotDensityStackedByFrequency <- function(data_path,
-                              graph_title = "Call Distribution Grouped by Frequency Range (kHz)",
-                              graph_subtitle = "Calls are grouped by frequency ranges of 10 kHz.",
-                              chosen_group = c()) {
+                                          graph_title = "Call Distribution Grouped by Frequency Range (kHz)",
+                                          graph_subtitle = "Calls are grouped by frequency ranges of 10 kHz.",
+                                          chosen_group = c()) {
   excel_file <- loadSpecData(data_path)
   excel_file <- excel_file %>%
     select(`Label`, `Begin Time (s)`, `Principal Frequency (kHz)`) %>%
     mutate(fr_cat = round(`Principal Frequency (kHz)`, -1))
   ggplot(data = excel_file) +
     geom_density(aes(fill = factor(fr_cat), x = `Begin Time (s)`), alpha = 0.4) +
-    labs(title=graph_title,
-         subtitle=graph_subtitle,
-         caption=paste0("n = ", count(excel_file)[1], " observed calls."),
-         x="Time Coordinate (s)",
-         y="Proportion of total calls",
-         fill="USV range (kHz)") +
-    if(length(chosen_group) > 0) {
+    labs(
+      title = graph_title,
+      subtitle = graph_subtitle,
+      caption = paste0("n = ", count(excel_file)[1], " observed calls."),
+      x = "Time Coordinate (s)",
+      y = "Proportion of total calls",
+      fill = "USV range (kHz)"
+    ) +
+    if (length(chosen_group) > 0) {
       gghighlight(fr_cat == chosen_group)
     }
 }
@@ -169,8 +189,10 @@ plotDensityStackedByFrequency <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the density graph shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotDensitySplitByFrequency(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-#' graph_title = "myTitle", graph_subtitle = "myDescription")
+#' @examples plotDensitySplitByFrequency(
+#'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+#'   graph_title = "myTitle", graph_subtitle = "myDescription"
+#' )
 #'
 #' @import readxl
 #' @import ggplot2
@@ -180,9 +202,9 @@ plotDensityStackedByFrequency <- function(data_path,
 #' @import ggeasy
 #' @export
 plotDensitySplitByFrequency <- function(data_path,
-                                   graph_title = "Call Distribution, Split by Frequency Range (kHz)",
-                                   graph_subtitle = "Calls are split by frequency ranges of 10 kHz.",
-                                   chosen_group = c()) {
+                                        graph_title = "Call Distribution, Split by Frequency Range (kHz)",
+                                        graph_subtitle = "Calls are split by frequency ranges of 10 kHz.",
+                                        chosen_group = c()) {
   excel_file <- loadSpecData(data_path)
   excel_file <- excel_file %>%
     select(`Label`, `Begin Time (s)`, `Principal Frequency (kHz)`) %>%
@@ -190,13 +212,15 @@ plotDensitySplitByFrequency <- function(data_path,
   ggplot(data = excel_file) +
     geom_density(aes(fill = factor(fr_cat), x = `Begin Time (s)`), alpha = 0.4) +
     facet_grid(fr_cat ~ .) +
-    labs(title=graph_title,
-         subtitle=graph_subtitle,
-         caption=paste0("n = ", count(excel_file)[1], " observed calls."),
-         x="Time Coordinate (s)",
-         y="Proportion of total calls",
-         fill="USV range (kHz)") +
-    if(length(chosen_group) > 0) {
+    labs(
+      title = graph_title,
+      subtitle = graph_subtitle,
+      caption = paste0("n = ", count(excel_file)[1], " observed calls."),
+      x = "Time Coordinate (s)",
+      y = "Proportion of total calls",
+      fill = "USV range (kHz)"
+    ) +
+    if (length(chosen_group) > 0) {
       gghighlight(fr_cat == chosen_group)
     }
 }
@@ -216,8 +240,10 @@ plotDensitySplitByFrequency <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the density graph shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotDensityStackedByCustom(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-#' graph_title = "myTitle", graph_subtitle = "myDescription")
+#' @examples plotDensityStackedByCustom(
+#'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+#'   graph_title = "myTitle", graph_subtitle = "myDescription"
+#' )
 #'
 #' @import readxl
 #' @import ggplot2
@@ -227,21 +253,23 @@ plotDensitySplitByFrequency <- function(data_path,
 #' @import ggeasy
 #' @export
 plotDensityStackedByCustom <- function(data_path,
-                                graph_title = "Call Distribution Grouped by Custom Category Labels",
-                                graph_subtitle = "Calls are grouped by custom categories designated in DeepSqueak.",
-                                chosen_group = c()) {
+                                       graph_title = "Call Distribution Grouped by Custom Category Labels",
+                                       graph_subtitle = "Calls are grouped by custom categories designated in DeepSqueak.",
+                                       chosen_group = c()) {
   excel_file <- loadSpecData(data_path)
   excel_file <- excel_file %>%
     select(`Label`, `Begin Time (s)`)
   ggplot(data = excel_file) +
     geom_density(aes(fill = factor(`Label`), x = `Begin Time (s)`), alpha = 0.4) +
-    labs(title=graph_title,
-         subtitle=graph_subtitle,
-         caption=paste0("n = ", count(excel_file)[1], " observed calls."),
-         x="Time Coordinate (s)",
-         y="Proportion of total calls",
-         fill="Custom Label") +
-    if(length(chosen_group) > 0) {
+    labs(
+      title = graph_title,
+      subtitle = graph_subtitle,
+      caption = paste0("n = ", count(excel_file)[1], " observed calls."),
+      x = "Time Coordinate (s)",
+      y = "Proportion of total calls",
+      fill = "Custom Label"
+    ) +
+    if (length(chosen_group) > 0) {
       gghighlight(Label == chosen_group)
     }
 }
@@ -258,8 +286,10 @@ plotDensityStackedByCustom <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the density graph shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotDensitySplitByCustom(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-#' graph_title = "myTitle", graph_subtitle = "myDescription")
+#' @examples plotDensitySplitByCustom(
+#'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+#'   graph_title = "myTitle", graph_subtitle = "myDescription"
+#' )
 #'
 #' @import readxl
 #' @import ggplot2
@@ -278,13 +308,15 @@ plotDensitySplitByCustom <- function(data_path,
   ggplot(data = excel_file) +
     geom_density(aes(fill = factor(Label), x = `Begin Time (s)`), alpha = 0.4) +
     facet_grid(Label ~ .) +
-    labs(title=graph_title,
-         subtitle=graph_subtitle,
-         caption=paste0("n = ", count(excel_file)[1], " observed calls."),
-         x="Time Coordinate (s)",
-         y="Proportion of total calls",
-         fill="Custom Label") +
-    if(length(chosen_group) > 0) {
+    labs(
+      title = graph_title,
+      subtitle = graph_subtitle,
+      caption = paste0("n = ", count(excel_file)[1], " observed calls."),
+      x = "Time Coordinate (s)",
+      y = "Proportion of total calls",
+      fill = "Custom Label"
+    ) +
+    if (length(chosen_group) > 0) {
       gghighlight(Label == chosen_group)
     }
 }
@@ -304,8 +336,10 @@ plotDensitySplitByCustom <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the density graph shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotDensityStackedByDuration(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-#' graph_title = "myTitle", graph_subtitle = "myDescription")
+#' @examples plotDensityStackedByDuration(
+#'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+#'   graph_title = "myTitle", graph_subtitle = "myDescription"
+#' )
 #'
 #' @import readxl
 #' @import ggplot2
@@ -315,9 +349,9 @@ plotDensitySplitByCustom <- function(data_path,
 #' @import ggeasy
 #' @export
 plotDensityStackedByDuration <- function(data_path,
-                                  graph_title = "Call Distribution Grouped by Duration of Vocalization (s)",
-                                  graph_subtitle = "Duration groups are rounded to the nearest 0.01 second.",
-                                  chosen_group = c()) {
+                                         graph_title = "Call Distribution Grouped by Duration of Vocalization (s)",
+                                         graph_subtitle = "Duration groups are rounded to the nearest 0.01 second.",
+                                         chosen_group = c()) {
   excel_file <- loadSpecData(data_path)
 
   excel_file <- excel_file %>%
@@ -326,13 +360,15 @@ plotDensityStackedByDuration <- function(data_path,
 
   ggplot(data = excel_file) +
     geom_density(aes(fill = factor(duration_cat), x = `Begin Time (s)`), alpha = 0.4) +
-    labs(title=graph_title,
-         subtitle=graph_subtitle,
-         caption=paste0("n = ", count(excel_file)[1], " observed calls."),
-         x="Time Coordinate (s)",
-         y="Proportion of total calls",
-         fill="Call Length (s)") +
-    if(length(chosen_group) > 0) {
+    labs(
+      title = graph_title,
+      subtitle = graph_subtitle,
+      caption = paste0("n = ", count(excel_file)[1], " observed calls."),
+      x = "Time Coordinate (s)",
+      y = "Proportion of total calls",
+      fill = "Call Length (s)"
+    ) +
+    if (length(chosen_group) > 0) {
       gghighlight(duration_cat == chosen_group)
     }
 }
@@ -350,8 +386,10 @@ plotDensityStackedByDuration <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the density graph shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotDensitySplitByDuration(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-#' graph_title = "myTitle", graph_subtitle = "myDescription")
+#' @examples plotDensitySplitByDuration(
+#'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+#'   graph_title = "myTitle", graph_subtitle = "myDescription"
+#' )
 #'
 #' @import readxl
 #' @import ggplot2
@@ -372,13 +410,15 @@ plotDensitySplitByDuration <- function(data_path,
   ggplot(data = excel_file) +
     geom_density(aes(fill = factor(duration_cat), x = `Begin Time (s)`), alpha = 0.4) +
     facet_grid(duration_cat ~ .) +
-    labs(title=graph_title,
-         subtitle=graph_subtitle,
-         caption=paste0("n = ", count(excel_file)[1], " observed calls."),
-         x="Time Coordinate (s)",
-         y="Proportion of total calls",
-         fill="Call Length (s)") +
-    if(length(chosen_group) > 0) {
+    labs(
+      title = graph_title,
+      subtitle = graph_subtitle,
+      caption = paste0("n = ", count(excel_file)[1], " observed calls."),
+      x = "Time Coordinate (s)",
+      y = "Proportion of total calls",
+      fill = "Call Length (s)"
+    ) +
+    if (length(chosen_group) > 0) {
       gghighlight(duration_cat == chosen_group)
     }
 }
@@ -397,8 +437,10 @@ plotDensitySplitByDuration <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the histogram shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotDeltaHistogram(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-#' graph_title = "myTitle", graph_subtitle = "myDescription")
+#' @examples plotDeltaHistogram(
+#'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+#'   graph_title = "myTitle", graph_subtitle = "myDescription"
+#' )
 #'
 #' @import readxl
 #' @import ggplot2
@@ -408,19 +450,23 @@ plotDensitySplitByDuration <- function(data_path,
 #' @import ggeasy
 #' @export
 plotDeltaHistogram <- function(data_path,
-                                  graph_title = "Delta Frequency-Labeled Histogram",
-                                  graph_subtitle = "Delta Frequency measures the kHz range of each detected call.") {
+                               graph_title = "Delta Frequency-Labeled Histogram",
+                               graph_subtitle = "Delta Frequency measures the kHz range of each detected call.") {
   excel_file <- loadSpecData(data_path)
   excel_file <- excel_file %>%
     select(`Delta Freq (kHz)`)
   ggplot(data = excel_file) +
-    geom_histogram(mapping = aes(x = `Delta Freq (kHz)`),
-                   binwidth = 1, fill = "lightblue", color = "black") +
+    geom_histogram(
+      mapping = aes(x = `Delta Freq (kHz)`),
+      binwidth = 1, fill = "lightblue", color = "black"
+    ) +
     theme_bw() +
-    labs(title=graph_title,
-         subtitle=graph_subtitle,
-         caption=paste0("n = ", count(excel_file)[1], " observed calls."),
-         x="Distribution of Delta Frequencies (∆kHz)", y = "Count (n)")
+    labs(
+      title = graph_title,
+      subtitle = graph_subtitle,
+      caption = paste0("n = ", count(excel_file)[1], " observed calls."),
+      x = "Distribution of Delta Frequencies (kHz)", y = "Count (n)"
+    )
 }
 
 
@@ -437,8 +483,10 @@ plotDeltaHistogram <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the box-plot shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotPrincipalBoxplot(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-#' graph_title = "myTitle", graph_subtitle = "myDescription")
+#' @examples plotPrincipalBoxplot(
+#'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+#'   graph_title = "myTitle", graph_subtitle = "myDescription"
+#' )
 #'
 #' @import readxl
 #' @import ggplot2
@@ -448,18 +496,20 @@ plotDeltaHistogram <- function(data_path,
 #' @import ggeasy
 #' @export
 plotPrincipalBoxplot <- function(data_path,
-                                  graph_title = "Principal Frequency-Labeled Box-Plot",
-                                  graph_subtitle = "Main frequencies where calls labeled in DeepSqueak predominate.") {
+                                 graph_title = "Principal Frequency-Labeled Box-Plot",
+                                 graph_subtitle = "Main frequencies where calls labeled in DeepSqueak predominate.") {
   excel_file <- loadSpecData(data_path)
   excel_file <- excel_file %>%
     select(Label, `Principal Frequency (kHz)`)
   ggplot(data = excel_file) +
     theme_bw() +
     geom_boxplot(mapping = aes(y = `Principal Frequency (kHz)`, fill = Label), color = "black") +
-    labs(title=graph_title,
-         subtitle=graph_subtitle,
-         caption=paste0("n = ", count(excel_file)[1], " observed calls."),
-         y="Principal Frequency (kHz)") +
+    labs(
+      title = graph_title,
+      subtitle = graph_subtitle,
+      caption = paste0("n = ", count(excel_file)[1], " observed calls."),
+      y = "Principal Frequency (kHz)"
+    ) +
     easy_remove_x_axis()
 }
 
@@ -477,8 +527,10 @@ plotPrincipalBoxplot <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the box-plot shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotCorrelations(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-#' graph_title = "myTitle", graph_subtitle = "myDescription")
+#' @examples plotCorrelations(
+#'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+#'   graph_title = "myTitle", graph_subtitle = "myDescription"
+#' )
 #'
 #' @import readxl
 #' @import ggplot2
@@ -489,20 +541,22 @@ plotPrincipalBoxplot <- function(data_path,
 #' @import ggcorrplot
 #' @export
 plotCorrelations <- function(data_path,
-                                 graph_title = "Correlation Matrix between Call Features",
-                                 graph_subtitle = "Correlations between call features are labeled.") {
+                             graph_title = "Correlation Matrix between Call Features",
+                             graph_subtitle = "Correlations between call features are labeled.") {
   excel_file <- loadSpecData(data_path) %>%
-    select(`Call Length (s)`, `Principal Frequency (kHz)`, `Delta Freq (kHz)`,
-           `Slope (kHz/s)`, `Sinuosity`, `Mean Power (dB/Hz)`, `Tonality`, `Peak Freq (kHz)`)
+    select(
+      `Call Length (s)`, `Principal Frequency (kHz)`, `Delta Freq (kHz)`,
+      `Slope (kHz/s)`, `Sinuosity`, `Mean Power (dB/Hz)`, `Tonality`, `Peak Freq (kHz)`
+    )
 
   corr.mat <- round(cor(excel_file), 1)
-  ggcorrplot(corr.mat, hc.order = TRUE, outline.col = "white",
-             type = "lower", ggtheme = ggplot2::theme_gray, lab = TRUE) +
-    labs(title = graph_title,
-         subtitle = graph_subtitle,
-         caption=paste0("n = ", count(excel_file)[1], " observed calls."))
+  ggcorrplot(corr.mat,
+    hc.order = TRUE, outline.col = "white",
+    type = "lower", ggtheme = ggplot2::theme_gray, lab = TRUE
+  ) +
+    labs(
+      title = graph_title,
+      subtitle = graph_subtitle,
+      caption = paste0("n = ", count(excel_file)[1], " observed calls.")
+    )
 }
-
-
-
-

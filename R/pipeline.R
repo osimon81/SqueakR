@@ -1,3 +1,5 @@
+data(deepsqueak, envir=environment())
+
 ######### Pipeline Functions #########
 
 #' @title Full Experiment Creation
@@ -30,8 +32,10 @@ experiment_pipeline <- function() {
     data_group <- readline(prompt = paste0("Enter the group for this file: "))
     data_experimenter <- readline(prompt = paste0("Enter the experimenter who collected data for this file: "))
 
-    new_data <- add_timepoint_data(data_path = file.path(data_directory, data_file),
-                                   t1 = t1_data, t2 = t2_data) %>%
+    new_data <- add_timepoint_data(
+      data_path = file.path(data_directory, data_file),
+      t1 = t1_data, t2 = t2_data
+    ) %>%
       score_timepoint_data(group = data_group, experimenter = data_experimenter)
 
     experiment <- add_to_experiment(experiment, new_data)
@@ -41,18 +45,17 @@ experiment_pipeline <- function() {
 
   save_prompt <- readline(prompt = "Would you like to save this experiment locally? (y/n): ")
 
-    if (tolower(save_prompt) == "y") {
-      save_path <- readline(prompt = "Enter the full path for where you'd like to save the experiment: ")
-      experiment <- update_experiment(experiment) %>%
-        save_experiment(save_path = save_path)
-    } else if (tolower(save_prompt) == "yes") {
-      save_path <- readline(prompt = "Enter the full path for where you'd like to save the experiment: ")
-      experiment <- update_experiment(experiment) %>%
-        save_experiment(save_path = save_path)
-    }
-    else {
-      experiment <- update_experiment(experiment)
-    }
+  if (tolower(save_prompt) == "y") {
+    save_path <- readline(prompt = "Enter the full path for where you'd like to save the experiment: ")
+    experiment <- update_experiment(experiment) %>%
+      save_experiment(save_path = save_path)
+  } else if (tolower(save_prompt) == "yes") {
+    save_path <- readline(prompt = "Enter the full path for where you'd like to save the experiment: ")
+    experiment <- update_experiment(experiment) %>%
+      save_experiment(save_path = save_path)
+  } else {
+    experiment <- update_experiment(experiment)
+  }
 
   message("Pipeline complete!")
   message()
@@ -61,5 +64,3 @@ experiment_pipeline <- function() {
 
   return(experiment)
 }
-
-

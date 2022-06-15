@@ -24,7 +24,9 @@ A ggplot2 visualization of the histogram shown in the viewer window, which can b
 Plots a distribution of delta frequencies as a histogram.
 }
 \examples{
-plotDeltaHistogram(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-graph_title = "myTitle", graph_subtitle = "myDescription")
+plotDeltaHistogram(
+  data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+  graph_title = "myTitle", graph_subtitle = "myDescription"
+)
 
 }

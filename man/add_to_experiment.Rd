@@ -19,6 +19,6 @@ Adds summarized timepoint data (acquired by running `add_timepoint_data()`,
 followed by `score_timepoint_data()`) to the created experiment object.
 }
 \examples{
-create_experiment(experiment_name = "My-Project")
+add_to_experiment(experiment_name = "My-Project", added_data = my_data)
 
 }

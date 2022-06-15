@@ -20,7 +20,9 @@ A PDF containing a series of relevant ethnograms and density graphs assessing th
 Plots a density graph, separating each frequency group into a separate plot in the figure.
 }
 \examples{
-plotSummaryPDF(data_path = "inst/extdata/Example_Mouse_Data.xlsx",
-save_path = tempdir(), experimenter = "experimenter_name")
+plotSummaryPDF(
+  data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+  save_path = tempdir(), experimenter = "experimenter_name"
+)
 
 }
