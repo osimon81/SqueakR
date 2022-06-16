@@ -27,9 +27,9 @@ A ggplot2 visualization of the density graph shown in the viewer window, which c
 Plots a density graph, grouped by custom labels set in DeepSqueak, collapsed into a single graph.
 }
 \examples{
-plotDensityStackedByCustom(
+\dontrun{plotDensityStackedByCustom(
   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
   graph_title = "myTitle", graph_subtitle = "myDescription"
-)
+)}
 
 }

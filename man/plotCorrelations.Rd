@@ -6,8 +6,8 @@
 \usage{
 plotCorrelations(
   data_path,
-  graph_title = "Correlation Matrix between Call Features",
-  graph_subtitle = "Correlations between call features are labeled."
+  graph_title = "Correlation Matrix",
+  graph_subtitle = "Correlation coefficients labeled."
 )
 }
 \arguments{
@@ -24,9 +24,9 @@ A ggplot2 visualization of the box-plot shown in the viewer window, which can be
 Plots a box-plot based on principal frequency, grouped by custom labels designated in DeepSqueak.
 }
 \examples{
-plotCorrelations(
+\dontrun{plotCorrelations(
   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
   graph_title = "myTitle", graph_subtitle = "myDescription"
-)
+)}
 
 }

@@ -20,9 +20,9 @@ An object containing the call data (under time constraints if specified)
 Loads in a specific Excel File, and (optional) selects a time subset of data.
 }
 \examples{
-add_timepoint_data(
-  data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+\dontrun{add_timepoint_data(
+  data_path = "~/inst/extdata/Example_Mouse_Data.xlsx",
   t1 = 3, t2 = 12
-)
+)}
 
 }

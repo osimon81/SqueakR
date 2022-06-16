@@ -1,4 +1,4 @@
-data(deepsqueak, envir=environment())
+data(deepsqueak_data, envir=environment())
 
 library(readxl)
 library(ggplot2)
@@ -8,7 +8,8 @@ library(dplyr)
 library(ggeasy)
 library(ggcorrplot)
 
-globalVariables(names(deepsqueak))
+globalVariables(names(deepsqueak_data))
+globalVariables(c("cor", "duration_cat", "fr_cat"))
 
 ######### Hidden functions #########
 
@@ -41,10 +42,10 @@ loadSpecData <- function(data_path) {
 #'
 #' @return A ggplot2 visualization of the ethnogram shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotEthnogram(
+#' @examples \dontrun{plotEthnogram(
 #'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
 #'   graph_title = "myTitle", graph_subtitle = "myDescription"
-#' )
+#' )}
 #'
 #' @import readxl
 #' @import ggplot2
@@ -88,10 +89,10 @@ plotEthnogram <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the ethnogram shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotEthnogramSplitByTonality(
+#' @examples \dontrun{plotEthnogramSplitByTonality(
 #'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
 #'   graph_title = "myTitle", graph_subtitle = "myDescription"
-#' )
+#' )}
 #'
 #' @import readxl
 #' @import ggplot2
@@ -102,8 +103,7 @@ plotEthnogram <- function(data_path,
 #' @export
 plotEthnogramSplitByTonality <- function(data_path,
                                          graph_title = "Ethnogram Split By Tonality",
-                                         graph_subtitle = "Clearer calls with a lower signal-to-noise
-                                         ratio appear as brighter lines.") {
+                                         graph_subtitle = "Tonality: Signal/noise") {
   excel_file <- loadSpecData(data_path)
   excel_file <- excel_file %>%
     select(`Begin Time (s)`, Tonality)
@@ -141,10 +141,10 @@ plotEthnogramSplitByTonality <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the density graph shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotDensityStackedByFrequency(
+#' @examples \dontrun{plotDensityStackedByFrequency(
 #'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
 #'   graph_title = "myTitle", graph_subtitle = "myDescription"
-#' )
+#' )}
 #'
 #' @import readxl
 #' @import ggplot2
@@ -189,10 +189,10 @@ plotDensityStackedByFrequency <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the density graph shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotDensitySplitByFrequency(
+#' @examples \dontrun{plotDensitySplitByFrequency(
 #'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
 #'   graph_title = "myTitle", graph_subtitle = "myDescription"
-#' )
+#' )}
 #'
 #' @import readxl
 #' @import ggplot2
@@ -240,10 +240,10 @@ plotDensitySplitByFrequency <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the density graph shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotDensityStackedByCustom(
+#' @examples \dontrun{plotDensityStackedByCustom(
 #'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
 #'   graph_title = "myTitle", graph_subtitle = "myDescription"
-#' )
+#' )}
 #'
 #' @import readxl
 #' @import ggplot2
@@ -286,10 +286,10 @@ plotDensityStackedByCustom <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the density graph shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotDensitySplitByCustom(
+#' @examples \dontrun{plotDensitySplitByCustom(
 #'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
 #'   graph_title = "myTitle", graph_subtitle = "myDescription"
-#' )
+#' )}
 #'
 #' @import readxl
 #' @import ggplot2
@@ -336,10 +336,10 @@ plotDensitySplitByCustom <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the density graph shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotDensityStackedByDuration(
+#' @examples \dontrun{plotDensityStackedByDuration(
 #'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
 #'   graph_title = "myTitle", graph_subtitle = "myDescription"
-#' )
+#' )}
 #'
 #' @import readxl
 #' @import ggplot2
@@ -386,10 +386,10 @@ plotDensityStackedByDuration <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the density graph shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotDensitySplitByDuration(
+#' @examples \dontrun{plotDensitySplitByDuration(
 #'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
 #'   graph_title = "myTitle", graph_subtitle = "myDescription"
-#' )
+#' )}
 #'
 #' @import readxl
 #' @import ggplot2
@@ -437,10 +437,10 @@ plotDensitySplitByDuration <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the histogram shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotDeltaHistogram(
+#' @examples \dontrun{plotDeltaHistogram(
 #'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
 #'   graph_title = "myTitle", graph_subtitle = "myDescription"
-#' )
+#' )}
 #'
 #' @import readxl
 #' @import ggplot2
@@ -483,10 +483,10 @@ plotDeltaHistogram <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the box-plot shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotPrincipalBoxplot(
+#' @examples \dontrun{plotPrincipalBoxplot(
 #'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
 #'   graph_title = "myTitle", graph_subtitle = "myDescription"
-#' )
+#' )}
 #'
 #' @import readxl
 #' @import ggplot2
@@ -527,10 +527,10 @@ plotPrincipalBoxplot <- function(data_path,
 #'
 #' @return A ggplot2 visualization of the box-plot shown in the viewer window, which can be manually exported.
 #'
-#' @examples plotCorrelations(
+#' @examples \dontrun{plotCorrelations(
 #'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
 #'   graph_title = "myTitle", graph_subtitle = "myDescription"
-#' )
+#' )}
 #'
 #' @import readxl
 #' @import ggplot2
@@ -541,8 +541,8 @@ plotPrincipalBoxplot <- function(data_path,
 #' @import ggcorrplot
 #' @export
 plotCorrelations <- function(data_path,
-                             graph_title = "Correlation Matrix between Call Features",
-                             graph_subtitle = "Correlations between call features are labeled.") {
+                             graph_title = "Correlation Matrix",
+                             graph_subtitle = "Correlation coefficients labeled.") {
   excel_file <- loadSpecData(data_path) %>%
     select(
       `Call Length (s)`, `Principal Frequency (kHz)`, `Delta Freq (kHz)`,
@@ -551,7 +551,7 @@ plotCorrelations <- function(data_path,
 
   corr.mat <- round(cor(excel_file), 1)
   ggcorrplot(corr.mat,
-    hc.order = TRUE, outline.col = "white",
+    hc.order = TRUE, outline.color = "white",
     type = "lower", ggtheme = ggplot2::theme_gray, lab = TRUE
   ) +
     labs(

@@ -18,6 +18,6 @@ The experiment object, saved as "[NAME_OF_EXPERIMENT] ([SAVE_DATE]).RData" to th
 Saves the experiment as an .RData file in a specified location.
 }
 \examples{
-save_experiment(experiment = experiment_object, save_path = tempdir())
+\dontrun{save_experiment(experiment = experiment_object, save_path = tempdir())}
 
 }

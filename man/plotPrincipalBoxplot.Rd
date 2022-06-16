@@ -24,9 +24,9 @@ A ggplot2 visualization of the box-plot shown in the viewer window, which can be
 Plots a box-plot based on principal frequency, grouped by custom labels designated in DeepSqueak.
 }
 \examples{
-plotPrincipalBoxplot(
+\dontrun{plotPrincipalBoxplot(
   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
   graph_title = "myTitle", graph_subtitle = "myDescription"
-)
+)}
 
 }

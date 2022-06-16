@@ -19,6 +19,6 @@ Compares data across experimental groups, plotting the data as a
 bar graph with error bars.
 }
 \examples{
-analyze_factor(experiment = experiment, analysis_factor = "tonality")
+\dontrun{analyze_factor(experiment = experiment, analysis_factor = "tonality")}
 
 }

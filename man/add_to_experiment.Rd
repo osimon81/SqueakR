@@ -7,7 +7,9 @@
 add_to_experiment(experiment, added_data)
 }
 \arguments{
-\item{experiment_name}{The name of the experiment}
+\item{experiment}{The experiment object}
+
+\item{added_data}{The scored data object to be added to the experiment}
 }
 \value{
 A list object containing statistics and metadata for the entire experiment.
@@ -19,6 +21,6 @@ Adds summarized timepoint data (acquired by running `add_timepoint_data()`,
 followed by `score_timepoint_data()`) to the created experiment object.
 }
 \examples{
-add_to_experiment(experiment_name = "My-Project", added_data = my_data)
+\dontrun{add_to_experiment(experiment = experiment, added_data = my_data)}
 
 }

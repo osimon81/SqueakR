@@ -1,4 +1,4 @@
-data(deepsqueak, envir=environment())
+data(deepsqueak_data, envir=environment())
 
 #' @title Export PDF
 #'
@@ -10,10 +10,10 @@ data(deepsqueak, envir=environment())
 #'
 #' @return A PDF containing a series of relevant ethnograms and density graphs assessing the recording.
 #'
-#' @examples plotSummaryPDF(
+#' @examples \dontrun{plotSummaryPDF(
 #'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
 #'   save_path = tempdir(), experimenter = "experimenter_name"
-#' )
+#' )}
 #'
 #' @import readxl
 #' @import ggplot2

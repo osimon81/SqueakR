@@ -19,6 +19,6 @@ Auto-populates `groups` and `experimenters` fields in experiment object
 by checking experimental data (within the experiment object) for new data.
 }
 \examples{
-update_experiment(experiment)
+\dontrun{update_experiment(experiment)}
 
 }

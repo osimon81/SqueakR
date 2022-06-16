@@ -1,4 +1,6 @@
-data(deepsqueak, envir=environment())
+data(deepsqueak_data, envir=environment())
+
+globalVariables(c("sd"))
 
 ######### Data Cleaning Functions #########
 
@@ -12,10 +14,10 @@ data(deepsqueak, envir=environment())
 #'
 #' @return An object containing the call data (under time constraints if specified)
 #'
-#' @examples add_timepoint_data(
-#'   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
+#' @examples \dontrun{add_timepoint_data(
+#'   data_path = "~/inst/extdata/Example_Mouse_Data.xlsx",
 #'   t1 = 3, t2 = 12
-#' )
+#' )}
 #'
 #' @import readxl
 #' @import dplyr
@@ -46,10 +48,10 @@ add_timepoint_data <- function(data_path, t1 = "", t2 = "") {
 #'
 #' @return A list object containing statistics and metadata for each file.
 #'
-#' @examples score_timepoint_data(
+#' @examples \dontrun{score_timepoint_data(
 #'   data_subset = my_subsetted_data, group = "Control",
 #'   experimenter = "Experimenter 1"
-#' )
+#' )}
 #'
 #' @import readxl
 #' @import dplyr
@@ -150,13 +152,14 @@ create_experiment <- function(experiment_name) {
 #' @description Adds summarized timepoint data (acquired by running `add_timepoint_data()`,
 #' followed by `score_timepoint_data()`) to the created experiment object.
 #'
-#' @param experiment_name The name of the experiment
+#' @param experiment The experiment object
+#' @param added_data The scored data object to be added to the experiment
 #'
 #' @return A list object containing statistics and metadata for the entire experiment.
 #' The `groups` and `experimenters` field will auto-populate based on added data using
 #' the `update_experiment()` function.
 #'
-#' @examples add_to_experiment(experiment_name = "My-Project", added_data = my_data)
+#' @examples \dontrun{add_to_experiment(experiment = experiment, added_data = my_data)}
 #'
 #' @import dplyr
 #' @export
@@ -179,7 +182,7 @@ add_to_experiment <- function(experiment, added_data) {
 #' The `groups` and `experimenters` field will auto-populate based on added data using
 #' the `update_experiment()` function.
 #'
-#' @examples update_experiment(experiment)
+#' @examples \dontrun{update_experiment(experiment)}
 #'
 #' @export
 update_experiment <- function(experiment) {
@@ -209,7 +212,7 @@ update_experiment <- function(experiment) {
 #'
 #' @return The experiment object, saved as "[NAME_OF_EXPERIMENT] ([SAVE_DATE]).RData" to the specified location.
 #'
-#' @examples save_experiment(experiment = experiment_object, save_path = tempdir())
+#' @examples \dontrun{save_experiment(experiment = experiment_object, save_path = tempdir())}
 #'
 #' @import dplyr
 #' @export
@@ -229,7 +232,7 @@ save_experiment <- function(experiment, save_path) {
 #'
 #' @return A list of information about the experiment
 #'
-#' @examples describe_experiment(experiment = experiment_object)
+#' @examples \dontrun{describe_experiment(experiment = experiment_object)}
 #'
 #' @export
 describe_experiment <- function(experiment) {

@@ -16,6 +16,6 @@ A list of information about the experiment
 Lists a condensed summary of data stored in the experiment object.
 }
 \examples{
-describe_experiment(experiment = experiment_object)
+\dontrun{describe_experiment(experiment = experiment_object)}
 
 }

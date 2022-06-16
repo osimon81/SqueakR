@@ -7,8 +7,7 @@
 plotEthnogramSplitByTonality(
   data_path,
   graph_title = "Ethnogram Split By Tonality",
- 
-    graph_subtitle = "Clearer calls with a lower signal-to-noise\\n                                         ratio appear as brighter lines."
+  graph_subtitle = "Tonality: Signal/noise"
 )
 }
 \arguments{
@@ -25,9 +24,9 @@ A ggplot2 visualization of the ethnogram shown in the viewer window, which can b
 Plots a tonality ethnogram, representing tonality (clarity) of calls throughout the recording.
 }
 \examples{
-plotEthnogramSplitByTonality(
+\dontrun{plotEthnogramSplitByTonality(
   data_path = "inst/extdata/Example_Mouse_Data.xlsx",
   graph_title = "myTitle", graph_subtitle = "myDescription"
-)
+)}
 
 }

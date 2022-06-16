@@ -87,7 +87,6 @@ In the context of the code above, we've just extracted all of the calls in the 5
 ```{r view head and tail of extracted data}
 # The first few rows of the dataset
 head(my_new_data)
-
 # The last few rows of the dataset
 tail(my_new_data)
 ```
@@ -318,6 +317,20 @@ Finally, we can plot a correlation matrix, which displays correlations between c
 
 ```{r correlations, warning = FALSE}
 plotCorrelations(experiment$experimental_data[1]$call_data$raw)
+```
+## Preview Dataset Visualizations
+
+If you don't want to add data to the experiment object before visualizing data (in other words, preview the visualizations for an Excel file), you can run the same functions as above:
+
+```{r preview excel file (1)}
+plotDensityStackedByFrequency("../inst/extdata/Example_Mouse_Data.xlsx")
+```
+Keep in mind these plots will generate for the entire set of data, not a subset of the data like we can do using the experiment object functions. The only parameter required for these visualizations is the full path to the data file, which makes it easy to produce rapid visualizations based on individual Excel files.
+
+If we want to view an entire set of visualizations (shown in the above sections) for an Excel file as a PDF, we can also run the following function:
+
+```{r preview excel file (2), eval = FALSE}
+plotSummaryPDF("../inst/extdata/Example_Mouse_Data.xlsx", save_path = "[path for where to save file]")
 ```
 
 

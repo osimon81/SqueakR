@@ -1,4 +1,4 @@
-data(deepsqueak, envir=environment())
+data(deepsqueak_data, envir=environment())
 
 ######### Pipeline Functions #########
 

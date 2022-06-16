@@ -4,7 +4,7 @@
 #'
 #' @docType data
 #'
-#' @usage data(deepsqueak)
+#' @usage data(deepsqueak_data)
 #'
 #' @format A \code{"data.frame"} with 714 rows and 17 columns. The definitions of
 #' these parameters are sourced from the link in the references section.
@@ -35,5 +35,5 @@
 #' @source (\href{https://github.com/DrCoffey/DeepSqueak}{DeepSqueak GitHub})
 #'
 #' @examples
-#' data(deepsqueak)
-"deepsqueak"
+#' data(deepsqueak_data)
+"deepsqueak_data"

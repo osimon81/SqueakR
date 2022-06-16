@@ -1,4 +1,6 @@
-data(deepsqueak, envir=environment())
+data(deepsqueak_data, envir=environment())
+
+globalVariables(c("group", "sd"))
 
 #' @title Analyze Factor
 #'
@@ -10,7 +12,7 @@ data(deepsqueak, envir=environment())
 #'
 #' @return A bar graph comparing the analysis_factor between groups
 #'
-#' @examples analyze_factor(experiment = experiment, analysis_factor = "tonality")
+#' @examples \dontrun{analyze_factor(experiment = experiment, analysis_factor = "tonality")}
 #'
 #' @import dplyr
 #' @import rlist
