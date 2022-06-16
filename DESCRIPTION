@@ -10,6 +10,7 @@ Description: A collection of functions intended to produce convenient
     These visualizations include call frequency-clustered graphs, and
     density graphs grouped by frequency, custom labels identified in
     'DeepSqueak', and call duration.
+URL: https://github.com/osimon81/SqueakR
 License: MIT + file LICENSE
 Imports:
     dplyr,
