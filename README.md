@@ -1,3 +1,7 @@
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/osimon81/SqueakR/workflows/R-CMD-check/badge.svg)](https://github.com/osimon81/SqueakR/actions)
+<!-- badges: end -->
+
 # SqueakR
 ### Experiment Superstructure for DeepSqueak
 
