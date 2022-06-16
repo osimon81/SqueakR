@@ -1,5 +1,6 @@
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/osimon81/SqueakR/workflows/R-CMD-check/badge.svg)](https://github.com/osimon81/SqueakR/actions)
+[![codecov](https://codecov.io/gh/osimon81/SqueakR/branch/main/graph/badge.svg?token=039C8ZLW97)](https://codecov.io/gh/osimon81/SqueakR)
 <!-- badges: end -->
 
 # SqueakR
