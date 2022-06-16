@@ -42,9 +42,9 @@ Next, load the package:
 library(SqueakR)
 ```
 
-# The Experimental Object
+# The `Experiment` Object
 
-## Creating an Experiment
+## Creating an `Experiment`
 
 This package allows all data necessary for visualizations to be stored in a single object. However, to do so, the experimental object must be created. To create an `experiment`, run the following code:
 
@@ -248,7 +248,7 @@ plotDensityStackedByFrequency(experiment$experimental_data[1]$call_data$raw)
 
 With *density graphs that are stacked*, we can highlight a specific group using the following optional parameter:
 
-```{r frequency stacked - choose group}
+```{r frequency stacked - choose group, warning = FALSE}
 plotDensityStackedByFrequency(experiment$experimental_data[1]$call_data$raw,
                               chosen_group = 50)
 ```
@@ -389,7 +389,7 @@ analyze_factor(experiment = experiment, analysis_factor = "delta_frequency")
 
 In the above plot, we compare delta frequency (the average range of frequencies for all calls in a given time range) between different groups. The data look similar because they are based on the same Excel file, just at different time-points, but this highlights the versatility of data extraction using DeepSqueak, in that call data can be processed in not only a between-groups manner but also a within-groups manner.
 
-We can assess other comparisons in this way, by ensuring that we set the `analysis_factor` variable to the name of the columns previously specified in "quotes." Keeping this format ensures that SqueakR knows which data to compare.
+We can assess other comparisons in this way, by ensuring that we set `analysis_factor` to the name of the variable previously specified in the [Data Structure](#data-structure) section, but written in "quotes". Keeping this format ensures that SqueakR knows which data to compare.
 
 
 

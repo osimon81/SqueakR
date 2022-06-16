@@ -2,7 +2,7 @@
 
 ---
 
-* Added a `NEWS.md` file to track changes to the package.
+* Recreated `NEWS.md` file to track changes to the package.
 * Added functions for generating experiment and analyzing data between experimental groups.
 * Added visualizations including ethnograms, histograms, box-plots, and correlation matrices.
 
@@ -10,10 +10,7 @@
 
 ---
 
-* Bug fixes
-
-### Bug fixes
-
+- Bug fixes
 - Prepared development release for Mac
 - Prepared development release for Windows
 

@@ -1,0 +1,29 @@
+template:
+  bootstrap: 5
+  bootswatch: zephyr
+reference:
+- title: "Managing your Experiment"
+  desc: >
+    Functions for managing the experiment object and adding data.
+  contents:
+  - create_experiment
+  - describe_experiment
+  - update_experiment
+  - save_experiment
+  - add_to_experiment
+  - experiment_pipeline
+  - analyze_factor
+- title: "Cleaning DeepSqueak Data"
+  desc: >
+    Functions for loading data and scoring data for entry into experiment.
+  contents:
+  - add_timepoint_data
+  - score_timepoint_data
+- title: "Data Visualization"
+  desc: "Functions for visualizing experimental datasets."
+  contents:
+  - starts_with("plot")
+- title: "Example Data"
+  desc: "An example dataset exported from DeepSqueak."
+  contents:
+  - deepsqueak_data
