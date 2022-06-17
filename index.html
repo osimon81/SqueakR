@@ -75,9 +75,41 @@
 <!-- badges: end --><div class="section level1">
 <div class="page-header"><h1 id="squeakr-an-experiment-superstructure-for-deepsqueak">SqueakR: An Experiment Superstructure for DeepSqueak<a class="anchor" aria-label="anchor" href="#squeakr-an-experiment-superstructure-for-deepsqueak"></a>
 </h1></div>
-<p>Welcome to the <code>SqueakR</code> package! To install the package in RStudio, run the following code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(devtools)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">install_github</span>(<span class="st">"osimon81/SqueakR"</span>)</span></code></pre></div>
+<p>Welcome to the <code>SqueakR</code> package!</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>To install the CRAN release of the package, run the following code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">install.packages</span>(SqueakR)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(SqueakR)</span></code></pre></div>
+<p>To install the development version of <code>SqueakR</code>, run the following code:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(devtools)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">install_github</span>(<span class="st">"osimon81/SqueakR"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">library</span>(SqueakR)</span></code></pre></div>
+<p><code>SqueakR</code> represents a suite of functions and formats designed to assist researchers with processing and exploring data from experiments which use DeepSqueak for bioacoustics projects. DeepSqueak is a machine-vision program capable of aggregating detected vocalizations based on the features a call might have, allowing subsequent analysis of call syntax, significant changes in call features across groups, etc.</p>
+</div>
+<div class="section level2">
+<h2 id="resources">Resources<a class="anchor" aria-label="anchor" href="#resources"></a>
+</h2>
+<p>The tools and resources available under <code>SqueakR</code> include:</p>
+<ul>
+<li><p>The <code>SqueakR</code> <a href="https://osimon81.github.io/SqueakR/" title="SqueakR Pkgdown Website on GitHub" class="external-link">pkgdown website</a> available through GitHub. Detailed information about its functions can be found under the <a href="https://osimon81.github.io/SqueakR/reference/index.html" title="Reference tab on pkgdown" class="external-link">Reference</a> tab. The <a href="https://osimon81.github.io/SqueakR/articles/SqueakR.html" title="Getting started tab on pkgdown" class="external-link">Get started</a> the recommended site for learning how to use the package.</p></li>
+<li>
+<p>The <a href="https://github.com/osimon81/SqueakR" title="The GitHub repository for SqueakR" class="external-link">main <code>SqueakR</code> Package repository</a>, and the corresponding <a href="https://github.com/osimon81/SqueakR/wiki" title="SqueakR Wiki" class="external-link">Wiki</a> and <a href="https://github.com/osimon81/SqueakR/discussions" title="Discussions page for SqueakR repo" class="external-link">Discussions</a> sections.</p>
+<ul>
+<li><p><strong>This Discussions section</strong> under the main SqueakR repository will be the forum for announcements, discussions, and troubleshooting anything related to either SqueakR or the Shiny SqueakR Dashboard.</p></li>
+<li><p>However, <em>both sites have separate wikis,</em> to keep documentation organized.</p></li>
+</ul>
+</li>
+<li><p>The <a href="https://github.com/osimon81/SqueakR-Dashboard" title="Repository for Shiny SqueakR Dashboard" class="external-link">Shiny <code>SqueakR</code> Dashboard repository</a>, and the accompanying <a href="https://github.com/osimon81/SqueakR-Dashboard/wiki" title="SqueakR-Dashboard Wiki" class="external-link">Wiki</a> sections, which contains documentation for running analysis and visualizing data through the <code>SqueakR</code> Shiny dashboard.</p></li>
+<li><p>The <a href="https://cran.r-project.org/package=SqueakR" title="SqueakR Website on CRAN" class="external-link"><code>SqueakR</code></a> package itself, and documentation describing its functions, on CRAN.</p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="contact">Contact<a class="anchor" aria-label="anchor" href="#contact"></a>
+</h2>
+<p>If you have any questions that cannot be answered through any of these ways, feel free to contact me, Simon Ogundare, at <a href="mailto:simon.ogundare@columbia.edu">simon.ogundare@columbia.edu</a>, and I’ll get back to you as soon as possible.</p>
+</div>
 </div>
 
   </main><aside class="col-md-3"><div class="links">
@@ -115,11 +147,10 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://cran.r-project.org/package=SqueakR" class="external-link"><img src="https://www.r-pkg.org/badges/version/SqueakR?color=green" alt="CRAN"></a></li>
-<li><a href="https://cran.r-project.org/package=SqueakR" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/last-month/SqueakR" alt="CRAN Downloads"></a></li>
 <li><a href="https://github.com/osimon81/SqueakR/actions/workflows/pkgdown.yaml" class="external-link"><img src="https://github.com/osimon81/SqueakR/actions/workflows/pkgdown.yaml/badge.svg" alt="pkgdown"></a></li>
 <li><a href="https://cran.r-project.org/web/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a></li>
-<li><a href="https://github.com/osimon81/SqueakR/actions" class="external-link"><img src="https://github.com/osimon81/SqueakR/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://codecov.io/gh/osimon81/SqueakR" class="external-link"><img src="https://codecov.io/gh/osimon81/SqueakR/branch/main/graph/badge.svg?token=039C8ZLW97" alt="codecov"></a></li>
+<li><a href=""><img src="https://img.shields.io/github/contributors/osimon81/SqueakR.svg?style=flat" alt="GitHub contributors"></a></li>
+<li><a href="https://twitter.com/SimonOgundare" class="external-link"><img src="https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&amp;label=Follow%20%40SimonOgundare" alt="Twitter"></a></li>
 </ul>
 </div>
 
