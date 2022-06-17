@@ -79,7 +79,7 @@
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>The SqueakR package is a centralized, experiment-centered approach to organizing and analyzing data exported from <a href="https://github.com/DrCoffey/DeepSqueak" class="external-link"><code>DeepSqueak</code></a>. Of its diverse functions, SqueakR is capable of generating quick plots from vocalization data detected from <code>DeepSqueak</code>. On top of these visualizations, the package contains functions which combine all exported DeepSqueak data from multiple recordings into a single experimental object, allowing subsequent analysis to be conducted directly from R.</p>
+<p>The <code>SqueakR</code> package is a centralized, experiment-centered approach to organizing and analyzing data exported from <a href="https://github.com/DrCoffey/DeepSqueak" class="external-link"><code>DeepSqueak</code></a>. Of its diverse functions, <code>SqueakR</code> is capable of generating quick plots from vocalization data detected from <code>DeepSqueak</code>. On top of these visualizations, the package contains functions which combine all exported DeepSqueak data from multiple recordings into a single experimental object, allowing subsequent analysis to be conducted directly from R.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -87,7 +87,7 @@
 <div class="section level3">
 <h3 id="from-github">From GitHub<a class="anchor" aria-label="anchor" href="#from-github"></a>
 </h3>
-<p>To use SqueakR, we need to install the package. To install the package from GitHub, run the code below. Ensure the <code>devtools</code> package is installed before running the following:</p>
+<p>To use <code>SqueakR</code>, we need to install the package. To install the package from GitHub, run the code below. Ensure the <code>devtools</code> package is installed before running the following:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span>
 <span class="fu">install_github</span><span class="op">(</span><span class="st">"osimon81/SqueakR"</span><span class="op">)</span></code></pre></div>
@@ -111,7 +111,7 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; List of 5</span>
 <span class="co">#&gt;  $ name             : chr "my_experiment"</span>
-<span class="co">#&gt;  $ last_saved       : POSIXct[1:1], format: "2022-06-17 16:05:58"</span>
+<span class="co">#&gt;  $ last_saved       : POSIXct[1:1], format: "2022-06-17 16:52:57"</span>
 <span class="co">#&gt;  $ groups           : NULL</span>
 <span class="co">#&gt;  $ experimenters    : NULL</span>
 <span class="co">#&gt;  $ experimental_data: list()</span></code></pre></div>
@@ -120,7 +120,7 @@
 <li>
 <code>name</code>: The name we just set for this experiment</li>
 <li>
-<code>last_saved</code>: A timestamp for the last time this experiment was saved (in this case, this is the time the object was created)</li>
+<code>last_saved</code>: A timestamp for the last time this <code>experiment</code> was saved (in this case, this is the time the object was created)</li>
 <li>
 <code>groups</code>: An empty variable which will be configured to show the experimental groups</li>
 <li>
@@ -128,12 +128,12 @@
 <li>
 <code>experimental_data</code>: An empty list which will store all of the data for this experiment</li>
 </ul>
-<p>Now that our experiment is created, we can start to add data to it.</p>
+<p>Now that our <code>experiment</code> is created, we can start to add data to it.</p>
 </div>
 <div class="section level3">
 <h3 id="loading-data">Loading Data<a class="anchor" aria-label="anchor" href="#loading-data"></a>
 </h3>
-<p>When call data is exported from DeepSqueak, it includes all detected calls through the length of the recording. However, sometimes, we’re only interested in calls within a certain range of the entire recording. SqueakR has the <code><a href="../reference/add_timepoint_data.html">add_timepoint_data()</a></code> function to assist with this:</p>
+<p>When call data is exported from DeepSqueak, it includes all detected calls through the length of the recording. However, sometimes, we’re only interested in calls within a certain range of the entire recording. <code>SqueakR</code> has the <code><a href="../reference/add_timepoint_data.html">add_timepoint_data()</a></code> function to assist with this:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_new_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/add_timepoint_data.html">add_timepoint_data</a></span><span class="op">(</span>data_path <span class="op">=</span> <span class="st">"../inst/extdata/Example_Mouse_Data.xlsx"</span>, t1 <span class="op">=</span> <span class="fl">5</span>, t2 <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>
 <span class="co">#&gt; Adding call features Excel file to workspace...</span>
@@ -288,7 +288,7 @@
 <div class="section level3">
 <h3 id="adding-scored-data-to-experiment">Adding Scored Data to Experiment<a class="anchor" aria-label="anchor" href="#adding-scored-data-to-experiment"></a>
 </h3>
-<p>Now our data is prepared, we can add it to the experiment object we created. To do so, we can use the <code><a href="../reference/add_to_experiment.html">add_to_experiment()</a></code> function. The parameters for the function are the experiment object (which we’ve conveniently labeled experiment), and the data we want to add (which we just assigned to <code>my_scored_data</code> in the previous section).</p>
+<p>Now our data is prepared, we can add it to the <code>experiment</code> object we created. To do so, we can use the <code><a href="../reference/add_to_experiment.html">add_to_experiment()</a></code> function. The parameters for the function are the <code>experiment</code> object (which we’ve conveniently labeled experiment), and the data we want to add (which we just assigned to <code>my_scored_data</code> in the previous section).</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">experiment</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/add_to_experiment.html">add_to_experiment</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span>, added_data <span class="op">=</span> <span class="va">my_scored_data</span><span class="op">)</span>
 <span class="co">#&gt; Adding summarized data to experiment object...</span>
@@ -297,21 +297,21 @@
 <div class="section level3">
 <h3 id="summarizing-the-experiment">Summarizing the Experiment<a class="anchor" aria-label="anchor" href="#summarizing-the-experiment"></a>
 </h3>
-<p>Now, our new data is added to our experiment object! As seen in the previous section, running <code>str(experiment)</code> can produce an unwieldy representation of our experiment, so this is discouraged when dealing with large experiments. As an alternative, we can run the following SqueakR function:</p>
+<p>Now, our new data is added to our <code>experiment</code> object! As seen in the previous section, running <code>str(experiment)</code> can produce an unwieldy representation of our experiment, so this is discouraged when dealing with large experiments. As an alternative, we can run the following <code>SqueakR</code> function:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-17 16:05:58</span>
+<span class="co">#&gt; Last saved: 2022-06-17 16:52:57</span>
 <span class="co">#&gt; Experimenter(s): my_name</span>
 <span class="co">#&gt; Experimental group(s): Control</span>
 <span class="co">#&gt; Total call datapoints: 1</span>
 <span class="co">#&gt; Data for Control: 1</span></code></pre></div>
-<p>This can be a great way to inspect the contents of our experiment, and it condenses some of the parameters we set earlier. To clarify the last two lines of this output: Total call datapoints shows the total number of call data sheets stored in the experiment (i.e. how many scored datasets were added to the experiment in total), and “Data for Control” indicates how many of these datasets are part of this particular experimental group. In this way, the function allows us to get a feel for how much of our data is part of any given experimental group, to ensure the data are balanced.</p>
+<p>This can be a great way to inspect the contents of our experiment, and it condenses some of the parameters we set earlier. To clarify the last two lines of this output: Total call datapoints shows the total number of call data sheets stored in the <code>experiment</code> (i.e. how many scored datasets were added to the <code>experiment</code> in total), and “Data for Control” indicates how many of these datasets are part of this particular experimental group. In this way, the function allows us to get a feel for how much of our data is part of any given experimental group, to ensure the data are balanced.</p>
 <div class="section level4">
 <h4 id="updating-the-experiment">Updating the Experiment<a class="anchor" aria-label="anchor" href="#updating-the-experiment"></a>
 </h4>
-<p>The <code><a href="../reference/add_to_experiment.html">add_to_experiment()</a></code> function runs another SqueakR function inside of it: <code><a href="../reference/update_experiment.html">update_experiment()</a></code>. This function updates the “Experimenters” and “Experimental groups” fields within our <code>experiment</code> object to reflect the data which is stored in it. In other words, when we add data that specifies a different experimental group or a different experimenter, the Experimenters and Experimental groups will auto-populate.</p>
-<p>For complete documentation, the function is run below (however, since the experiment was already updated through the <code><a href="../reference/add_to_experiment.html">add_to_experiment()</a></code> function, it will not change any values). It looks through the data stored in the experiment object, and searches for new groups or new experimenters. These new groups or experimenters are added to the <code>groups</code> and <code>experimenters</code> variables stored in the experiment object.</p>
+<p>The <code><a href="../reference/add_to_experiment.html">add_to_experiment()</a></code> function runs another <code>SqueakR</code> function inside of it: <code><a href="../reference/update_experiment.html">update_experiment()</a></code>. This function updates the “Experimenters” and “Experimental groups” fields within our <code>experiment</code> object to reflect the data which is stored in it. In other words, when we add data that specifies a different experimental group or a different experimenter, the Experimenters and Experimental groups will auto-populate.</p>
+<p>For complete documentation, the function is run below (however, since the <code>experiment</code> was already updated through the <code><a href="../reference/add_to_experiment.html">add_to_experiment()</a></code> function, it will not change any values). It looks through the data stored in the <code>experiment</code> object, and searches for new groups or new experimenters. These new groups or experimenters are added to the <code>groups</code> and <code>experimenters</code> variables stored in the <code>experiment</code> object.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">experiment</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/update_experiment.html">update_experiment</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Updating experiment metadata...</span></code></pre></div>
@@ -320,14 +320,14 @@
 <div class="section level3">
 <h3 id="saving-the-experiment">Saving the Experiment<a class="anchor" aria-label="anchor" href="#saving-the-experiment"></a>
 </h3>
-<p>Finally, in order to save your experiment to a given location, you can run the following function. Simply change the value assigned to save_path to the full path to the directory you want to save the experiment to.</p>
+<p>Finally, in order to save your <code>experiment</code> to a given location, you can run the following function. Simply change the value assigned to save_path to the full path to the directory you want to save the <code>experiment</code> to.</p>
 <p>The file will be saved as an RData file, with the name “[experiment name] ([current date]).RData”</p>
-<p>Note: The values in square brachets will populate differently, based on the name you set for the experiment (based on the Creating an Experiment section) and the current date. This saving convention ensures you never lose more than a day of progress if any mistakes are made.</p>
+<p>Note: The values in square brachets will populate differently, based on the name you set for the <code>experiment</code> (based on the Creating an Experiment section) and the current date. This saving convention ensures you never lose more than a day of progress if any mistakes are made.</p>
 </div>
 <div class="section level3">
 <h3 id="experimental-pipeline">Experimental Pipeline<a class="anchor" aria-label="anchor" href="#experimental-pipeline"></a>
 </h3>
-<p>Usually, when there are many datasets present in an experiment, it can be unwieldy to switch between these various functions to create an experiment and add data to it. SqueakR has an interactive pipeline function which enables this, and it can be run using the following code:</p>
+<p>Usually, when there are many datasets present in an experiment, it can be unwieldy to switch between these various functions to create an <code>experiment</code> and add data to it. <code>SqueakR</code> has an interactive pipeline function which enables this, and it can be run using the following code:</p>
 <p>The data can be easily added this way, since the user will be prompted for parameters like experimenter, group, etc for specific data. It can also be helpful to supply descriptive names for the excel files (which may include information about experimenter name, experimental group, time range to subset, etc) when they are made, in order to ensure no mistakes are made while entering these data.</p>
 </div>
 </div>
@@ -337,7 +337,7 @@
 <div class="section level3">
 <h3 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h3>
-<p>The SqueakR package offers many tools for visualization of data, and these can be applied to the <code>experiment</code> object we created to inspect our data. This section of the document will go in detail for what each of these visualizations look like. In order to familiarize ourselves with the R syntax, and recap on the structure of the <code>experiment</code> object, we can retrieve the raw data from the data we just added to our experiment by running the following:</p>
+<p>The <code>SqueakR</code> package offers many tools for visualization of data, and these can be applied to the <code>experiment</code> object we created to inspect our data. This section of the document will go in detail for what each of these visualizations look like. In order to familiarize ourselves with the R syntax, and recap on the structure of the <code>experiment</code> object, we can retrieve the raw data from the data we just added to our <code>experiment</code> by running the following:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 94 × 17</span></span>
@@ -361,11 +361,11 @@
 <span class="co">#&gt; <span style="color: #949494;">#   `Peak Freq (kHz)` &lt;dbl&gt;</span></span></code></pre></div>
 <div class="section level4">
 <h4 id="operator-in-squeakr">
-<code>$</code> Operator in SqueakR<a class="anchor" aria-label="anchor" href="#operator-in-squeakr"></a>
+<code>$</code> Operator in <code>SqueakR</code><a class="anchor" aria-label="anchor" href="#operator-in-squeakr"></a>
 </h4>
 <p>The <code>$</code> operator allows us to dive deeper in a list, and inspect values stored within that list. Using the code above, we access the raw data we put into the <code>experiment</code> by going from <code>experiment</code> -&gt; <code>experimental_data[1]</code> -&gt; <code>call_data</code> -&gt; <code>raw.</code> Specifying the number in square brackets (i.e. <code>experiment$experimental_data[1]</code>) will locate the first data added, specifying <code>experiment$experimental_data[2]</code> will located the second data, etc. Since we only added one dataset to the <code>experiment</code>, <code>experiment$experimental_data[1]</code> will lead us to that first set of data we added. From there, we navigate to <code>call_data</code> (<em>which is a deliberately unremarkable variable in order to blind the user to the data stored inside it</em>), and finally the <code>raw</code> data.</p>
 <p>Especially if you are new to R, this structure may appear complicated, but it allows our data to be much more organized and allows graphing to be more efficient. We’ll use this structure when locating the data used to graph our visualizations.</p>
-<p>Note: For the following functions, the only required variable is the data_path variable, or the path towards our raw data. All other parameters (graph_title, graph_subtitle, etc) are optional, since there are default titles and descriptions prepared in SqueakR.</p>
+<p>Note: For the following functions, the only required variable is the data_path variable, or the path towards our raw data. All other parameters (graph_title, graph_subtitle, etc) are optional, since there are default titles and descriptions prepared in <code>SqueakR</code>.</p>
 </div>
 </div>
 <div class="section level3">
@@ -473,10 +473,10 @@
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotCorrelations.html">plotCorrelations</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span><span class="op">)</span></code></pre></div>
 <p><img src="SqueakR_files/figure-html/correlations-1.png" width="750"> ## Preview Dataset Visualizations</p>
-<p>If you don’t want to add data to the experiment object before visualizing data (in other words, preview the visualizations for an Excel file), you can run the same functions as above:</p>
+<p>If you don’t want to add data to the <code>experiment</code> object before visualizing data (in other words, preview the visualizations for an Excel file), you can run the same functions as above:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotDensityStackedByFrequency.html">plotDensityStackedByFrequency</a></span><span class="op">(</span><span class="st">"../inst/extdata/Example_Mouse_Data.xlsx"</span><span class="op">)</span></code></pre></div>
-<p><img src="SqueakR_files/figure-html/preview%20excel%20file%20(1)-1.png" width="750"> Keep in mind these plots will generate for the entire set of data, not a subset of the data like we can do using the experiment object functions. The only parameter required for these visualizations is the full path to the data file, which makes it easy to produce rapid visualizations based on individual Excel files.</p>
+<p><img src="SqueakR_files/figure-html/preview%20excel%20file%20(1)-1.png" width="750"> Keep in mind these plots will generate for the entire set of data, not a subset of the data like we can do using the <code>experiment</code> object functions. The only parameter required for these visualizations is the full path to the data file, which makes it easy to produce rapid visualizations based on individual Excel files.</p>
 <p>If we want to view an entire set of visualizations (shown in the above sections) for an Excel file as a PDF, we can also run the following function:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotSummaryPDF.html">plotSummaryPDF</a></span><span class="op">(</span><span class="st">"../inst/extdata/Example_Mouse_Data.xlsx"</span>, save_path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
@@ -492,7 +492,7 @@
 <div class="section level3">
 <h3 id="replicating-analysis">Replicating analysis<a class="anchor" aria-label="anchor" href="#replicating-analysis"></a>
 </h3>
-<p>In order to replicate analysis, let’s add another file to our experiment by running the following function:</p>
+<p>In order to replicate analysis, let’s add another file to our <code>experiment</code> by running the following function:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">additional_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/add_timepoint_data.html">add_timepoint_data</a></span><span class="op">(</span>data_path <span class="op">=</span> <span class="st">"../inst/extdata/Example_Mouse_Data.xlsx"</span>, t1 <span class="op">=</span> <span class="fl">30</span>, t2 <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
 <span class="co">#&gt; Adding call features Excel file to workspace...</span>
@@ -509,7 +509,7 @@
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-17 16:05:58</span>
+<span class="co">#&gt; Last saved: 2022-06-17 16:52:57</span>
 <span class="co">#&gt; Experimenter(s): my_name, new_experimenter</span>
 <span class="co">#&gt; Experimental group(s): Control, Drug</span>
 <span class="co">#&gt; Total call datapoints: 2</span>
@@ -532,7 +532,7 @@
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-17 16:05:58</span>
+<span class="co">#&gt; Last saved: 2022-06-17 16:52:57</span>
 <span class="co">#&gt; Experimenter(s): my_name, new_experimenter, experimenter_3</span>
 <span class="co">#&gt; Experimental group(s): Control, Drug, Sham</span>
 <span class="co">#&gt; Total call datapoints: 3</span>
@@ -544,12 +544,12 @@
 <h3 id="inter-group-comparison">Inter-group comparison<a class="anchor" aria-label="anchor" href="#inter-group-comparison"></a>
 </h3>
 <p>Once we’ve finished adding all of our data to the <code>experiment</code> object, we can start comparing metrics between groups. To do this, it will be useful to revisit the structure <code>experiment</code> object.</p>
-<p>Within the experiment object is a list called experimental_data, which contains all our data (processed and raw) for each time range we select. Under the call_data for any given object lie the metrics we can compare (call_length, delta_frequency, high_frequency, low_frequency, peak_frequency, power, principal_frequency, sinuosity, slope, and tonality). The way these variables are written in the experiment object (i.e. lowercase with underscores between words) will be the same way it will be entered into the following function to generate comparisons between groups:</p>
+<p>Within the <code>experiment</code> object is a list called experimental_data, which contains all our data (processed and raw) for each time range we select. Under the call_data for any given object lie the metrics we can compare (call_length, delta_frequency, high_frequency, low_frequency, peak_frequency, power, principal_frequency, sinuosity, slope, and tonality). The way these variables are written in the <code>experiment</code> object (i.e. lowercase with underscores between words) will be the same way it will be entered into the following function to generate comparisons between groups:</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/analyze_factor.html">analyze_factor</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span>, analysis_factor <span class="op">=</span> <span class="st">"delta_frequency"</span><span class="op">)</span></code></pre></div>
 <p><img src="SqueakR_files/figure-html/analyze%20delta%20frequency%20between%20groups-1.png" width="750"></p>
 <p>In the above plot, we compare delta frequency (the average range of frequencies for all calls in a given time range) between different groups. The data look similar because they are based on the same Excel file, just at different time-points, but this highlights the versatility of data extraction using DeepSqueak, in that call data can be processed in not only a between-groups manner but also a within-groups manner.</p>
-<p>We can assess other comparisons in this way, by ensuring that we set <code>analysis_factor</code> to the name of the variable previously specified in the <a href="#data-structure">Data Structure</a> section, but written in “quotes”. Keeping this format ensures that SqueakR knows which data to compare.</p>
+<p>We can assess other comparisons in this way, by ensuring that we set <code>analysis_factor</code> to the name of the variable previously specified in the <a href="#data-structure">Data Structure</a> section, but written in “quotes”. Keeping this format ensures that <code>SqueakR</code> knows which data to compare.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
