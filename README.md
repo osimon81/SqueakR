@@ -37,7 +37,7 @@ The tools and resources available under `SqueakR` include:
 
     -   However, *both sites have separate wikis,* to keep documentation organized.
 
--   The [Shiny `SqueakR` Dashboard repository](https://github.com/osimon81/SqueakR-Dashboard "Repository for Shiny SqueakR Dashboard"), and the accompanying [Wiki](https://github.com/osimon81/SqueakR-Dashboard/wiki "SqueakR-Dashboard Wiki") sections, which contains documentation for running analysis and visualizing data through the `SqueakR` Shiny dashboard.
+-   The [Shiny `SqueakR` Dashboard repository](https://github.com/osimon81/SqueakR-Dashboard "Repository for Shiny SqueakR Dashboard"), and the accompanying [Wiki](https://github.com/osimon81/SqueakR-Dashboard/wiki "SqueakR-Dashboard Wiki") section, which contains documentation for running analysis and visualizing data through the `SqueakR` Shiny dashboard.
 
 -   The [`SqueakR`](https://cran.r-project.org/package=SqueakR "SqueakR Website on CRAN") package itself, and documentation describing its functions, on CRAN.
 
