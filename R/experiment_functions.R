@@ -236,10 +236,10 @@ save_experiment <- function(experiment, save_path) {
 #'
 #' @export
 describe_experiment <- function(experiment) {
-  message("Experimental name: ", experiment$name)
+  message("Experiment name: ", experiment$name)
   message("Last saved: ", as.character(experiment$last_saved))
-  message("Experimenters: ", paste(experiment$experimenters, collapse = ", "))
-  message("Experimental groups: ", paste(experiment$groups, collapse = ", "))
+  message("Experimenter(s): ", paste(experiment$experimenters, collapse = ", "))
+  message("Experimental group(s): ", paste(experiment$groups, collapse = ", "))
   message("Total call datapoints: ", as.character(length(experiment$experimental_data)))
   for (this_group in experiment$groups) {
     group_count <- 0

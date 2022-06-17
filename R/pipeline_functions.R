@@ -35,8 +35,9 @@ experiment_pipeline <- function() {
     new_data <- add_timepoint_data(
       data_path = file.path(data_directory, data_file),
       t1 = t1_data, t2 = t2_data
-    ) %>%
-      score_timepoint_data(group = data_group, experimenter = data_experimenter)
+    )
+    new_data <- score_timepoint_data(new_data, group = data_group,
+                                     experimenter = data_experimenter)
 
     experiment <- add_to_experiment(experiment, new_data)
   }

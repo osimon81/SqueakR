@@ -6,7 +6,7 @@
 \usage{
 plotDensitySplitByDuration(
   data_path,
-  graph_title = "Call Distribution Grouped by Duration of Vocalization",
+  graph_title = "Call Distribution Grouped by Duration (s)",
   graph_subtitle = "Duration groups are rounded to the nearest 0.01 second.",
   chosen_group = c()
 )

@@ -4,8 +4,7 @@
 [![pkgdown](https://github.com/osimon81/SqueakR/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/osimon81/SqueakR/actions/workflows/pkgdown.yaml)
 <!-- badges: end -->
 
-# SqueakR
-### Experiment Superstructure for DeepSqueak
+# SqueakR: An Experiment Superstructure for DeepSqueak
 
 Welcome to the `SqueakR` package! To install the package in RStudio, run the following code:
 

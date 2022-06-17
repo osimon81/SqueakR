@@ -11,6 +11,7 @@ A collection of functions intended to produce convenient visualizations for rode
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://osimon81.github.io/SqueakR}
   \item \url{https://github.com/osimon81/SqueakR}
 }
 
