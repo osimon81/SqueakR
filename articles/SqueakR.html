@@ -111,7 +111,7 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; List of 5</span>
 <span class="co">#&gt;  $ name             : chr "my_experiment"</span>
-<span class="co">#&gt;  $ last_saved       : POSIXct[1:1], format: "2022-06-16 15:30:09"</span>
+<span class="co">#&gt;  $ last_saved       : POSIXct[1:1], format: "2022-06-17 02:25:15"</span>
 <span class="co">#&gt;  $ groups           : NULL</span>
 <span class="co">#&gt;  $ experimenters    : NULL</span>
 <span class="co">#&gt;  $ experimental_data: list()</span></code></pre></div>
@@ -300,10 +300,10 @@
 <p>Now, our new data is added to our experiment object! As seen in the previous section, running <code>str(experiment)</code> can produce an unwieldy representation of our experiment, so this is discouraged when dealing with large experiments. As an alternative, we can run the following SqueakR function:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span><span class="op">)</span>
-<span class="co">#&gt; Experimental name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-16 15:30:09</span>
-<span class="co">#&gt; Experimenters: my_name</span>
-<span class="co">#&gt; Experimental groups: Control</span>
+<span class="co">#&gt; Experiment name: my_experiment</span>
+<span class="co">#&gt; Last saved: 2022-06-17 02:25:15</span>
+<span class="co">#&gt; Experimenter(s): my_name</span>
+<span class="co">#&gt; Experimental group(s): Control</span>
 <span class="co">#&gt; Total call datapoints: 1</span>
 <span class="co">#&gt; Data for Control: 1</span></code></pre></div>
 <p>This can be a great way to inspect the contents of our experiment, and it condenses some of the parameters we set earlier. To clarify the last two lines of this output: Total call datapoints shows the total number of call data sheets stored in the experiment (i.e. how many scored datasets were added to the experiment in total), and “Data for Control” indicates how many of these datasets are part of this particular experimental group. In this way, the function allows us to get a feel for how much of our data is part of any given experimental group, to ensure the data are balanced.</p>
@@ -508,10 +508,10 @@
 <p>From this code, a different range of time (30-50 seconds) was subset from the same data file, so different calls were extracted. Just to get a sense of what the <code>experiment</code> object looks like after adding these data:</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
-<span class="co">#&gt; Experimental name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-16 15:30:09</span>
-<span class="co">#&gt; Experimenters: my_name, new_experimenter</span>
-<span class="co">#&gt; Experimental groups: Control, Drug</span>
+<span class="co">#&gt; Experiment name: my_experiment</span>
+<span class="co">#&gt; Last saved: 2022-06-17 02:25:15</span>
+<span class="co">#&gt; Experimenter(s): my_name, new_experimenter</span>
+<span class="co">#&gt; Experimental group(s): Control, Drug</span>
 <span class="co">#&gt; Total call datapoints: 2</span>
 <span class="co">#&gt; Data for Control: 1</span>
 <span class="co">#&gt; Data for Drug: 1</span></code></pre></div>
@@ -531,10 +531,10 @@
 <p>Here, we’ve picked a new range within the same file and added this information to our dataset. If we inspect the <code>experiment</code> object again, we’ll see the same fields as last time auto-populate:</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
-<span class="co">#&gt; Experimental name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-16 15:30:09</span>
-<span class="co">#&gt; Experimenters: my_name, new_experimenter, experimenter_3</span>
-<span class="co">#&gt; Experimental groups: Control, Drug, Sham</span>
+<span class="co">#&gt; Experiment name: my_experiment</span>
+<span class="co">#&gt; Last saved: 2022-06-17 02:25:15</span>
+<span class="co">#&gt; Experimenter(s): my_name, new_experimenter, experimenter_3</span>
+<span class="co">#&gt; Experimental group(s): Control, Drug, Sham</span>
 <span class="co">#&gt; Total call datapoints: 3</span>
 <span class="co">#&gt; Data for Control: 1</span>
 <span class="co">#&gt; Data for Drug: 1</span>
