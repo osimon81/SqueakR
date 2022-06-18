@@ -23,7 +23,9 @@ To install the development version of `SqueakR`, run the following code:
     install_github("osimon81/SqueakR")
     library(SqueakR)
 
-`SqueakR` represents a suite of functions and formats designed to assist researchers with processing and exploring data from experiments which use DeepSqueak for bioacoustics projects. DeepSqueak is a machine-vision program capable of aggregating detected vocalizations based on the features a call might have, allowing subsequent analysis of call syntax, significant changes in call features across groups, etc.
+`SqueakR` represents a suite of programs designed to assist researchers with processing and exploring data from experiments which use DeepSqueak for bioacoustics projects. DeepSqueak is a machine-vision program capable of aggregating detected vocalizations based on the features a call might have, allowing subsequent analysis of call syntax, significant changes in call features across groups, etc.
+
+For reference, the entire `SqueakR` suite and documentation can be found [under this GitHub list](https://github.com/stars/osimon81/lists/squeakr).
 
 ## Resources
 
