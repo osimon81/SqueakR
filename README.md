@@ -12,14 +12,17 @@ Welcome to the `SqueakR` package!
 
 ## Installation
 
+### From CRAN
+
 To install the CRAN release of the package, run the following code:
 
     install.packages(SqueakR)
     library(SqueakR)
+    
+### From GitHub
 
-To install the development version of `SqueakR`, run the following code:
+To install the development version of `SqueakR`, run the following code (ensure devtools is loaded first):
 
-    library(devtools)
     install_github("osimon81/SqueakR")
     library(SqueakR)
 
