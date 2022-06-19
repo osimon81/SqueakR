@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-The `SqueakR` package is a centralized, experiment-centered approach to organizing and analyzing data exported from [`DeepSqueak`](https://github.com/DrCoffey/DeepSqueak). Of its diverse functions, `SqueakR` is capable of generating quick plots from vocalization data detected from `DeepSqueak`. On top of these visualizations, the package contains functions which combine all exported DeepSqueak data from multiple recordings into a single experimental object, allowing subsequent analysis to be conducted directly from R.
+The `SqueakR` package is a centralized, experiment-centered interface for efficiently organizing and analyzing data exported from [`DeepSqueak`](https://github.com/DrCoffey/DeepSqueak). Of its diverse functions, `SqueakR` is capable of generating quick plots from vocalization data detected from `DeepSqueak`. On top of these visualizations, the package contains functions which combine all exported DeepSqueak data from multiple recordings into a single experimental object, allowing subsequent analysis to be conducted directly from R.
 
 # Installation
 
@@ -33,12 +33,18 @@ To use `SqueakR`, we need to install the package. To install and load the CRAN v
 
 ```{r install from CRAN, eval=FALSE}
 install.packages("SqueakR")
+```
+
+Next, load the package:
+
+```{r loading SqueakR}
 library(SqueakR)
 ```
 
+
 ## From GitHub
 
-To install the development package from GitHub, run the code below. Ensure the `devtools` package is installed, and `devtools` is loaded using `library(devtools)`, before running the following:
+To install the development version of the package from GitHub, run the code below. Ensure the `devtools` package is installed, and `devtools` is loaded using `library(devtools)`, before running the following:
 
 ```{r install from GitHub, eval=FALSE}
 library(devtools)
@@ -140,7 +146,7 @@ The rest of these variables are extracted from the `my_new_data` object have sub
 
 -   `tonality`
 
-More information about the above variables can be found on the [DeepSqueak wiki](https://github.com/DrCoffey/DeepSqueak/wiki/export-to-excel). Finally, the raw variable contains the entire extracted dataset (the `my_new_data` object), which can be referenced when plotting the raw data.
+More information about the above variables can be found on the [DeepSqueak wiki](https://github.com/DrCoffey/DeepSqueak/wiki/export-to-excel). Finally, the `raw` variable contains the entire extracted dataset (the `my_new_data` object), which can be referenced when plotting these data.
 
 The data may appear complicated, but this will be useful later on to organize the data!
 
@@ -160,7 +166,7 @@ If we want to remove a call dataset from the experiment, we can run the followin
 experiment <- remove_experiment_data(experiment, data_id = 1)
 ```
 
-`data_id` corresponds to the index of data in the experiment object - in the above example, the first data added to this `experiment` will be removed. This function also calls for the `experiment` to be updated (i.e., check the leftover data for leftover groups and/or experimenters), and updating the experiment metadata if there are any groups removed.
+`data_id` corresponds to the index of data in the experiment object - for example, in the code above, the first data added to this `experiment` will be removed. This function also calls for the `experiment` to be updated (i.e., check the leftover data for leftover groups and/or experimenters), and updating the experiment metadata if there are any groups removed.
 
 Caution is advised for this function, since data that is removed cannot be undone. However, it can be reloaded by finding the original call data and adding it back to the experiment, or creating a new experiment using the pipelines detailed below (if many datasets were accidentally removed, and it would take too long to add data manually).
 
@@ -176,9 +182,11 @@ This can be a great way to inspect the contents of our experiment, and it conden
 
 ### Updating the Experiment
 
-The `add_to_experiment()` function runs another `SqueakR` function inside of it: `update_experiment()`. This function updates the "Experimenters" and "Experimental groups" fields within our `experiment` object to reflect the data which is stored in it. In other words, when we add data that specifies a different experimental group or a different experimenter, the Experimenters and Experimental groups will auto-populate.
+The `add_to_experiment()` function runs another `SqueakR` function inside of it: `update_experiment()`. This function updates the "Experimenter(s)" and "Experimental group(s)" fields within our `experiment` object to reflect the data which is stored in it. In other words, when we add data that specifies a different experimental group or a different experimenter, the Experimenter(s) and Experimental group(s) metadata will auto-populate.
 
-For complete documentation, the function is run below (however, since the `experiment` was already updated through the `add_to_experiment()` function, it will not change any values). It looks through the data stored in the `experiment` object, and searches for new groups or new experimenters. These new groups or experimenters are added to the `groups` and `experimenters` variables stored in the `experiment` object.
+For completeness, the function is run below (however, since the `experiment` was already updated through the `add_to_experiment()` function, it will not change any values). It looks through the data stored in the `experiment` object, and searches for new groups or new experimenters. These new groups or experimenters are added to the `groups` and `experimenters` variables stored in the `experiment` object.
+
+Note: In reality, since `update_experiment()` is embedded in some SqueakR subfunctions, it will not really be used very often (if at all). However, the function is available for use in the package, to allow experimenters to make sure they've updated their data.
 
 ```{r update experiment function}
 experiment <- update_experiment(experiment = experiment)

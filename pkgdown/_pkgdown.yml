@@ -4,15 +4,21 @@ template:
 reference:
 - title: "Managing your Experiment"
   desc: >
-    Functions for managing the experiment object and adding data.
+    Functions for managing the experiment object and manually adding or removing data.
   contents:
+  - add_to_experiment
   - create_experiment
   - describe_experiment
-  - update_experiment
+  - remove_experiment_data
   - save_experiment
-  - add_to_experiment
-  - experiment_pipeline
-  - analyze_factor
+  - update_experiment
+- title: "Experiment Pipelines"
+  desc: >
+    Functions for creating experiments and loading them with data semi-automatically
+    or automatically.
+  contents:
+  - semisqueakRpipeline
+  - autosqueakRpipeline
 - title: "Cleaning DeepSqueak Data"
   desc: >
     Functions for loading data and scoring data for entry into experiment.
@@ -22,6 +28,7 @@ reference:
 - title: "Data Visualization"
   desc: "Functions for visualizing experimental datasets."
   contents:
+  - analyze_factor
   - starts_with("plot")
 - title: "Example Data"
   desc: "An example dataset exported from DeepSqueak."
