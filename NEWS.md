@@ -1,4 +1,15 @@
-# SqueakR 1.0.0
+# SqueakR 1.2.0
+
+## version 1.2.0
+
+---
+
+* Added fully-automatic pipeline function (autosqueakRpipeline) which references
+  Google Sheet to add data without experimenter input for every file
+* Renamed experiment_pipeline() to semisqueakRpipeline()
+* Added function (add) to remove data from experiment object
+* Updated `vignette` to reflect package changes
+
 ## version 1.0.0
 
 ---

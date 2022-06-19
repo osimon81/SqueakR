@@ -5,7 +5,7 @@ output:
     toc: true
     toc_float: true
     df_print: paged
-    theme: darkly
+    
 vignette: >
   %\VignetteIndexEntry{SqueakR}
   %\VignetteEngine{knitr::rmarkdown}
@@ -27,24 +27,28 @@ The `SqueakR` package is a centralized, experiment-centered approach to organizi
 
 # Installation
 
-## From GitHub
+## From CRAN
 
-To use `SqueakR`, we need to install the package. To install the package from GitHub, run the code below. Ensure the `devtools` package is installed before running the following:
+To use `SqueakR`, we need to install the package. To install and load the CRAN version of the package, run the following function:
 
-```{r install, eval=FALSE}
-library(devtools)
-install_github("osimon81/SqueakR")
-```
-
-Next, load the package:
-
-```{r setup}
+```{r install from CRAN, eval=FALSE}
+install.packages("SqueakR")
 library(SqueakR)
 ```
 
-# The `Experiment` Object
+## From GitHub
 
-## Creating an `Experiment`
+To install the development package from GitHub, run the code below. Ensure the `devtools` package is installed, and `devtools` is loaded using `library(devtools)`, before running the following:
+
+```{r install from GitHub, eval=FALSE}
+library(devtools)
+install_github("osimon81/SqueakR")
+library(SqueakR)
+```
+
+# The `experiment` Object
+
+## Creating an `experiment`
 
 This package allows all data necessary for visualizations to be stored in a single object. However, to do so, the experimental object must be created. To create an `experiment`, run the following code:
 
@@ -148,6 +152,18 @@ Now our data is prepared, we can add it to the `experiment` object we created. T
 experiment <- add_to_experiment(experiment = experiment, added_data = my_scored_data)
 ```
 
+## Removing Data from Experiment
+
+If we want to remove a call dataset from the experiment, we can run the following function:
+
+```{r removing data from experiment, eval=FALSE}
+experiment <- remove_experiment_data(experiment, data_id = 1)
+```
+
+`data_id` corresponds to the index of data in the experiment object - in the above example, the first data added to this `experiment` will be removed. This function also calls for the `experiment` to be updated (i.e., check the leftover data for leftover groups and/or experimenters), and updating the experiment metadata if there are any groups removed.
+
+Caution is advised for this function, since data that is removed cannot be undone. However, it can be reloaded by finding the original call data and adding it back to the experiment, or creating a new experiment using the pipelines detailed below (if many datasets were accidentally removed, and it would take too long to add data manually).
+
 ## Summarizing the Experiment
 
 Now, our new data is added to our `experiment` object! As seen in the previous section, running `str(experiment)` can produce an unwieldy representation of our experiment, so this is discouraged when dealing with large experiments. As an alternative, we can run the following `SqueakR` function:
@@ -181,15 +197,33 @@ The file will be saved as an RData file, with the name "[experiment name] ([curr
 
 Note: The values in square brachets will populate differently, based on the name you set for the `experiment` (based on the Creating an Experiment section) and the current date. This saving convention ensures you never lose more than a day of progress if any mistakes are made.
 
-## Experimental Pipeline
+## Experiment Pipelines
 
-Usually, when there are many datasets present in an experiment, it can be unwieldy to switch between these various functions to create an `experiment` and add data to it. `SqueakR` has an interactive pipeline function which enables this, and it can be run using the following code:
+Usually, when there are many datasets present in an experiment, it can be unwieldy to switch between these various functions to create an `experiment` and add data to it. `SqueakR` has interactive pipeline functions which enable data to be added either semi-automatically (with experimenter input) or automatically (without experimenter input). The semi-automatic pipeline can be run using the following code:
 
-```{r testing pipeline, eval=FALSE, echo=FALSE}
-my_second_experiment <- experiment_pipeline()
+```{r semi-automatic pipeline, eval=FALSE, echo=FALSE}
+my_semi_automaticaly_loaded_experiment <- semisqueakRpipeline()
 ```
 
-The data can be easily added this way, since the user will be prompted for parameters like experimenter, group, etc for specific data. It can also be helpful to supply descriptive names for the excel files (which may include information about experimenter name, experimental group, time range to subset, etc) when they are made, in order to ensure no mistakes are made while entering these data.
+The data can be easily added this way, since the user will be prompted for parameters like experimenter, group, etc for specific data. It can also be helpful to supply descriptive names for the excel files (which may include information about experimenter name, experimental group, time range to subset, etc) when using this function, in order to ensure no mistakes are made while entering these data.
+
+SqueakR also has a pipeline that can be used to automatically add data and metadata to an `experiment` without direct experimenter prompting. The way the pipeline works is it references a [Google Sheets document](#google-sheets-formatting) which contains the metadata about the object. The pipeline prompts the user to validate columns in the sheet (confirm which column the "experimental groups" column is in), before adding data (which is stored in a specified local directory) to the new `experiment`. The advantage of automatic pipeline is that all metadata can be entered in an external document --- if any mistakes are made in data entry, they can be easily corrected. Running the automatic pipeline is done the same way as the semi-automatic pipeline:
+
+```{r automatic pipeline, eval = FALSE, echo = FALSE}
+my_automatically_loaded_experiment <- autosqueakRpipeline()
+```
+
+### Google Sheets Formatting {#google-sheets-formatting}
+
+There are only a few requirements for the referenced Google Sheet (which SqueakR will use to grab metadata from):
+
+1.  The sheet accessed by SqueakR is organized by columns.
+2.  Each column represents the filename, experimental group, experimenter, start time-point, and end time-point.
+3.  The filename column matches the full name of the corresponding data file **exactly** (including the extension).
+
+Besides these requirements, the order of rows or columns in the sheet can be according to whatever conventions the experimenter likes --- files **do not** have to be in the same order as they appear in the folder containing the data. The pipeline will prompt the user for the link to the Sheets document, the actual sheet number which contains the metadata (usually 1, unless it is added to a separate document), as well as ask the user which column corresponds to each metadata.
+
+From this point, the pipeline will loop through every file automatically, assigning the appropriate metadata based on your Google Sheet, and export the created experiment object (if requested).
 
 # Data Visualization
 
@@ -318,6 +352,7 @@ Finally, we can plot a correlation matrix, which displays correlations between c
 ```{r correlations, warning = FALSE}
 plotCorrelations(experiment$experimental_data[1]$call_data$raw)
 ```
+
 ## Preview Dataset Visualizations
 
 If you don't want to add data to the `experiment` object before visualizing data (in other words, preview the visualizations for an Excel file), you can run the same functions as above:
@@ -325,6 +360,7 @@ If you don't want to add data to the `experiment` object before visualizing data
 ```{r preview excel file (1)}
 plotDensityStackedByFrequency("../inst/extdata/Example_Mouse_Data.xlsx")
 ```
+
 Keep in mind these plots will generate for the entire set of data, not a subset of the data like we can do using the `experiment` object functions. The only parameter required for these visualizations is the full path to the data file, which makes it easy to produce rapid visualizations based on individual Excel files.
 
 If we want to view an entire set of visualizations (shown in the above sections) for an Excel file as a PDF, we can also run the following function:
@@ -332,7 +368,6 @@ If we want to view an entire set of visualizations (shown in the above sections)
 ```{r preview excel file (2), warning=FALSE}
 plotSummaryPDF("../inst/extdata/Example_Mouse_Data.xlsx", save_path = tempdir())
 ```
-
 
 # Data Analysis
 
@@ -350,7 +385,6 @@ experiment <- add_to_experiment(experiment = experiment, added_data = additional
 
 ```
 
-
 From this code, a different range of time (30-50 seconds) was subset from the same data file, so different calls were extracted. Just to get a sense of what the `experiment` object looks like after adding these data:
 
 ```{r inspecting experiment object for two groups}
@@ -360,7 +394,6 @@ describe_experiment(experiment)
 As mentioned earlier when we first ran this function, we can now see how many datasets are stored under each condition. You'll also notice that the "Experimenters" and "Experimental groups" field has auto-populated, based on the parameters for the new data we just added.
 
 Let's try adding one more experimental group and looking at the `experiment` object now:
-
 
 ```{r adding one last group}
 third_dataset <- add_timepoint_data(data_path = "../inst/extdata/Example_Mouse_Data.xlsx", t1 = 70, t2 = 90)
@@ -390,13 +423,3 @@ analyze_factor(experiment = experiment, analysis_factor = "delta_frequency")
 In the above plot, we compare delta frequency (the average range of frequencies for all calls in a given time range) between different groups. The data look similar because they are based on the same Excel file, just at different time-points, but this highlights the versatility of data extraction using DeepSqueak, in that call data can be processed in not only a between-groups manner but also a within-groups manner.
 
 We can assess other comparisons in this way, by ensuring that we set `analysis_factor` to the name of the variable previously specified in the [Data Structure](#data-structure) section, but written in "quotes". Keeping this format ensures that `SqueakR` knows which data to compare.
-
-
-
-
-
-
-
-
-
-

@@ -48,4 +48,4 @@ The tools and resources available under `SqueakR` include:
 
 ## Contact
 
-If you have any questions that cannot be answered through any of these ways, feel free to contact me, Simon Ogundare, at [simon.ogundare\@columbia.edu](mailto:simon.ogundare@columbia.edu), and I'll get back to you as soon as possible.
+If you have any questions that cannot be answered through any of these ways, feel free to contact me at [simon.ogundare\@columbia.edu](mailto:simon.ogundare@columbia.edu), and I'll get back to you as soon as possible.

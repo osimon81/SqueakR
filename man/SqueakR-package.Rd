@@ -4,9 +4,9 @@
 \name{SqueakR-package}
 \alias{SqueakR}
 \alias{SqueakR-package}
-\title{SqueakR: An Experiment Superstructure for 'DeepSqueak'}
+\title{SqueakR: An Experiment Interface for 'DeepSqueak'}
 \description{
-A collection of functions intended to produce convenient visualizations for rodent vocalizations exported from 'DeepSqueak'. These visualizations include call frequency-clustered graphs, and density graphs grouped by frequency, custom labels identified in 'DeepSqueak', and call duration.
+A collection of functions intended to facilitate pre-processing, processing, and data visualizations for rodent vocalizations exported from 'DeepSqueak'.
 }
 \seealso{
 Useful links:
