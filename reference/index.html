@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">SqueakR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +49,7 @@
     <div class="section level2">
       <h2 id="managing-your-experiment">Managing your Experiment<a class="anchor" aria-label="anchor" href="#managing-your-experiment"></a></h2>
       
-      <p class="section-desc"></p><p>Functions for managing the experiment object and adding data.</p>
+      <p class="section-desc"></p><p>Functions for managing the experiment object and manually adding or removing data.</p>
 
       
     </div><div id="" class="section level2">
@@ -58,6 +58,11 @@
       
 
       <dl><dt>
+          
+          <code><a href="add_to_experiment.html">add_to_experiment()</a></code> 
+        </dt>
+        <dd>Add Scored Data to Experiment Object</dd>
+      </dl><dl><dt>
           
           <code><a href="create_experiment.html">create_experiment()</a></code> 
         </dt>
@@ -69,9 +74,9 @@
         <dd>Describe Experiment</dd>
       </dl><dl><dt>
           
-          <code><a href="update_experiment.html">update_experiment()</a></code> 
+          <code><a href="remove_experiment_data.html">remove_experiment_data()</a></code> 
         </dt>
-        <dd>Updates Experiment Object Metadata</dd>
+        <dd>Remove Data from Experiment File</dd>
       </dl><dl><dt>
           
           <code><a href="save_experiment.html">save_experiment()</a></code> 
@@ -79,19 +84,30 @@
         <dd>Save Experiment Locally</dd>
       </dl><dl><dt>
           
-          <code><a href="add_to_experiment.html">add_to_experiment()</a></code> 
+          <code><a href="update_experiment.html">update_experiment()</a></code> 
         </dt>
-        <dd>Add Scored Data to Experiment Object</dd>
+        <dd>Updates Experiment Object Metadata</dd>
+      </dl></div><div class="section level2">
+      <h2 id="experiment-pipelines">Experiment Pipelines<a class="anchor" aria-label="anchor" href="#experiment-pipelines"></a></h2>
+      
+      <p class="section-desc"></p><p>Functions for creating experiments and loading them with data semi-automatically or automatically.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="semisqueakRpipeline.html">semisqueakRpipeline()</a></code> 
+        </dt>
+        <dd>Semi-Automatic Experiment Creation</dd>
       </dl><dl><dt>
           
-          <code><a href="experiment_pipeline.html">experiment_pipeline()</a></code> 
+          <code><a href="autosqueakRpipeline.html">autosqueakRpipeline()</a></code> 
         </dt>
-        <dd>Full Experiment Creation</dd>
-      </dl><dl><dt>
-          
-          <code><a href="analyze_factor.html">analyze_factor()</a></code> 
-        </dt>
-        <dd>Analyze Factor</dd>
+        <dd>Fully-Automatic Experiment Creation</dd>
       </dl></div><div class="section level2">
       <h2 id="cleaning-deepsqueak-data">Cleaning DeepSqueak Data<a class="anchor" aria-label="anchor" href="#cleaning-deepsqueak-data"></a></h2>
       
@@ -125,6 +141,11 @@
       
 
       <dl><dt>
+          
+          <code><a href="analyze_factor.html">analyze_factor()</a></code> 
+        </dt>
+        <dd>Analyze Factor</dd>
+      </dl><dl><dt>
           
           <code><a href="plotCorrelations.html">plotCorrelations()</a></code> 
         </dt>

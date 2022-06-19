@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">SqueakR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,39 +79,47 @@
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>The <code>SqueakR</code> package is a centralized, experiment-centered approach to organizing and analyzing data exported from <a href="https://github.com/DrCoffey/DeepSqueak" class="external-link"><code>DeepSqueak</code></a>. Of its diverse functions, <code>SqueakR</code> is capable of generating quick plots from vocalization data detected from <code>DeepSqueak</code>. On top of these visualizations, the package contains functions which combine all exported DeepSqueak data from multiple recordings into a single experimental object, allowing subsequent analysis to be conducted directly from R.</p>
+<p>The <code>SqueakR</code> package is a centralized, experiment-centered interface for efficiently organizing and analyzing data exported from <a href="https://github.com/DrCoffey/DeepSqueak" class="external-link"><code>DeepSqueak</code></a>. Of its diverse functions, <code>SqueakR</code> is capable of generating quick plots from vocalization data detected from <code>DeepSqueak</code>. On top of these visualizations, the package contains functions which combine all exported DeepSqueak data from multiple recordings into a single experimental object, allowing subsequent analysis to be conducted directly from R.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <div class="section level3">
-<h3 id="from-github">From GitHub<a class="anchor" aria-label="anchor" href="#from-github"></a>
+<h3 id="from-cran">From CRAN<a class="anchor" aria-label="anchor" href="#from-cran"></a>
 </h3>
-<p>To use <code>SqueakR</code>, we need to install the package. To install the package from GitHub, run the code below. Ensure the <code>devtools</code> package is installed before running the following:</p>
+<p>To use <code>SqueakR</code>, we need to install the package. To install and load the CRAN version of the package, run the following function:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span>
-<span class="fu">install_github</span><span class="op">(</span><span class="st">"osimon81/SqueakR"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"SqueakR"</span><span class="op">)</span></code></pre></div>
 <p>Next, load the package:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://osimon81.github.io/SqueakR" class="external-link">SqueakR</a></span><span class="op">)</span></code></pre></div>
 </div>
+<div class="section level3">
+<h3 id="from-github">From GitHub<a class="anchor" aria-label="anchor" href="#from-github"></a>
+</h3>
+<p>To install the development version of the package from GitHub, run the code below. Ensure the <code>devtools</code> package is installed, and <code>devtools</code> is loaded using <code><a href="https://devtools.r-lib.org/" class="external-link">library(devtools)</a></code>, before running the following:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span>
+<span class="fu">install_github</span><span class="op">(</span><span class="st">"osimon81/SqueakR"</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://osimon81.github.io/SqueakR" class="external-link">SqueakR</a></span><span class="op">)</span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
-<h2 id="the-experiment-object">The <code>Experiment</code> Object<a class="anchor" aria-label="anchor" href="#the-experiment-object"></a>
+<h2 id="the-experiment-object">The <code>experiment</code> Object<a class="anchor" aria-label="anchor" href="#the-experiment-object"></a>
 </h2>
 <div class="section level3">
-<h3 id="creating-an-experiment">Creating an <code>Experiment</code><a class="anchor" aria-label="anchor" href="#creating-an-experiment"></a>
+<h3 id="creating-an-experiment">Creating an <code>experiment</code><a class="anchor" aria-label="anchor" href="#creating-an-experiment"></a>
 </h3>
 <p>This package allows all data necessary for visualizations to be stored in a single object. However, to do so, the experimental object must be created. To create an <code>experiment</code>, run the following code:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">experiment</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_experiment.html">create_experiment</a></span><span class="op">(</span>experiment_name <span class="op">=</span> <span class="st">"my_experiment"</span><span class="op">)</span>
 <span class="co">#&gt; Creating new experiment...</span></code></pre></div>
 <p>This code creates a new <code>experiment</code> object, with the name <code>my_experiment</code>. When the object is saved, it will be saved using this name, along with a timestamp. At this point, there’s nothing stored in this <code>experiment</code> object except its name, but let’s inspect how <code>experiment</code> is structured:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; List of 5</span>
 <span class="co">#&gt;  $ name             : chr "my_experiment"</span>
-<span class="co">#&gt;  $ last_saved       : POSIXct[1:1], format: "2022-06-18 07:44:05"</span>
+<span class="co">#&gt;  $ last_saved       : POSIXct[1:1], format: "2022-06-19 01:53:59"</span>
 <span class="co">#&gt;  $ groups           : NULL</span>
 <span class="co">#&gt;  $ experimenters    : NULL</span>
 <span class="co">#&gt;  $ experimental_data: list()</span></code></pre></div>
@@ -134,7 +142,7 @@
 <h3 id="loading-data">Loading Data<a class="anchor" aria-label="anchor" href="#loading-data"></a>
 </h3>
 <p>When call data is exported from DeepSqueak, it includes all detected calls through the length of the recording. However, sometimes, we’re only interested in calls within a certain range of the entire recording. <code>SqueakR</code> has the <code><a href="../reference/add_timepoint_data.html">add_timepoint_data()</a></code> function to assist with this:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_new_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/add_timepoint_data.html">add_timepoint_data</a></span><span class="op">(</span>data_path <span class="op">=</span> <span class="st">"../inst/extdata/Example_Mouse_Data.xlsx"</span>, t1 <span class="op">=</span> <span class="fl">5</span>, t2 <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>
 <span class="co">#&gt; Adding call features Excel file to workspace...</span>
 <span class="co">#&gt; Restricting data to range: 5 to 25 seconds...</span></code></pre></div>
@@ -148,7 +156,7 @@
 <code>t2</code>: The timepoint at which calls will stop being extracted into the object.</li>
 </ul>
 <p>In the context of the code above, we’ve just extracted all of the calls in the 5-25 second region. To view the data we’ve extracted to confirm this:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># The first few rows of the dataset</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">my_new_data</span><span class="op">)</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 17</span></span>
@@ -187,7 +195,7 @@
 <h3 id="scoring-data">Scoring Data<a class="anchor" aria-label="anchor" href="#scoring-data"></a>
 </h3>
 <p>Once raw data is loaded into R, we can calculate some summary statistics on the region we’ve selected. To do this, run the following code:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_scored_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/score_timepoint_data.html">score_timepoint_data</a></span><span class="op">(</span>data_subset <span class="op">=</span> <span class="va">my_new_data</span>,
                                     group <span class="op">=</span> <span class="st">"Control"</span>,
                                     experimenter <span class="op">=</span> <span class="st">"my_name"</span><span class="op">)</span>
@@ -281,7 +289,7 @@
 <li><p><code>slope</code></p></li>
 <li><p><code>tonality</code></p></li>
 </ul>
-<p>More information about the above variables can be found on the <a href="https://github.com/DrCoffey/DeepSqueak/wiki/export-to-excel" class="external-link">DeepSqueak wiki</a>. Finally, the raw variable contains the entire extracted dataset (the <code>my_new_data</code> object), which can be referenced when plotting the raw data.</p>
+<p>More information about the above variables can be found on the <a href="https://github.com/DrCoffey/DeepSqueak/wiki/export-to-excel" class="external-link">DeepSqueak wiki</a>. Finally, the <code>raw</code> variable contains the entire extracted dataset (the <code>my_new_data</code> object), which can be referenced when plotting these data.</p>
 <p>The data may appear complicated, but this will be useful later on to organize the data!</p>
 </div>
 </div>
@@ -289,19 +297,28 @@
 <h3 id="adding-scored-data-to-experiment">Adding Scored Data to Experiment<a class="anchor" aria-label="anchor" href="#adding-scored-data-to-experiment"></a>
 </h3>
 <p>Now our data is prepared, we can add it to the <code>experiment</code> object we created. To do so, we can use the <code><a href="../reference/add_to_experiment.html">add_to_experiment()</a></code> function. The parameters for the function are the <code>experiment</code> object (which we’ve conveniently labeled experiment), and the data we want to add (which we just assigned to <code>my_scored_data</code> in the previous section).</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">experiment</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/add_to_experiment.html">add_to_experiment</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span>, added_data <span class="op">=</span> <span class="va">my_scored_data</span><span class="op">)</span>
 <span class="co">#&gt; Adding summarized data to experiment object...</span>
 <span class="co">#&gt; Updating experiment metadata...</span></code></pre></div>
 </div>
 <div class="section level3">
+<h3 id="removing-data-from-experiment">Removing Data from Experiment<a class="anchor" aria-label="anchor" href="#removing-data-from-experiment"></a>
+</h3>
+<p>If we want to remove a call dataset from the experiment, we can run the following function:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">experiment</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/remove_experiment_data.html">remove_experiment_data</a></span><span class="op">(</span><span class="va">experiment</span>, data_id <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<p><code>data_id</code> corresponds to the index of data in the experiment object - for example, in the code above, the first data added to this <code>experiment</code> will be removed. This function also calls for the <code>experiment</code> to be updated (i.e., check the leftover data for leftover groups and/or experimenters), and updating the experiment metadata if there are any groups removed.</p>
+<p>Caution is advised for this function, since data that is removed cannot be undone. However, it can be reloaded by finding the original call data and adding it back to the experiment, or creating a new experiment using the pipelines detailed below (if many datasets were accidentally removed, and it would take too long to add data manually).</p>
+</div>
+<div class="section level3">
 <h3 id="summarizing-the-experiment">Summarizing the Experiment<a class="anchor" aria-label="anchor" href="#summarizing-the-experiment"></a>
 </h3>
 <p>Now, our new data is added to our <code>experiment</code> object! As seen in the previous section, running <code>str(experiment)</code> can produce an unwieldy representation of our experiment, so this is discouraged when dealing with large experiments. As an alternative, we can run the following <code>SqueakR</code> function:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-18 07:44:05</span>
+<span class="co">#&gt; Last saved: 2022-06-19 01:53:59</span>
 <span class="co">#&gt; Experimenter(s): my_name</span>
 <span class="co">#&gt; Experimental group(s): Control</span>
 <span class="co">#&gt; Total call datapoints: 1</span>
@@ -310,9 +327,10 @@
 <div class="section level4">
 <h4 id="updating-the-experiment">Updating the Experiment<a class="anchor" aria-label="anchor" href="#updating-the-experiment"></a>
 </h4>
-<p>The <code><a href="../reference/add_to_experiment.html">add_to_experiment()</a></code> function runs another <code>SqueakR</code> function inside of it: <code><a href="../reference/update_experiment.html">update_experiment()</a></code>. This function updates the “Experimenters” and “Experimental groups” fields within our <code>experiment</code> object to reflect the data which is stored in it. In other words, when we add data that specifies a different experimental group or a different experimenter, the Experimenters and Experimental groups will auto-populate.</p>
-<p>For complete documentation, the function is run below (however, since the <code>experiment</code> was already updated through the <code><a href="../reference/add_to_experiment.html">add_to_experiment()</a></code> function, it will not change any values). It looks through the data stored in the <code>experiment</code> object, and searches for new groups or new experimenters. These new groups or experimenters are added to the <code>groups</code> and <code>experimenters</code> variables stored in the <code>experiment</code> object.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<p>The <code><a href="../reference/add_to_experiment.html">add_to_experiment()</a></code> function runs another <code>SqueakR</code> function inside of it: <code><a href="../reference/update_experiment.html">update_experiment()</a></code>. This function updates the “Experimenter(s)” and “Experimental group(s)” fields within our <code>experiment</code> object to reflect the data which is stored in it. In other words, when we add data that specifies a different experimental group or a different experimenter, the Experimenter(s) and Experimental group(s) metadata will auto-populate.</p>
+<p>For completeness, the function is run below (however, since the <code>experiment</code> was already updated through the <code><a href="../reference/add_to_experiment.html">add_to_experiment()</a></code> function, it will not change any values). It looks through the data stored in the <code>experiment</code> object, and searches for new groups or new experimenters. These new groups or experimenters are added to the <code>groups</code> and <code>experimenters</code> variables stored in the <code>experiment</code> object.</p>
+<p>Note: In reality, since <code><a href="../reference/update_experiment.html">update_experiment()</a></code> is embedded in some SqueakR subfunctions, it will not really be used very often (if at all). However, the function is available for use in the package, to allow experimenters to make sure they’ve updated their data.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">experiment</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/update_experiment.html">update_experiment</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Updating experiment metadata...</span></code></pre></div>
 </div>
@@ -325,10 +343,23 @@
 <p>Note: The values in square brachets will populate differently, based on the name you set for the <code>experiment</code> (based on the Creating an Experiment section) and the current date. This saving convention ensures you never lose more than a day of progress if any mistakes are made.</p>
 </div>
 <div class="section level3">
-<h3 id="experimental-pipeline">Experimental Pipeline<a class="anchor" aria-label="anchor" href="#experimental-pipeline"></a>
+<h3 id="experiment-pipelines">Experiment Pipelines<a class="anchor" aria-label="anchor" href="#experiment-pipelines"></a>
 </h3>
-<p>Usually, when there are many datasets present in an experiment, it can be unwieldy to switch between these various functions to create an <code>experiment</code> and add data to it. <code>SqueakR</code> has an interactive pipeline function which enables this, and it can be run using the following code:</p>
-<p>The data can be easily added this way, since the user will be prompted for parameters like experimenter, group, etc for specific data. It can also be helpful to supply descriptive names for the excel files (which may include information about experimenter name, experimental group, time range to subset, etc) when they are made, in order to ensure no mistakes are made while entering these data.</p>
+<p>Usually, when there are many datasets present in an experiment, it can be unwieldy to switch between these various functions to create an <code>experiment</code> and add data to it. <code>SqueakR</code> has interactive pipeline functions which enable data to be added either semi-automatically (with experimenter input) or automatically (without experimenter input). The semi-automatic pipeline can be run using the following code:</p>
+<p>The data can be easily added this way, since the user will be prompted for parameters like experimenter, group, etc for specific data. It can also be helpful to supply descriptive names for the excel files (which may include information about experimenter name, experimental group, time range to subset, etc) when using this function, in order to ensure no mistakes are made while entering these data.</p>
+<p>SqueakR also has a pipeline that can be used to automatically add data and metadata to an <code>experiment</code> without direct experimenter prompting. The way the pipeline works is it references a <a href="#google-sheets-formatting">Google Sheets document</a> which contains the metadata about the object. The pipeline prompts the user to validate columns in the sheet (confirm which column the “experimental groups” column is in), before adding data (which is stored in a specified local directory) to the new <code>experiment</code>. The advantage of automatic pipeline is that all metadata can be entered in an external document — if any mistakes are made in data entry, they can be easily corrected. Running the automatic pipeline is done the same way as the semi-automatic pipeline:</p>
+<div class="section level4">
+<h4 id="google-sheets-formatting">Google Sheets Formatting<a class="anchor" aria-label="anchor" href="#google-sheets-formatting"></a>
+</h4>
+<p>There are only a few requirements for the referenced Google Sheet (which SqueakR will use to grab metadata from):</p>
+<ol style="list-style-type: decimal">
+<li>The sheet accessed by SqueakR is organized by columns.</li>
+<li>Each column represents the filename, experimental group, experimenter, start time-point, and end time-point.</li>
+<li>The filename column matches the full name of the corresponding data file <strong>exactly</strong> (including the extension).</li>
+</ol>
+<p>Besides these requirements, the order of rows or columns in the sheet can be according to whatever conventions the experimenter likes — files <strong>do not</strong> have to be in the same order as they appear in the folder containing the data. The pipeline will prompt the user for the link to the Sheets document, the actual sheet number which contains the metadata (usually 1, unless it is added to a separate document), as well as ask the user which column corresponds to each metadata.</p>
+<p>From this point, the pipeline will loop through every file automatically, assigning the appropriate metadata based on your Google Sheet, and export the created experiment object (if requested).</p>
+</div>
 </div>
 </div>
 <div class="section level2">
@@ -338,7 +369,7 @@
 <h3 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h3>
 <p>The <code>SqueakR</code> package offers many tools for visualization of data, and these can be applied to the <code>experiment</code> object we created to inspect our data. This section of the document will go in detail for what each of these visualizations look like. In order to familiarize ourselves with the R syntax, and recap on the structure of the <code>experiment</code> object, we can retrieve the raw data from the data we just added to our <code>experiment</code> by running the following:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 94 × 17</span></span>
 <span class="co">#&gt;       ID Label Accepted Score `Begin Time (s)` `End Time (s)` `Call Length (s)`</span>
@@ -375,11 +406,11 @@
 <h4 id="standard-ethnogram">Standard Ethnogram<a class="anchor" aria-label="anchor" href="#standard-ethnogram"></a>
 </h4>
 <p>We can plot an ethnogram to reveal the occurance of a behavior (in our case, a call) over time, using the following function:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotEthnogram.html">plotEthnogram</a></span><span class="op">(</span>data_path <span class="op">=</span> <span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span><span class="op">)</span></code></pre></div>
 <p><img src="SqueakR_files/figure-html/standard%20ethnogram-1.png" width="750"></p>
 <p>We can also specify the graph title and subtitle, if we want to change them, by setting some optional parameters:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotEthnogram.html">plotEthnogram</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span>,
               graph_title <span class="op">=</span> <span class="st">"My Ethnogram"</span>,
               graph_subtitle <span class="op">=</span> <span class="st">"This is the description I want instead!"</span><span class="op">)</span></code></pre></div>
@@ -389,7 +420,7 @@
 <h4 id="tonality-ethnogram-split">Tonality Ethnogram (Split)<a class="anchor" aria-label="anchor" href="#tonality-ethnogram-split"></a>
 </h4>
 <p>We can plot the ethnogram, and split the lines up according to tonality, using the following code:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotEthnogramSplitByTonality.html">plotEthnogramSplitByTonality</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span>,
               graph_title <span class="op">=</span> <span class="st">"My Tonality-Split Ethnogram"</span><span class="op">)</span></code></pre></div>
 <p><img src="SqueakR_files/figure-html/tonality%20ethnogram-1.png" width="750"></p>
@@ -402,11 +433,11 @@
 <h4 id="frequency-density-plot-stacked">Frequency Density Plot (Stacked)<a class="anchor" aria-label="anchor" href="#frequency-density-plot-stacked"></a>
 </h4>
 <p>We can plot the frequency ranges of calls using the following function:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotDensityStackedByFrequency.html">plotDensityStackedByFrequency</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span><span class="op">)</span></code></pre></div>
 <p><img src="SqueakR_files/figure-html/frequency%20stacked-1.png" width="750"></p>
 <p>With <em>density graphs that are stacked</em>, we can highlight a specific group using the following optional parameter:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotDensityStackedByFrequency.html">plotDensityStackedByFrequency</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span>,
                               chosen_group <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></code></pre></div>
 <p><img src="SqueakR_files/figure-html/frequency%20stacked%20-%20choose%20group-1.png" width="750"></p>
@@ -415,7 +446,7 @@
 <h4 id="frequency-density-plot-split">Frequency Density Plot (Split)<a class="anchor" aria-label="anchor" href="#frequency-density-plot-split"></a>
 </h4>
 <p>Oftentimes, when there are too many groups stacked in the above graph, it can be more useful to either highlight the group of interest (as we did above), or split the graph according to frequency group, which can be done below:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotDensitySplitByFrequency.html">plotDensitySplitByFrequency</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span><span class="op">)</span></code></pre></div>
 <p><img src="SqueakR_files/figure-html/frequency%20split-1.png" width="750"></p>
 </div>
@@ -425,7 +456,7 @@
 <p>In DeepSqueak, we can label calls either manually, or using computer vision to assess calls based on the frequency regions in which they predominate, length, or shape of calls, among some other factors. These labels are exported from DeepSqueak along with the other call data, and as a result exist in our <code>experiment</code> object.</p>
 <p><em>Note: Custom labels were arbitrarily set for the example data file, for sake of example.</em></p>
 <p>Density plots can also be configured for these custom labels, as shown below:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotDensityStackedByCustom.html">plotDensityStackedByCustom</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span><span class="op">)</span></code></pre></div>
 <p><img src="SqueakR_files/figure-html/custom%20stacked-1.png" width="750"></p>
 </div>
@@ -433,7 +464,7 @@
 <h4 id="custom-label-density-plot-split">Custom Label Density Plot (Split)<a class="anchor" aria-label="anchor" href="#custom-label-density-plot-split"></a>
 </h4>
 <p>This density plot can also be split according to label:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotDensitySplitByCustom.html">plotDensitySplitByCustom</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span><span class="op">)</span></code></pre></div>
 <p><img src="SqueakR_files/figure-html/custom%20split-1.png" width="750"></p>
 </div>
@@ -441,11 +472,11 @@
 <h4 id="duration-density-plot-stacked">Duration Density Plot (Stacked)<a class="anchor" aria-label="anchor" href="#duration-density-plot-stacked"></a>
 </h4>
 <p>We can graph duration - call length using a similar stacked density plot, shown in the code below:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotDensityStackedByDuration.html">plotDensityStackedByDuration</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span><span class="op">)</span></code></pre></div>
 <p><img src="SqueakR_files/figure-html/duration%20stacked-1.png" width="750"></p>
 <p>We can also split these duration groups:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotDensitySplitByDuration.html">plotDensitySplitByDuration</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span><span class="op">)</span></code></pre></div>
 <p><img src="SqueakR_files/figure-html/duration%20split-1.png" width="750"></p>
 </div>
@@ -454,7 +485,7 @@
 <h3 id="histogram-plot">Histogram Plot<a class="anchor" aria-label="anchor" href="#histogram-plot"></a>
 </h3>
 <p>We can plot a histogram representing the distribution of delta frequencies (the difference between the highest and lowest frequencies):</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotDeltaHistogram.html">plotDeltaHistogram</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span><span class="op">)</span></code></pre></div>
 <p><img src="SqueakR_files/figure-html/delta%20histogram-1.png" width="750"></p>
 </div>
@@ -462,7 +493,7 @@
 <h3 id="box-plot">Box Plot<a class="anchor" aria-label="anchor" href="#box-plot"></a>
 </h3>
 <p>We can plot a box-plot distribution of labeled calls, organized by principal frequency (to get a sense of the frequencies where specific call types predominate) using the following code:</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotPrincipalBoxplot.html">plotPrincipalBoxplot</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span><span class="op">)</span></code></pre></div>
 <p><img src="SqueakR_files/figure-html/principal%20box-plot-1.png" width="750"></p>
 </div>
@@ -470,15 +501,20 @@
 <h3 id="correlation-plot">Correlation Plot<a class="anchor" aria-label="anchor" href="#correlation-plot"></a>
 </h3>
 <p>Finally, we can plot a correlation matrix, which displays correlations between call features (listed in the <a href="#data-structure">Data Structure section</a>), as well as correlation coefficients:</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plotCorrelations.html">plotCorrelations</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span><span class="op">)</span></code></pre></div>
-<p><img src="SqueakR_files/figure-html/correlations-1.png" width="750"> ## Preview Dataset Visualizations</p>
-<p>If you don’t want to add data to the <code>experiment</code> object before visualizing data (in other words, preview the visualizations for an Excel file), you can run the same functions as above:</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plotDensityStackedByFrequency.html">plotDensityStackedByFrequency</a></span><span class="op">(</span><span class="st">"../inst/extdata/Example_Mouse_Data.xlsx"</span><span class="op">)</span></code></pre></div>
-<p><img src="SqueakR_files/figure-html/preview%20excel%20file%20(1)-1.png" width="750"> Keep in mind these plots will generate for the entire set of data, not a subset of the data like we can do using the <code>experiment</code> object functions. The only parameter required for these visualizations is the full path to the data file, which makes it easy to produce rapid visualizations based on individual Excel files.</p>
-<p>If we want to view an entire set of visualizations (shown in the above sections) for an Excel file as a PDF, we can also run the following function:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/plotCorrelations.html">plotCorrelations</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span><span class="op">)</span></code></pre></div>
+<p><img src="SqueakR_files/figure-html/correlations-1.png" width="750"></p>
+</div>
+<div class="section level3">
+<h3 id="preview-dataset-visualizations">Preview Dataset Visualizations<a class="anchor" aria-label="anchor" href="#preview-dataset-visualizations"></a>
+</h3>
+<p>If you don’t want to add data to the <code>experiment</code> object before visualizing data (in other words, preview the visualizations for an Excel file), you can run the same functions as above:</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/plotDensityStackedByFrequency.html">plotDensityStackedByFrequency</a></span><span class="op">(</span><span class="st">"../inst/extdata/Example_Mouse_Data.xlsx"</span><span class="op">)</span></code></pre></div>
+<p><img src="SqueakR_files/figure-html/preview%20excel%20file%20(1)-1.png" width="750"></p>
+<p>Keep in mind these plots will generate for the entire set of data, not a subset of the data like we can do using the <code>experiment</code> object functions. The only parameter required for these visualizations is the full path to the data file, which makes it easy to produce rapid visualizations based on individual Excel files.</p>
+<p>If we want to view an entire set of visualizations (shown in the above sections) for an Excel file as a PDF, we can also run the following function:</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotSummaryPDF.html">plotSummaryPDF</a></span><span class="op">(</span><span class="st">"../inst/extdata/Example_Mouse_Data.xlsx"</span>, save_path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Loading DeepSqueak Excel file...</span>
 <span class="co">#&gt; Writing PDF file...</span>
@@ -493,7 +529,7 @@
 <h3 id="replicating-analysis">Replicating analysis<a class="anchor" aria-label="anchor" href="#replicating-analysis"></a>
 </h3>
 <p>In order to replicate analysis, let’s add another file to our <code>experiment</code> by running the following function:</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">additional_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/add_timepoint_data.html">add_timepoint_data</a></span><span class="op">(</span>data_path <span class="op">=</span> <span class="st">"../inst/extdata/Example_Mouse_Data.xlsx"</span>, t1 <span class="op">=</span> <span class="fl">30</span>, t2 <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
 <span class="co">#&gt; Adding call features Excel file to workspace...</span>
 <span class="co">#&gt; Restricting data to range: 30 to 50 seconds...</span>
@@ -506,10 +542,10 @@
 <span class="co">#&gt; Adding summarized data to experiment object...</span>
 <span class="co">#&gt; Updating experiment metadata...</span></code></pre></div>
 <p>From this code, a different range of time (30-50 seconds) was subset from the same data file, so different calls were extracted. Just to get a sense of what the <code>experiment</code> object looks like after adding these data:</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-18 07:44:05</span>
+<span class="co">#&gt; Last saved: 2022-06-19 01:53:59</span>
 <span class="co">#&gt; Experimenter(s): my_name, new_experimenter</span>
 <span class="co">#&gt; Experimental group(s): Control, Drug</span>
 <span class="co">#&gt; Total call datapoints: 2</span>
@@ -517,7 +553,7 @@
 <span class="co">#&gt; Data for Drug: 1</span></code></pre></div>
 <p>As mentioned earlier when we first ran this function, we can now see how many datasets are stored under each condition. You’ll also notice that the “Experimenters” and “Experimental groups” field has auto-populated, based on the parameters for the new data we just added.</p>
 <p>Let’s try adding one more experimental group and looking at the <code>experiment</code> object now:</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">third_dataset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/add_timepoint_data.html">add_timepoint_data</a></span><span class="op">(</span>data_path <span class="op">=</span> <span class="st">"../inst/extdata/Example_Mouse_Data.xlsx"</span>, t1 <span class="op">=</span> <span class="fl">70</span>, t2 <span class="op">=</span> <span class="fl">90</span><span class="op">)</span>
 <span class="co">#&gt; Adding call features Excel file to workspace...</span>
 <span class="co">#&gt; Restricting data to range: 70 to 90 seconds...</span>
@@ -529,10 +565,10 @@
 <span class="co">#&gt; Adding summarized data to experiment object...</span>
 <span class="co">#&gt; Updating experiment metadata...</span></code></pre></div>
 <p>Here, we’ve picked a new range within the same file and added this information to our dataset. If we inspect the <code>experiment</code> object again, we’ll see the same fields as last time auto-populate:</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-18 07:44:05</span>
+<span class="co">#&gt; Last saved: 2022-06-19 01:53:59</span>
 <span class="co">#&gt; Experimenter(s): my_name, new_experimenter, experimenter_3</span>
 <span class="co">#&gt; Experimental group(s): Control, Drug, Sham</span>
 <span class="co">#&gt; Total call datapoints: 3</span>
@@ -545,7 +581,7 @@
 </h3>
 <p>Once we’ve finished adding all of our data to the <code>experiment</code> object, we can start comparing metrics between groups. To do this, it will be useful to revisit the structure <code>experiment</code> object.</p>
 <p>Within the <code>experiment</code> object is a list called experimental_data, which contains all our data (processed and raw) for each time range we select. Under the call_data for any given object lie the metrics we can compare (call_length, delta_frequency, high_frequency, low_frequency, peak_frequency, power, principal_frequency, sinuosity, slope, and tonality). The way these variables are written in the <code>experiment</code> object (i.e. lowercase with underscores between words) will be the same way it will be entered into the following function to generate comparisons between groups:</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/analyze_factor.html">analyze_factor</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span>, analysis_factor <span class="op">=</span> <span class="st">"delta_frequency"</span><span class="op">)</span></code></pre></div>
 <p><img src="SqueakR_files/figure-html/analyze%20delta%20frequency%20between%20groups-1.png" width="750"></p>
 <p>In the above plot, we compare delta frequency (the average range of frequencies for all calls in a given time range) between different groups. The data look similar because they are based on the same Excel file, just at different time-points, but this highlights the versatility of data extraction using DeepSqueak, in that call data can be processed in not only a between-groups manner but also a within-groups manner.</p>
