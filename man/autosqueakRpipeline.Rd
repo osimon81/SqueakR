@@ -14,6 +14,6 @@ A pipeline function which creates a new experiment object,
 and adds data and metadata referenced from an external Google Sheets document.
 }
 \examples{
-expt <- experiment_pipeline()
+expt <- autosqueakRpipeline()
 
 }

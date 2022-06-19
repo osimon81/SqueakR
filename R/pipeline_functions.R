@@ -9,7 +9,7 @@ data(deepsqueak_data, envir=environment())
 #'
 #' @return An object containing the full experiment with all data added.
 #'
-#' @examples expt <- experiment_pipeline()
+#' @examples expt <- semisqueakRpipeline()
 #'
 #' @import readxl
 #' @import dplyr
@@ -124,7 +124,7 @@ load_cleaned_sheet <- function() {
 #'
 #' @return An object containing the full experiment with all data added.
 #'
-#' @examples expt <- experiment_pipeline()
+#' @examples expt <- autosqueakRpipeline()
 #'
 #' @import googlesheets4
 #' @export
