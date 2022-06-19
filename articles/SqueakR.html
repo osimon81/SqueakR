@@ -119,7 +119,7 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; List of 5</span>
 <span class="co">#&gt;  $ name             : chr "my_experiment"</span>
-<span class="co">#&gt;  $ last_saved       : POSIXct[1:1], format: "2022-06-19 18:28:05"</span>
+<span class="co">#&gt;  $ last_saved       : POSIXct[1:1], format: "2022-06-19 21:51:42"</span>
 <span class="co">#&gt;  $ groups           : NULL</span>
 <span class="co">#&gt;  $ experimenters    : NULL</span>
 <span class="co">#&gt;  $ experimental_data: list()</span></code></pre></div>
@@ -318,7 +318,7 @@
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-19 18:28:05</span>
+<span class="co">#&gt; Last saved: 2022-06-19 21:51:42</span>
 <span class="co">#&gt; Experimenter(s): my_name</span>
 <span class="co">#&gt; Experimental group(s): Control</span>
 <span class="co">#&gt; Total call datapoints: 1</span>
@@ -545,7 +545,7 @@
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-19 18:28:05</span>
+<span class="co">#&gt; Last saved: 2022-06-19 21:51:42</span>
 <span class="co">#&gt; Experimenter(s): my_name, new_experimenter</span>
 <span class="co">#&gt; Experimental group(s): Control, Drug</span>
 <span class="co">#&gt; Total call datapoints: 2</span>
@@ -568,7 +568,7 @@
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-19 18:28:05</span>
+<span class="co">#&gt; Last saved: 2022-06-19 21:51:42</span>
 <span class="co">#&gt; Experimenter(s): my_name, new_experimenter, experimenter_3</span>
 <span class="co">#&gt; Experimental group(s): Control, Drug, Sham</span>
 <span class="co">#&gt; Total call datapoints: 3</span>
@@ -587,6 +587,13 @@
 <p>In the above plot, we compare delta frequency (the average range of frequencies for all calls in a given time range) between different groups. The data look similar because they are based on the same Excel file, just at different time-points, but this highlights the versatility of data extraction using DeepSqueak, in that call data can be processed in not only a between-groups manner but also a within-groups manner.</p>
 <p>We can assess other comparisons in this way, by ensuring that we set <code>analysis_factor</code> to the name of the variable previously specified in the <a href="#data-structure">Data Structure</a> section, but written in “quotes”. Keeping this format ensures that <code>SqueakR</code> knows which data to compare.</p>
 </div>
+</div>
+<div class="section level2">
+<h2 id="future-directions">Future Directions<a class="anchor" aria-label="anchor" href="#future-directions"></a>
+</h2>
+<p>SqueakR was developed with the primary aim to streamline bio-acoustics data processing in experiments by processing data automatically. To this end, one of the future directions for this project include increasing the analytical post-processing functionalities. One way this may be accomplished is through adding a dependency to the Report package on <a href="https://cran.r-project.org/web/packages/report/index.html" class="external-link">CRAN</a> and <a href="https://github.com/easystats/report" class="external-link">GitHub</a>. Report aims to connect processed data with statistical analyses, and would be suitable for processing DeepSqueak data.</p>
+<p>Currently, the SqueakR Shiny Dashboard is a separate, non-CRAN repository which is downloaded independently of the SqueakR package. It may be worth consolidating the dashboard and package under a single CRAN package, where the Dashboard can be run as a separate function within the SqueakR package.</p>
+<p>Any suggestions or feedback on current and future directions are welcome in the <a href="https://github.com/osimon81/SqueakR/discussions" class="external-link">SqueakR Discussions</a> page!</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
