@@ -46,6 +46,8 @@ The tools and resources available under `SqueakR` include:
 
 -   The [`SqueakR`](https://cran.r-project.org/package=SqueakR "SqueakR Website on CRAN") package itself, and documentation describing its functions, on CRAN.
 
+-   The [SqueakR On Swirl](https://github.com/osimon81/SqueakR-On-Swirl) course GitHub repository. Installing this course will teach you how to use SqueakR within R itself!
+
 ## Contact
 
 If you have any questions that cannot be answered through any of these ways, feel free to contact me at [simon.ogundare\@columbia.edu](mailto:simon.ogundare@columbia.edu), and I'll get back to you as soon as possible.
