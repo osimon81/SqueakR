@@ -9,7 +9,7 @@ data(deepsqueak_data, envir=environment())
 #'
 #' @return An object containing the full experiment with all data added.
 #'
-#' @examples expt <- semisqueakRpipeline()
+#' @examples \dontrun{expt <- semisqueakRpipeline()}
 #'
 #' @import readxl
 #' @import dplyr
@@ -78,7 +78,6 @@ load_cleaned_sheet <- function() {
   }
 
   data <- read_sheet(picked_link, sheet = picked_sheet)
-  head(data)
 
   happywithsettings <- FALSE
 
@@ -101,7 +100,6 @@ load_cleaned_sheet <- function() {
 
     } else {
       message("Reassigning columns...")
-      head(data)
     }
   }
 
@@ -111,7 +109,6 @@ load_cleaned_sheet <- function() {
   names(data)[t1col] = "timepoint1"
   names(data)[t2col] = "timepoint2"
 
-  head(data)
   return(data)
 }
 
@@ -124,7 +121,7 @@ load_cleaned_sheet <- function() {
 #'
 #' @return An object containing the full experiment with all data added.
 #'
-#' @examples expt <- autosqueakRpipeline()
+#' @examples \dontrun{expt <- autosqueakRpipeline()}
 #'
 #' @import googlesheets4
 #' @export

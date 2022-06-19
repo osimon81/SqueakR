@@ -14,6 +14,6 @@ A pipeline function which creates a new experiment object and adds
 data by prompting the user for metadata (for every file that is added).
 }
 \examples{
-expt <- semisqueakRpipeline()
+\dontrun{expt <- semisqueakRpipeline()}
 
 }

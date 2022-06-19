@@ -41,7 +41,6 @@ Next, load the package:
 library(SqueakR)
 ```
 
-
 ## From GitHub
 
 To install the development version of the package from GitHub, run the code below. Ensure the `devtools` package is installed, and `devtools` is loaded using `library(devtools)`, before running the following:
@@ -431,3 +430,14 @@ analyze_factor(experiment = experiment, analysis_factor = "delta_frequency")
 In the above plot, we compare delta frequency (the average range of frequencies for all calls in a given time range) between different groups. The data look similar because they are based on the same Excel file, just at different time-points, but this highlights the versatility of data extraction using DeepSqueak, in that call data can be processed in not only a between-groups manner but also a within-groups manner.
 
 We can assess other comparisons in this way, by ensuring that we set `analysis_factor` to the name of the variable previously specified in the [Data Structure](#data-structure) section, but written in "quotes". Keeping this format ensures that `SqueakR` knows which data to compare.
+
+# Future Directions
+
+SqueakR was developed with the primary aim to streamline bio-acoustics data processing in experiments by processing data automatically. To this end, one of the future directions for this project include increasing the analytical post-processing functionalities. One way this may be accomplished is through adding a dependency to the Report package on [CRAN](https://cran.r-project.org/web/packages/report/index.html) and [GitHub](https://github.com/easystats/report). Report aims to connect processed data with statistical analyses, and would be suitable for processing DeepSqueak data.
+
+Currently, the SqueakR Shiny Dashboard is a separate, non-CRAN repository which is downloaded independently of the SqueakR package. It may be worth consolidating the dashboard and package under a single CRAN package, where the Dashboard can be run as a separate function within the SqueakR package.
+
+Any suggestions or feedback on current and future directions are welcome in the [SqueakR Discussions](https://github.com/osimon81/SqueakR/discussions) page!
+
+
+
