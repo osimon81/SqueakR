@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-The `SqueakR` package is a centralized, experiment-centered interface for efficiently organizing and analyzing data exported from [`DeepSqueak`](https://github.com/DrCoffey/DeepSqueak). Of its diverse functions, `SqueakR` is capable of generating quick plots from vocalization data detected from `DeepSqueak`. On top of these visualizations, the package contains functions which combine all exported DeepSqueak data from multiple recordings into a single experimental object, allowing subsequent analysis to be conducted directly from R.
+The `SqueakR` package is a centralized, experiment-centered interface for efficiently organizing and analyzing bioacoustics data exported from [`DeepSqueak`](https://github.com/DrCoffey/DeepSqueak). Of its diverse functions, `SqueakR` is capable of generating quick plots from vocalization data detected from `DeepSqueak`. On top of these visualizations, the package contains functions which combine all exported DeepSqueak data from multiple recordings into a single experimental object, allowing subsequent analysis to be conducted directly from R.
 
 # Installation
 
@@ -433,11 +433,8 @@ We can assess other comparisons in this way, by ensuring that we set `analysis_f
 
 # Future Directions
 
-SqueakR was developed with the primary aim to streamline bio-acoustics data processing in experiments by processing data automatically. To this end, one of the future directions for this project include increasing the analytical post-processing functionalities. One way this may be accomplished is through adding a dependency to the Report package on [CRAN](https://cran.r-project.org/web/packages/report/index.html) and [GitHub](https://github.com/easystats/report). Report aims to connect processed data with statistical analyses, and would be suitable for processing DeepSqueak data.
+SqueakR was developed with the primary aim to streamline bio-acoustics data processing in experiments by processing data automatically. To this end, one of the future directions for this project include increasing the analytical post-processing functionalities. One way this may be accomplished is through adding a dependency to the Report package on [CRAN](https://cran.r-project.org/package=report/) and [GitHub](https://github.com/easystats/report/). Report aims to connect processed data with statistical analyses, and would be suitable for processing DeepSqueak data.
 
 Currently, the SqueakR Shiny Dashboard is a separate, non-CRAN repository which is downloaded independently of the SqueakR package. It may be worth consolidating the dashboard and package under a single CRAN package, where the Dashboard can be run as a separate function within the SqueakR package.
 
-Any suggestions or feedback on current and future directions are welcome in the [SqueakR Discussions](https://github.com/osimon81/SqueakR/discussions) page!
-
-
-
+Any suggestions or feedback on current and future directions are welcome in the [SqueakR Discussions](https://github.com/osimon81/SqueakR/discussions/) page!

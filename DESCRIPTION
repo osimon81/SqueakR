@@ -5,10 +5,10 @@ Version: 1.2.0
 Authors@R: 
     person("Simon", "Ogundare", , "simon.ogundare@columbia.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6243-2779"))
-Description: A collection of functions intended to facilitate pre-processing,
+Description: A collection of functions intended to facilitate preprocessing,
     processing, and data visualizations for rodent vocalizations exported
     from 'DeepSqueak'.
-URL: https://osimon81.github.io/SqueakR, https://github.com/osimon81/SqueakR
+URL: https://osimon81.github.io/SqueakR/, https://github.com/osimon81/SqueakR/
 License: MIT + file LICENSE
 Imports:
     dplyr,

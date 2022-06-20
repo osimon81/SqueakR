@@ -6,13 +6,13 @@
 \alias{SqueakR-package}
 \title{SqueakR: An Experiment Interface for 'DeepSqueak'}
 \description{
-A collection of functions intended to facilitate pre-processing, processing, and data visualizations for rodent vocalizations exported from 'DeepSqueak'.
+A collection of functions intended to facilitate preprocessing, processing, and data visualizations for rodent vocalizations exported from 'DeepSqueak'.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://osimon81.github.io/SqueakR}
-  \item \url{https://github.com/osimon81/SqueakR}
+  \item \url{https://osimon81.github.io/SqueakR/}
+  \item \url{https://github.com/osimon81/SqueakR/}
 }
 
 }
