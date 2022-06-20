@@ -17,7 +17,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.width = 5,
-  dpi=150
+  dpi=150,
+  fig.path="man/figures"
 )
 ```
 
@@ -270,7 +271,7 @@ plotEthnogram(experiment$experimental_data[1]$call_data$raw,
 
 ### Tonality Ethnogram (Split)
 
-We can plot the ethnogram, and split the lines up according to tonality, using the following code:
+Tonality can be used as a proxy for the signal-to-noise ratio for a particular call. We can plot the same ethnogram, and split the detected calls according to tonality, using the following code:
 
 ```{r tonality ethnogram, warning = FALSE}
 plotEthnogramSplitByTonality(experiment$experimental_data[1]$call_data$raw,

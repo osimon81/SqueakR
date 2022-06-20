@@ -5,22 +5,20 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="A collection of functions intended to produce convenient
-    visualizations for rodent vocalizations exported from DeepSqueak.
-    These visualizations include call frequency-clustered graphs, and
-    density graphs grouped by frequency, custom labels identified in
-    DeepSqueak, and call duration.">
-<title>An Experiment Superstructure for DeepSqueak • SqueakR</title>
+<meta name="description" content="A collection of functions intended to facilitate processing
+    and data visualizations for rodent vocalizations exported from
+    DeepSqueak. These functions are compatible with the SqueakR Shiny Dashboard,
+    which can be used to visualize experimental results and analyses.">
+<title>An Experiment Interface for DeepSqueak Bioacoustics Research • SqueakR</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="An Experiment Superstructure for DeepSqueak">
-<meta property="og:description" content="A collection of functions intended to produce convenient
-    visualizations for rodent vocalizations exported from DeepSqueak.
-    These visualizations include call frequency-clustered graphs, and
-    density graphs grouped by frequency, custom labels identified in
-    DeepSqueak, and call duration.">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="An Experiment Interface for DeepSqueak Bioacoustics Research">
+<meta property="og:description" content="A collection of functions intended to facilitate processing
+    and data visualizations for rodent vocalizations exported from
+    DeepSqueak. These functions are compatible with the SqueakR Shiny Dashboard,
+    which can be used to visualize experimental results and analyses.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -34,7 +32,7 @@
     
     <a class="navbar-brand me-2" href="index.html">SqueakR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,21 +70,60 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9">
+<!-- badges: end -->
 <div class="section level1">
-<div class="page-header"><h1 id="squeakr">SqueakR<a class="anchor" aria-label="anchor" href="#squeakr"></a>
+<div class="page-header"><h1 id="squeakr-an-experiment-interface-for-deepsqueak-bioacoustics-research">SqueakR: An Experiment Interface for DeepSqueak Bioacoustics Research<a class="anchor" aria-label="anchor" href="#squeakr-an-experiment-interface-for-deepsqueak-bioacoustics-research"></a>
 </h1></div>
+<p>Welcome to the <code>SqueakR</code> package!</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <div class="section level3">
-<h3 id="experiment-superstructure-for-deepsqueak">Experiment Superstructure for DeepSqueak<a class="anchor" aria-label="anchor" href="#experiment-superstructure-for-deepsqueak"></a>
+<h3 id="from-cran">From CRAN<a class="anchor" aria-label="anchor" href="#from-cran"></a>
 </h3>
-<p>Welcome to the <code>SqueakR</code> package! To install the package in RStudio, run the following code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">"osimon81/SqueakR"</span>)</span></code></pre></div>
+<p>To install the CRAN release of the package, run the following code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(SqueakR)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SqueakR)</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="from-github">From GitHub<a class="anchor" aria-label="anchor" href="#from-github"></a>
+</h3>
+<p>To install the development version of <code>SqueakR</code>, run the following code (ensure devtools is loaded first):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">"osimon81/SqueakR"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SqueakR)</span></code></pre></div>
+<p><code>SqueakR</code> represents a suite of programs designed to assist researchers with processing and exploring data from experiments which use DeepSqueak for bioacoustics projects. DeepSqueak is a machine-vision program capable of aggregating detected vocalizations based on the features a call might have, allowing subsequent analysis of call syntax, significant changes in call features across groups, etc.</p>
+<p>For reference, the entire <code>SqueakR</code> suite can be found <a href="https://github.com/stars/osimon81/lists/squeakr" class="external-link">under this GitHub list</a>.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="resources">Resources<a class="anchor" aria-label="anchor" href="#resources"></a>
+</h2>
+<p>The tools and resources available under <code>SqueakR</code> include:</p>
+<ul>
+<li><p>The <code>SqueakR</code> <a href="https://osimon81.github.io/SqueakR/" title="SqueakR Pkgdown Website on GitHub" class="external-link">pkgdown website</a> available through GitHub. Detailed information about its functions can be found under the <a href="https://osimon81.github.io/SqueakR/reference/index.html/" title="Reference tab on pkgdown" class="external-link">Reference</a> tab. The <a href="https://osimon81.github.io/SqueakR/articles/SqueakR.html/" title="Getting started tab on pkgdown" class="external-link">Get started</a> the recommended site for learning how to use the package.</p></li>
+<li>
+<p>The <a href="https://github.com/osimon81/SqueakR/" title="The GitHub repository for SqueakR" class="external-link">main <code>SqueakR</code> Package repository</a>, and the corresponding <a href="https://github.com/osimon81/SqueakR/wiki/" title="SqueakR Wiki" class="external-link">Wiki</a> and <a href="https://github.com/osimon81/SqueakR/discussions/" title="Discussions page for SqueakR repo" class="external-link">Discussions</a> sections.</p>
+<ul>
+<li><p><strong>This Discussions section</strong> under the main SqueakR repository will be the forum for announcements, discussions, and troubleshooting anything related to either SqueakR or the Shiny SqueakR Dashboard.</p></li>
+<li><p>However, <em>both sites have separate wikis,</em> to keep documentation organized.</p></li>
+</ul>
+</li>
+<li><p>The <a href="https://github.com/osimon81/SqueakR-Dashboard/" title="Repository for Shiny SqueakR Dashboard" class="external-link">Shiny <code>SqueakR</code> Dashboard repository</a>, and the accompanying <a href="https://github.com/osimon81/SqueakR-Dashboard/wiki/" title="SqueakR-Dashboard Wiki" class="external-link">Wiki</a> section, which contains documentation for running analysis and visualizing data through the <code>SqueakR</code> Shiny dashboard.</p></li>
+<li><p>The <a href="https://cran.r-project.org/package=SqueakR/" title="SqueakR Website on CRAN" class="external-link"><code>SqueakR</code></a> package itself, and documentation describing its functions, on CRAN.</p></li>
+<li><p>The <a href="https://github.com/osimon81/SqueakR-On-Swirl/" class="external-link">SqueakR On Swirl</a> course GitHub repository. Installing this course will teach you how to use SqueakR within RStudio itself!</p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="contact">Contact<a class="anchor" aria-label="anchor" href="#contact"></a>
+</h2>
+<p>If you have any questions that cannot be answered through any of these ways, feel free to contact me at <a href="mailto:simon.ogundare@columbia.edu">simon.ogundare@columbia.edu</a>, and I’ll get back to you as soon as possible.</p>
 </div>
 </div>
 
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=SqueakR" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/osimon81/SqueakR/" class="external-link">Browse source code</a></li>
 </ul>
 </div>
@@ -117,9 +154,11 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/osimon81/SqueakR/actions" class="external-link"><img src="https://github.com/osimon81/SqueakR/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://codecov.io/gh/osimon81/SqueakR" class="external-link"><img src="https://codecov.io/gh/osimon81/SqueakR/branch/main/graph/badge.svg?token=039C8ZLW97" alt="codecov"></a></li>
+<li><a href="https://cran.r-project.org/package=SqueakR" class="external-link"><img src="https://www.r-pkg.org/badges/version/SqueakR?color=green" alt="CRAN"></a></li>
 <li><a href="https://github.com/osimon81/SqueakR/actions/workflows/pkgdown.yaml" class="external-link"><img src="https://github.com/osimon81/SqueakR/actions/workflows/pkgdown.yaml/badge.svg" alt="pkgdown"></a></li>
+<li><a href="https://cran.r-project.org/web/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a></li>
+<li><a href=""><img src="https://img.shields.io/github/contributors/osimon81/SqueakR.svg?style=flat" alt="GitHub contributors"></a></li>
+<li><a href="https://twitter.com/SimonOgundare" class="external-link"><img src="https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&amp;label=Follow%20%40SimonOgundare" alt="Twitter"></a></li>
 </ul>
 </div>
 

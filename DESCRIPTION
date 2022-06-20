@@ -1,13 +1,14 @@
 Type: Package
 Package: SqueakR
-Title: An Experiment Interface for 'DeepSqueak'
+Title: An Experiment Interface for 'DeepSqueak' Bioacoustics Research
 Version: 1.2.0
 Authors@R: 
     person("Simon", "Ogundare", , "simon.ogundare@columbia.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6243-2779"))
-Description: A collection of functions intended to facilitate preprocessing,
-    processing, and data visualizations for rodent vocalizations exported
-    from 'DeepSqueak'.
+Description: A collection of functions intended to facilitate processing
+    and data visualizations for rodent vocalizations exported from
+    'DeepSqueak'. These functions are compatible with the SqueakR Shiny Dashboard,
+    which can be used to visualize experimental results and analyses.
 URL: https://osimon81.github.io/SqueakR/, https://github.com/osimon81/SqueakR/
 License: MIT + file LICENSE
 Imports:

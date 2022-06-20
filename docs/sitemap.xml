@@ -37,6 +37,9 @@
     <loc>/reference/analyze_factor.html</loc>
   </url>
   <url>
+    <loc>/reference/autosqueakRpipeline.html</loc>
+  </url>
+  <url>
     <loc>/reference/create_experiment.html</loc>
   </url>
   <url>
@@ -88,10 +91,16 @@
     <loc>/reference/plotSummaryPDF.html</loc>
   </url>
   <url>
+    <loc>/reference/remove_experiment_data.html</loc>
+  </url>
+  <url>
     <loc>/reference/save_experiment.html</loc>
   </url>
   <url>
     <loc>/reference/score_timepoint_data.html</loc>
+  </url>
+  <url>
+    <loc>/reference/semisqueakRpipeline.html</loc>
   </url>
   <url>
     <loc>/reference/update_experiment.html</loc>
