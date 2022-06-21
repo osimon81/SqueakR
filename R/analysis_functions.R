@@ -27,7 +27,7 @@ analyze_factor <- function(experiment, analysis_factor) {
     group3 = c(),
     group4 = c(),
     group5 = c(),
-    group6 = c(),
+    group6 = c()
   )
 
   names(expt_groups) <- unique(names(group_organized))

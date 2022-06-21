@@ -45,7 +45,7 @@ library(SqueakR)
 
 To install the development version of the package from GitHub, run the code below. Ensure the `devtools` package is installed, and `devtools` is loaded using `library(devtools)`, before running the following:
 
-```{r install from GitHub, eval=FALSE}
+```{r install from GitHub, eval = FALSE}
 library(devtools)
 install_github("osimon81/SqueakR")
 library(SqueakR)
