@@ -1,6 +1,6 @@
 <!-- badges: start -->
 
-[![CRAN](https://www.r-pkg.org/badges/version/SqueakR?color=green)](https://cran.r-project.org/package=SqueakR) [![pkgdown](https://github.com/osimon81/SqueakR/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/osimon81/SqueakR/actions/workflows/pkgdown.yaml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://cran.r-project.org/web/licenses/MIT) [![GitHub contributors](https://img.shields.io/github/contributors/osimon81/SqueakR.svg?style=flat)] [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%2540SimonOgundare)]
+[![CRAN](https://www.r-pkg.org/badges/version/SqueakR?color=green)](https://cran.r-project.org/package=SqueakR) [![pkgdown](https://github.com/osimon81/SqueakR/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/osimon81/SqueakR/actions/workflows/pkgdown.yaml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://cran.r-project.org/web/licenses/MIT)
 
 <!-- badges: end -->
 
@@ -34,13 +34,7 @@ The tools and resources available under `SqueakR` include:
 
 -   The `SqueakR` [pkgdown website](https://osimon81.github.io/SqueakR/ "SqueakR Pkgdown Website on GitHub") available through GitHub. Detailed information about its functions can be found under the *Reference* tab on the SqueakR website. The *Get started* tab is the recommended site for learning how to use the package.
 
--   The [main `SqueakR` Package repository](https://github.com/osimon81/SqueakR/ "The GitHub repository for SqueakR"), and the corresponding [Wiki](https://github.com/osimon81/SqueakR/wiki/ "SqueakR Wiki") and [Discussions](https://github.com/osimon81/SqueakR/discussions/ "Discussions page for SqueakR repo") sections.
-
-    -   **This Discussions section** under the main SqueakR repository will be the forum for announcements, discussions, and troubleshooting anything related to either SqueakR or the Shiny SqueakR Dashboard.
-
-    -   However, *both sites have separate wikis,* to keep documentation organized.
-
--   The [Shiny `SqueakR` Dashboard repository](https://github.com/osimon81/SqueakR-Dashboard/ "Repository for Shiny SqueakR Dashboard"), and the accompanying [Wiki](https://github.com/osimon81/SqueakR-Dashboard/wiki/ "SqueakR-Dashboard Wiki") section, which contains documentation for running analysis and visualizing data through the `SqueakR` Shiny dashboard.
+-   The [main SqueakR Package repository](https://github.com/osimon81/SqueakR/ "The GitHub repository for SqueakR"), and the corresponding [Wiki](https://github.com/osimon81/SqueakR/wiki/ "SqueakR Wiki") and [Discussions](https://github.com/osimon81/SqueakR/discussions/ "Discussions page for SqueakR repo") sections.
 
 -   The [`SqueakR`](https://cran.r-project.org/package=SqueakR/ "SqueakR Website on CRAN") package itself, and documentation describing its functions, on CRAN.
 

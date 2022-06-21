@@ -2,17 +2,24 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "SqueakR",
-  "description": "A collection of functions intended to produce convenient visualizations for rodent vocalizations exported from 'DeepSqueak'. These visualizations include call frequency-clustered graphs, and density graphs grouped by frequency, custom labels identified in 'DeepSqueak', and call duration.",
-  "name": "SqueakR: An Experiment Superstructure for 'DeepSqueak'",
-  "codeRepository": "https://github.com/osimon81/SqueakR",
+  "description": "Data processing and visualizations for rodent vocalizations exported from 'DeepSqueak'. These functions are compatible with the 'SqueakR' Shiny Dashboard, which can be used to visualize experimental results and analyses.",
+  "name": "SqueakR: An Experiment Interface for 'DeepSqueak' Bioacoustics Research",
+  "relatedLink": ["https://osimon81.github.io/SqueakR/", "https://CRAN.R-project.org/package=SqueakR"],
+  "codeRepository": "https://github.com/osimon81/SqueakR/",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.0",
+  "version": "1.2.5",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 4.0.5 (2021-03-31)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -145,6 +152,18 @@
     },
     "7": {
       "@type": "SoftwareApplication",
+      "identifier": "googlesheets4",
+      "name": "googlesheets4",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=googlesheets4"
+    },
+    "8": {
+      "@type": "SoftwareApplication",
       "identifier": "readxl",
       "name": "readxl",
       "provider": {
@@ -155,7 +174,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=readxl"
     },
-    "8": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "rlist",
       "name": "rlist",
@@ -167,7 +186,48 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlist"
     },
-    "9": {
+    "10": {
+      "@type": "SoftwareApplication",
+      "identifier": "rstatix",
+      "name": "rstatix",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rstatix"
+    },
+    "11": {
+      "@type": "SoftwareApplication",
+      "identifier": "shiny",
+      "name": "shiny",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=shiny"
+    },
+    "12": {
+      "@type": "SoftwareApplication",
+      "identifier": "shinydashboard",
+      "name": "shinydashboard",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=shinydashboard"
+    },
+    "13": {
+      "@type": "SoftwareApplication",
+      "identifier": "utils",
+      "name": "utils"
+    },
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
@@ -178,5 +238,6 @@
   "fileSize": "0KB",
   "releaseNotes": "https://github.com/osimon81/SqueakR/blob/master/NEWS.md",
   "readme": "https://github.com/osimon81/SqueakR/blob/main/README.md",
-  "contIntegration": "https://github.com/osimon81/SqueakR/actions"
+  "contIntegration": "https://github.com/osimon81/SqueakR/actions/workflows/pkgdown.yaml",
+  "keywords": ["bioacoustics", "deepsqueak", "r", "cran"]
 }

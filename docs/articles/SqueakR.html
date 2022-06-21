@@ -140,7 +140,7 @@ inspect how <code>experiment</code> is structured:</p>
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; List of 5</span>
 <span class="co">#&gt;  $ name             : chr "my_experiment"</span>
-<span class="co">#&gt;  $ last_saved       : POSIXct[1:1], format: "2022-06-21 01:36:15"</span>
+<span class="co">#&gt;  $ last_saved       : POSIXct[1:1], format: "2022-06-21 12:26:44"</span>
 <span class="co">#&gt;  $ groups           : NULL</span>
 <span class="co">#&gt;  $ experimenters    : NULL</span>
 <span class="co">#&gt;  $ experimental_data: list()</span></code></pre></div>
@@ -393,7 +393,7 @@ can run the following <code>SqueakR</code> function:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-21 01:36:15</span>
+<span class="co">#&gt; Last saved: 2022-06-21 12:26:44</span>
 <span class="co">#&gt; Experimenter(s): my_name</span>
 <span class="co">#&gt; Experimental group(s): Control</span>
 <span class="co">#&gt; Total call datapoints: 1</span>
@@ -747,7 +747,7 @@ adding these data:</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-21 01:36:15</span>
+<span class="co">#&gt; Last saved: 2022-06-21 12:26:44</span>
 <span class="co">#&gt; Experimenter(s): my_name, new_experimenter</span>
 <span class="co">#&gt; Experimental group(s): Control, Drug</span>
 <span class="co">#&gt; Total call datapoints: 2</span>
@@ -777,7 +777,7 @@ object again, we’ll see the same fields as last time auto-populate:</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-21 01:36:15</span>
+<span class="co">#&gt; Last saved: 2022-06-21 12:26:44</span>
 <span class="co">#&gt; Experimenter(s): my_name, new_experimenter, experimenter_3</span>
 <span class="co">#&gt; Experimental group(s): Control, Drug, Sham</span>
 <span class="co">#&gt; Total call datapoints: 3</span>
@@ -786,7 +786,7 @@ object again, we’ll see the same fields as last time auto-populate:</p>
 <span class="co">#&gt; Data for Sham: 1</span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="inter-group-comparison">Inter-group comparison<a class="anchor" aria-label="anchor" href="#inter-group-comparison"></a>
+<h3 id="inter-group-comparison-plots">Inter-group comparison plots<a class="anchor" aria-label="anchor" href="#inter-group-comparison-plots"></a>
 </h3>
 <p>Once we’ve finished adding all of our data to the
 <code>experiment</code> object, we can start comparing metrics between
@@ -817,6 +817,28 @@ specified in the <a href="#data-structure">Data Structure</a> section,
 but written in “quotes”. Keeping this format ensures that
 <code>SqueakR</code> knows which data to compare.</p>
 </div>
+<div class="section level3">
+<h3 id="inter-group-anova">Inter-group ANOVA<a class="anchor" aria-label="anchor" href="#inter-group-anova"></a>
+</h3>
+<p>SqueakR also has a function for calculating ANOVA between the
+different groups, which can is run below:</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/squeakrANOVA.html">squeakrANOVA</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span>, analysis_factor <span class="op">=</span> <span class="st">"Delta_Freq"</span><span class="op">)</span>
+<span class="co">#&gt; Coefficient covariances computed by hccm()</span>
+<span class="co">#&gt; ANOVA Table (type II tests)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   Effect DFn DFd     F     p p&lt;.05   ges</span>
+<span class="co">#&gt; 1  group   2 233 2.266 0.106       0.019</span></code></pre></div>
+<p>We can use this function to justify our statistically-significant
+data:</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/squeakrANOVA.html">squeakrANOVA</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span>, analysis_factor <span class="op">=</span> <span class="st">"Call_Length"</span><span class="op">)</span>
+<span class="co">#&gt; Coefficient covariances computed by hccm()</span>
+<span class="co">#&gt; ANOVA Table (type II tests)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   Effect DFn DFd     F     p p&lt;.05   ges</span>
+<span class="co">#&gt; 1  group   2 233 7.005 0.001     * 0.057</span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="squeakr-dashboard">SqueakR Dashboard<a class="anchor" aria-label="anchor" href="#squeakr-dashboard"></a>
@@ -832,7 +854,7 @@ can be easily graphed in the dashboard, by selecting the call dataset of
 interest in a drop-down widget.</p>
 <p>The dashboard is launched in the console using a SqueakR
 function:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/squeakRDashboard.html">squeakRDashboard</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">

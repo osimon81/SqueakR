@@ -8,16 +8,16 @@
   loading the package by running `squeakRDashboard()'
 * Added function for calculating ANOVA between groups
 * Added ANOVA tab on SqueakR Dashboard for determining statistical significance
-  between variables
+  between call features
 
 ## version 1.2.0
 
 ---
 
-* Added fully-automatic pipeline function (autosqueakRpipeline) which references
+* Added fully-automatic pipeline function (`autosqueakRpipeline()`) which references
   Google Sheet to add data without experimenter input for every file
-* Renamed experiment_pipeline() to semisqueakRpipeline()
-* Added function (add) to remove data from experiment object
+* Renamed `experiment_pipeline()` to `semisqueakRpipeline()`
+* Added function (`remove_experiment_data()`) to remove data from experiment object
 * Updated `vignette` to reflect package changes
 
 ## version 1.0.0
