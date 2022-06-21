@@ -1,3 +1,4 @@
+
 <!-- badges: start -->
 
 [![CRAN](https://www.r-pkg.org/badges/version/SqueakR?color=green)](https://cran.r-project.org/package=SqueakR) [![pkgdown](https://github.com/osimon81/SqueakR/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/osimon81/SqueakR/actions/workflows/pkgdown.yaml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://cran.r-project.org/web/licenses/MIT)
