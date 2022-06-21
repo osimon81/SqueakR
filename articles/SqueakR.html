@@ -92,7 +92,9 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"SqueakR"</span><span class="op">)</span></code></pre></div>
 <p>Next, load the package:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://osimon81.github.io/SqueakR/" class="external-link">SqueakR</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://osimon81.github.io/SqueakR/" class="external-link">SqueakR</a></span><span class="op">)</span>
+<span class="co">#&gt; Warning: replacing previous import 'ggcorrplot::cor_pmat' by 'rstatix::cor_pmat'</span>
+<span class="co">#&gt; when loading 'SqueakR'</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="from-github">From GitHub<a class="anchor" aria-label="anchor" href="#from-github"></a>
@@ -119,7 +121,7 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; List of 5</span>
 <span class="co">#&gt;  $ name             : chr "my_experiment"</span>
-<span class="co">#&gt;  $ last_saved       : POSIXct[1:1], format: "2022-06-21 05:42:24"</span>
+<span class="co">#&gt;  $ last_saved       : POSIXct[1:1], format: "2022-06-21 10:28:19"</span>
 <span class="co">#&gt;  $ groups           : NULL</span>
 <span class="co">#&gt;  $ experimenters    : NULL</span>
 <span class="co">#&gt;  $ experimental_data: list()</span></code></pre></div>
@@ -318,7 +320,7 @@
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-21 05:42:24</span>
+<span class="co">#&gt; Last saved: 2022-06-21 10:28:19</span>
 <span class="co">#&gt; Experimenter(s): my_name</span>
 <span class="co">#&gt; Experimental group(s): Control</span>
 <span class="co">#&gt; Total call datapoints: 1</span>
@@ -545,7 +547,7 @@
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-21 05:42:24</span>
+<span class="co">#&gt; Last saved: 2022-06-21 10:28:19</span>
 <span class="co">#&gt; Experimenter(s): my_name, new_experimenter</span>
 <span class="co">#&gt; Experimental group(s): Control, Drug</span>
 <span class="co">#&gt; Total call datapoints: 2</span>
@@ -568,7 +570,7 @@
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-21 05:42:24</span>
+<span class="co">#&gt; Last saved: 2022-06-21 10:28:19</span>
 <span class="co">#&gt; Experimenter(s): my_name, new_experimenter, experimenter_3</span>
 <span class="co">#&gt; Experimental group(s): Control, Drug, Sham</span>
 <span class="co">#&gt; Total call datapoints: 3</span>
@@ -577,7 +579,7 @@
 <span class="co">#&gt; Data for Sham: 1</span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="inter-group-comparison">Inter-group comparison<a class="anchor" aria-label="anchor" href="#inter-group-comparison"></a>
+<h3 id="inter-group-comparison-plots">Inter-group comparison plots<a class="anchor" aria-label="anchor" href="#inter-group-comparison-plots"></a>
 </h3>
 <p>Once we’ve finished adding all of our data to the <code>experiment</code> object, we can start comparing metrics between groups. To do this, it will be useful to revisit the structure <code>experiment</code> object.</p>
 <p>Within the <code>experiment</code> object is a list called experimental_data, which contains all our data (processed and raw) for each time range we select. Under the call_data for any given object lie the metrics we can compare (call_length, delta_frequency, high_frequency, low_frequency, peak_frequency, power, principal_frequency, sinuosity, slope, and tonality). The way these variables are written in the <code>experiment</code> object (i.e. lowercase with underscores between words) will be the same way it will be entered into the following function to generate comparisons between groups:</p>
@@ -587,6 +589,26 @@
 <p>In the above plot, we compare delta frequency (the average range of frequencies for all calls in a given time range) between different groups. The data look similar because they are based on the same Excel file, just at different time-points, but this highlights the versatility of data extraction using DeepSqueak, in that call data can be processed in not only a between-groups manner but also a within-groups manner.</p>
 <p>We can assess other comparisons in this way, by ensuring that we set <code>analysis_factor</code> to the name of the variable previously specified in the <a href="#data-structure">Data Structure</a> section, but written in “quotes”. Keeping this format ensures that <code>SqueakR</code> knows which data to compare.</p>
 </div>
+<div class="section level3">
+<h3 id="inter-group-anova">Inter-group ANOVA<a class="anchor" aria-label="anchor" href="#inter-group-anova"></a>
+</h3>
+<p>SqueakR also has a function for calculating ANOVA between the different groups, which can is run below:</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/squeakrANOVA.html">squeakrANOVA</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span>, analysis_factor <span class="op">=</span> <span class="st">"Delta_Freq"</span><span class="op">)</span>
+<span class="co">#&gt; Coefficient covariances computed by hccm()</span>
+<span class="co">#&gt; ANOVA Table (type II tests)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   Effect DFn DFd     F     p p&lt;.05   ges</span>
+<span class="co">#&gt; 1  group   2 233 2.266 0.106       0.019</span></code></pre></div>
+<p>We can use this function to justify our statistically-significant data:</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/squeakrANOVA.html">squeakrANOVA</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span>, analysis_factor <span class="op">=</span> <span class="st">"Call_Length"</span><span class="op">)</span>
+<span class="co">#&gt; Coefficient covariances computed by hccm()</span>
+<span class="co">#&gt; ANOVA Table (type II tests)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   Effect DFn DFd     F     p p&lt;.05   ges</span>
+<span class="co">#&gt; 1  group   2 233 7.005 0.001     * 0.057</span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="squeakr-dashboard">SqueakR Dashboard<a class="anchor" aria-label="anchor" href="#squeakr-dashboard"></a>
@@ -594,7 +616,7 @@
 <p>Finally, the SqueakR package features a Shiny Dashboard which can be used to explore data and conduct analyses between groups, as well as summarize call and experiment data, within a single R application.</p>
 <p>The primary benefit of this dashboard is it exists as a centralized interface for experimenters to upload their experiments and conduct analyses efficiently without using R code (if users happen to be less code inclined). Plots with relatively complicated syntax to access data can be easily graphed in the dashboard, by selecting the call dataset of interest in a drop-down widget.</p>
 <p>The dashboard is launched in the console using a SqueakR function:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/squeakRDashboard.html">squeakRDashboard</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
