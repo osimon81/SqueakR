@@ -119,7 +119,7 @@ analyze_factor <- function(experiment, analysis_factor) {
 #'
 #' @import dplyr
 #' @import rlist
-#' @importFrom rstatix anova_test
+#' @import rstatix
 #' @export
 squeakrANOVA <- function(experiment, analysis_factor) {
   group_organized <- list.group(experiment$experimental_data, group)
