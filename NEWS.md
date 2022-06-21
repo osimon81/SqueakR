@@ -6,6 +6,9 @@
 
 * Merged SqueakR dashboard with SqueakR package. Dashboard can now be run after
   loading the package by running `squeakRDashboard()'
+* Added function for calculating ANOVA between groups
+* Added ANOVA tab on SqueakR Dashboard for determining statistical significance
+  between variables
 
 ## version 1.2.0
 

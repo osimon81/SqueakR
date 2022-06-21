@@ -22,7 +22,8 @@ ui <- dashboardPage(
       menuItem("Ethnogram Plots", tabName = "ethnograms"),
       menuItem("Density Plots", tabName = "densities"),
       menuItem("Supplemental Plots", tabName = "misc_graphs"),
-      menuItem("Between-Groups Analysis", tabName = "compare_groups"),
+      menuItem("Plot Differences", tabName = "compare_groups"),
+      menuItem("ANOVA", tabName = "anova_groups"),
       div(img(imageOutput("package_image")), style="text-align: center;")
     )
   ),
@@ -130,7 +131,7 @@ ui <- dashboardPage(
                 box(
                   title = "Select factor to compare across experimental groups:",
                   selectInput("pickdata_factor",
-                              label = "Character input",
+                              label = "Choose a variable below:",
                               choices = c("Load an experiment first."),
                               selected = 1), width = 12
                 )
@@ -138,10 +139,29 @@ ui <- dashboardPage(
               fluidRow(
                 box(plotOutput("compare_groups", width = "100%"), width = 12)
               )
+      ),
+      tabItem(tabName = "anova_groups",
+              h2("Analysis of Variance (ANOVA)"),
+              fluidRow(
+                box(
+                  title = "Select factor to run ANOVA across experimental groups:",
+                  selectInput("pickdata_anova",
+                              label = "Choose a variable below:",
+                              choices = c("Load an experiment first."),
+                              selected = 1), width = 12
+                )
+              ),
+              fluidRow(
+                box(
+                  column(align = "center", div(style = 'overflow-x: scroll', DT::dataTableOutput("anova_groups")),
+                  width = 12)
+                  )
+                )
       )
     )
   )
 )
+
 
 
 server <- function(input, output, session) {
@@ -205,6 +225,12 @@ server <- function(input, output, session) {
                                                               "slope", "tonality"),
                       selected = "call_length")
 
+    these_names <- names(experiment$experimental_data[1]$call_data$raw)[7:length(names(experiment$experimental_data[1]$call_data$raw))]
+    these_names <- trimws(gsub(r"{\s*\([^\)]+\)}","", these_names))
+    these_names <- gsub(" ", "_", these_names, fixed = TRUE)
+
+    updateSelectInput(session, "pickdata_anova", choices = these_names, selected = 1)
+
     # Data Tables
 
     output$table <- renderTable(experiment$experimental_data[as.numeric(input$pickdata_tab)]$call_data$raw)
@@ -267,6 +293,10 @@ server <- function(input, output, session) {
     output$compare_groups <- renderPlot({
       data <- analyze_factor(experiment = experiment, analysis_factor = input$pickdata_factor)
       data
+    })
+
+    output$anova_groups <- DT::renderDataTable({
+      squeakrANOVA(experiment = experiment, analysis_factor = input$pickdata_anova)
     })
 
   })
