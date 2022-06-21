@@ -17,8 +17,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.width = 5,
-  dpi=150,
-  fig.path="man/figures"
+  dpi=150
 )
 ```
 
@@ -52,7 +51,7 @@ install_github("osimon81/SqueakR")
 library(SqueakR)
 ```
 
-# The `experiment` Object
+# The `Experiment` Object
 
 ## Creating an `experiment`
 
@@ -114,7 +113,7 @@ my_scored_data <- score_timepoint_data(data_subset = my_new_data,
 str(my_scored_data)
 ```
 
-### Data Structure {#data-structure}
+## Data Structure {#data-structure}
 
 Since there is a lot of data contained in this object, here is a summary of the structure.
 
@@ -243,7 +242,7 @@ The `SqueakR` package offers many tools for visualization of data, and these can
 experiment$experimental_data[1]$call_data$raw
 ```
 
-### `$` Operator in `SqueakR`
+## `$` Operator in `SqueakR`
 
 The `$` operator allows us to dive deeper in a list, and inspect values stored within that list. Using the code above, we access the raw data we put into the `experiment` by going from `experiment` -\> `experimental_data[1]` -\> `call_data` -\> `raw.` Specifying the number in square brackets (i.e. `experiment$experimental_data[1]`) will locate the first data added, specifying `experiment$experimental_data[2]` will located the second data, etc. Since we only added one dataset to the `experiment`, `experiment$experimental_data[1]` will lead us to that first set of data we added. From there, we navigate to `call_data` (*which is a deliberately unremarkable variable in order to blind the user to the data stored inside it*), and finally the `raw` data.
 
@@ -432,10 +431,22 @@ In the above plot, we compare delta frequency (the average range of frequencies 
 
 We can assess other comparisons in this way, by ensuring that we set `analysis_factor` to the name of the variable previously specified in the [Data Structure](#data-structure) section, but written in "quotes". Keeping this format ensures that `SqueakR` knows which data to compare.
 
+# SqueakR Dashboard
+
+Finally, the SqueakR package features a Shiny Dashboard which can be used to explore data and conduct analyses between groups, as well as summarize call and experiment data, within a single R application.
+
+The primary benefit of this dashboard is it exists as a centralized interface for experimenters to upload their experiments and conduct analyses efficiently without using R code (if users happen to be less code inclined). Plots with relatively complicated syntax to access data can be easily graphed in the dashboard, by selecting the call dataset of interest in a drop-down widget.
+
+The dashboard is launched in the console using a SqueakR function:
+
+```{r SqueakR dashboard, eval = FALSE}
+squeakRDashboard()
+```
+
 # Future Directions
 
 SqueakR was developed with the primary aim to streamline bio-acoustics data processing in experiments by processing data automatically. To this end, one of the future directions for this project include increasing the analytical post-processing functionalities. One way this may be accomplished is through adding a dependency to the Report package on [CRAN](https://cran.r-project.org/package=report/) and [GitHub](https://github.com/easystats/report/). Report aims to connect processed data with statistical analyses, and would be suitable for processing DeepSqueak data.
 
-Currently, the SqueakR Shiny Dashboard is a separate, non-CRAN repository which is downloaded independently of the SqueakR package. It may be worth consolidating the dashboard and package under a single CRAN package, where the Dashboard can be run as a separate function within the SqueakR package.
+Currently, the SqueakR Shiny Dashboard is a separate, non-CRAN repository which is downloaded independently of the SqueakR package. Consolidating the dashboard and package under a single CRAN package is a current aim of this package, where the Dashboard can be run as a separate function within the SqueakR package. The most recent build of SqueakR on GitHub features the dashboard embedded in the package as a function `squeakRDashboard()`, yet these changes have yet to be reflected on the CRAN release. At the point of the merge on CRAN, the SqueakR Dashboard repository on GitHub is planned to be deprecated.
 
 Any suggestions or feedback on current and future directions are welcome in the [SqueakR Discussions](https://github.com/osimon81/SqueakR/discussions/) page!

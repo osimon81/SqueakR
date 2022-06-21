@@ -6,7 +6,7 @@
 \alias{SqueakR-package}
 \title{SqueakR: An Experiment Interface for 'DeepSqueak' Bioacoustics Research}
 \description{
-A collection of functions intended to facilitate processing and data visualizations for rodent vocalizations exported from 'DeepSqueak'. These functions are compatible with the SqueakR Shiny Dashboard, which can be used to visualize experimental results and analyses.
+Data processing and visualizations for rodent vocalizations exported from 'DeepSqueak'. These functions are compatible with the 'SqueakR' Shiny Dashboard, which can be used to visualize experimental results and analyses.
 }
 \seealso{
 Useful links:

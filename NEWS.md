@@ -1,4 +1,11 @@
-# SqueakR 1.2.0
+# SqueakR 1.2.5
+
+## version 1.2.5
+
+---
+
+* Merged SqueakR dashboard with SqueakR package. Dashboard can now be run after
+  loading the package by running `squeakRDashboard()'
 
 ## version 1.2.0
 
@@ -22,6 +29,7 @@
 
 ---
 
+- Basic set of functions without all plotting functions
 - Bug fixes
 - Prepared development release for Mac
 - Prepared development release for Windows

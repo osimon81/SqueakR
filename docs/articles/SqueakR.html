@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">SqueakR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -119,7 +119,7 @@ and <code>devtools</code> is loaded using
 </div>
 </div>
 <div class="section level2">
-<h2 id="the-experiment-object">The <code>experiment</code> Object<a class="anchor" aria-label="anchor" href="#the-experiment-object"></a>
+<h2 id="the-experiment-object">The <code>Experiment</code> Object<a class="anchor" aria-label="anchor" href="#the-experiment-object"></a>
 </h2>
 <div class="section level3">
 <h3 id="creating-an-experiment">Creating an <code>experiment</code><a class="anchor" aria-label="anchor" href="#creating-an-experiment"></a>
@@ -140,7 +140,7 @@ inspect how <code>experiment</code> is structured:</p>
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; List of 5</span>
 <span class="co">#&gt;  $ name             : chr "my_experiment"</span>
-<span class="co">#&gt;  $ last_saved       : POSIXct[1:1], format: "2022-06-20 11:01:56"</span>
+<span class="co">#&gt;  $ last_saved       : POSIXct[1:1], format: "2022-06-21 01:36:15"</span>
 <span class="co">#&gt;  $ groups           : NULL</span>
 <span class="co">#&gt;  $ experimenters    : NULL</span>
 <span class="co">#&gt;  $ experimental_data: list()</span></code></pre></div>
@@ -307,9 +307,10 @@ code:</p>
 <span class="co">#&gt;   ..$ Mean Power (dB/Hz)                : num [1:94] -80.3 -66.9 -65 -60.5 -62.9 ...</span>
 <span class="co">#&gt;   ..$ Tonality                          : num [1:94] 0.281 0.597 0.581 0.671 0.648 ...</span>
 <span class="co">#&gt;   ..$ Peak Freq (kHz)                   : num [1:94] 61.9 66.6 67.9 69.1 68.1 ...</span></code></pre></div>
-<div class="section level4">
-<h4 id="data-structure">Data Structure<a class="anchor" aria-label="anchor" href="#data-structure"></a>
-</h4>
+</div>
+<div class="section level3">
+<h3 id="data-structure">Data Structure<a class="anchor" aria-label="anchor" href="#data-structure"></a>
+</h3>
 <p>Since there is a lot of data contained in this object, here is a
 summary of the structure.</p>
 <p>The following variables are assigned to a single value:</p>
@@ -345,7 +346,6 @@ extracted dataset (the <code>my_new_data</code> object), which can be
 referenced when plotting these data.</p>
 <p>The data may appear complicated, but this will be useful later on to
 organize the data!</p>
-</div>
 </div>
 <div class="section level3">
 <h3 id="adding-scored-data-to-experiment">Adding Scored Data to Experiment<a class="anchor" aria-label="anchor" href="#adding-scored-data-to-experiment"></a>
@@ -393,7 +393,7 @@ can run the following <code>SqueakR</code> function:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-20 11:01:56</span>
+<span class="co">#&gt; Last saved: 2022-06-21 01:36:15</span>
 <span class="co">#&gt; Experimenter(s): my_name</span>
 <span class="co">#&gt; Experimental group(s): Control</span>
 <span class="co">#&gt; Total call datapoints: 1</span>
@@ -537,10 +537,11 @@ following:</p>
 <span class="co">#&gt; <span style="color: #949494;">#   `Frequency Standard Deviation (kHz)` &lt;dbl&gt;, `Slope (kHz/s)` &lt;dbl&gt;,</span></span>
 <span class="co">#&gt; <span style="color: #949494;">#   Sinuosity &lt;dbl&gt;, `Mean Power (dB/Hz)` &lt;dbl&gt;, Tonality &lt;dbl&gt;,</span></span>
 <span class="co">#&gt; <span style="color: #949494;">#   `Peak Freq (kHz)` &lt;dbl&gt;</span></span></code></pre></div>
-<div class="section level4">
-<h4 id="operator-in-squeakr">
+</div>
+<div class="section level3">
+<h3 id="operator-in-squeakr">
 <code>$</code> Operator in <code>SqueakR</code><a class="anchor" aria-label="anchor" href="#operator-in-squeakr"></a>
-</h4>
+</h3>
 <p>The <code>$</code> operator allows us to dive deeper in a list, and
 inspect values stored within that list. Using the code above, we access
 the raw data we put into the <code>experiment</code> by going from
@@ -565,7 +566,6 @@ parameters (graph_title, graph_subtitle, etc) are optional, since there
 are default titles and descriptions prepared in
 <code>SqueakR</code>.</p>
 </div>
-</div>
 <div class="section level3">
 <h3 id="ethnogram-style-plots">Ethnogram-Style Plots<a class="anchor" aria-label="anchor" href="#ethnogram-style-plots"></a>
 </h3>
@@ -588,8 +588,9 @@ change them, by setting some optional parameters:</p>
 <div class="section level4">
 <h4 id="tonality-ethnogram-split">Tonality Ethnogram (Split)<a class="anchor" aria-label="anchor" href="#tonality-ethnogram-split"></a>
 </h4>
-<p>We can plot the ethnogram, and split the lines up according to
-tonality, using the following code:</p>
+<p>Tonality can be used as a proxy for the signal-to-noise ratio for a
+particular call. We can plot the same ethnogram, and split the detected
+calls according to tonality, using the following code:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotEthnogramSplitByTonality.html">plotEthnogramSplitByTonality</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">$</span><span class="va">experimental_data</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">call_data</span><span class="op">$</span><span class="va">raw</span>,
               graph_title <span class="op">=</span> <span class="st">"My Tonality-Split Ethnogram"</span><span class="op">)</span></code></pre></div>
@@ -746,7 +747,7 @@ adding these data:</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-20 11:01:56</span>
+<span class="co">#&gt; Last saved: 2022-06-21 01:36:15</span>
 <span class="co">#&gt; Experimenter(s): my_name, new_experimenter</span>
 <span class="co">#&gt; Experimental group(s): Control, Drug</span>
 <span class="co">#&gt; Total call datapoints: 2</span>
@@ -776,7 +777,7 @@ object again, we’ll see the same fields as last time auto-populate:</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-20 11:01:56</span>
+<span class="co">#&gt; Last saved: 2022-06-21 01:36:15</span>
 <span class="co">#&gt; Experimenter(s): my_name, new_experimenter, experimenter_3</span>
 <span class="co">#&gt; Experimental group(s): Control, Drug, Sham</span>
 <span class="co">#&gt; Total call datapoints: 3</span>
@@ -818,6 +819,23 @@ but written in “quotes”. Keeping this format ensures that
 </div>
 </div>
 <div class="section level2">
+<h2 id="squeakr-dashboard">SqueakR Dashboard<a class="anchor" aria-label="anchor" href="#squeakr-dashboard"></a>
+</h2>
+<p>Finally, the SqueakR package features a Shiny Dashboard which can be
+used to explore data and conduct analyses between groups, as well as
+summarize call and experiment data, within a single R application.</p>
+<p>The primary benefit of this dashboard is it exists as a centralized
+interface for experimenters to upload their experiments and conduct
+analyses efficiently without using R code (if users happen to be less
+code inclined). Plots with relatively complicated syntax to access data
+can be easily graphed in the dashboard, by selecting the call dataset of
+interest in a drop-down widget.</p>
+<p>The dashboard is launched in the console using a SqueakR
+function:</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/squeakRDashboard.html">squeakRDashboard</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="future-directions">Future Directions<a class="anchor" aria-label="anchor" href="#future-directions"></a>
 </h2>
 <p>SqueakR was developed with the primary aim to streamline
@@ -829,10 +847,14 @@ dependency to the Report package on <a href="https://cran.r-project.org/package=
 connect processed data with statistical analyses, and would be suitable
 for processing DeepSqueak data.</p>
 <p>Currently, the SqueakR Shiny Dashboard is a separate, non-CRAN
-repository which is downloaded independently of the SqueakR package. It
-may be worth consolidating the dashboard and package under a single CRAN
-package, where the Dashboard can be run as a separate function within
-the SqueakR package.</p>
+repository which is downloaded independently of the SqueakR package.
+Consolidating the dashboard and package under a single CRAN package is a
+current aim of this package, where the Dashboard can be run as a
+separate function within the SqueakR package. The most recent build of
+SqueakR on GitHub features the dashboard embedded in the package as a
+function <code><a href="../reference/squeakRDashboard.html">squeakRDashboard()</a></code>, yet these changes have yet to
+be reflected on the CRAN release. At the point of the merge on CRAN, the
+SqueakR Dashboard repository on GitHub is planned to be deprecated.</p>
 <p>Any suggestions or feedback on current and future directions are
 welcome in the <a href="https://github.com/osimon81/SqueakR/discussions/" class="external-link">SqueakR
 Discussions</a> page!</p>

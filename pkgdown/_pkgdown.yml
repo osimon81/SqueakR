@@ -34,3 +34,7 @@ reference:
   desc: "An example dataset exported from DeepSqueak."
   contents:
   - deepsqueak_data
+- title: "SqueakR Dashboard"
+  desc: "A Shiny Dashboard for conducting analyses and exploring data."
+  contents:
+  - squeakRDashboard

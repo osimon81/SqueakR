@@ -34,7 +34,7 @@ For reference, the entire `SqueakR` suite can be found [under this GitHub list](
 
 The tools and resources available under `SqueakR` include:
 
--   The `SqueakR` [pkgdown website](https://osimon81.github.io/SqueakR/ "SqueakR Pkgdown Website on GitHub") available through GitHub. Detailed information about its functions can be found under the [Reference](https://osimon81.github.io/SqueakR/reference/index.html/ "Reference tab on pkgdown") tab. The [Get started](https://osimon81.github.io/SqueakR/articles/SqueakR.html/ "Getting started tab on pkgdown") the recommended site for learning how to use the package.
+-   The `SqueakR` [pkgdown website](https://osimon81.github.io/SqueakR/ "SqueakR Pkgdown Website on GitHub") available through GitHub. Detailed information about its functions can be found under the *Reference* tab on the SqueakR website. The *Get started* tab is the recommended site for learning how to use the package.
 
 -   The [main `SqueakR` Package repository](https://github.com/osimon81/SqueakR/ "The GitHub repository for SqueakR"), and the corresponding [Wiki](https://github.com/osimon81/SqueakR/wiki/ "SqueakR Wiki") and [Discussions](https://github.com/osimon81/SqueakR/discussions/ "Discussions page for SqueakR repo") sections.
 

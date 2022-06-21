@@ -49,9 +49,6 @@
     <loc>/reference/describe_experiment.html</loc>
   </url>
   <url>
-    <loc>/reference/experiment_pipeline.html</loc>
-  </url>
-  <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
@@ -101,6 +98,9 @@
   </url>
   <url>
     <loc>/reference/semisqueakRpipeline.html</loc>
+  </url>
+  <url>
+    <loc>/reference/squeakRDashboard.html</loc>
   </url>
   <url>
     <loc>/reference/update_experiment.html</loc>

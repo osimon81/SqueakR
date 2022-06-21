@@ -80,8 +80,6 @@ analyze_factor <- function(experiment, analysis_factor) {
   stderr <- stdevs / sqrt(ns)
 
 
-
-
   df <- as.data.frame(rbind(means, stdevs))
   df <- as.data.frame(lapply(df, unlist))
 
@@ -98,7 +96,7 @@ analyze_factor <- function(experiment, analysis_factor) {
     ), position = position_dodge(width = 0.9), vjust = -0.5) +
     xlab("Group") +
     ylab("Mean value") +
-    ggtitle("Quickplot: Comparison between groups") +
+    ggtitle("Comparison between groups") +
     scale_fill_hue(name = "Group") +
     labs(
       caption = ("Error bars represent the mean +/- 2 standard errors."),
