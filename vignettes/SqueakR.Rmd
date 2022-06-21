@@ -439,7 +439,14 @@ SqueakR also has a function for calculating ANOVA between the different groups, 
 squeakrANOVA(experiment = experiment, analysis_factor = "Delta_Freq")
 ```
 
-We can use this function to statistically justify our working hypotheses.
+We can use this function to justify our statistically-significant data:
+
+```{r anova for call length}
+squeakrANOVA(experiment = experiment, analysis_factor = "Call_Length")
+```
+
+
+
 
 # SqueakR Dashboard
 
