@@ -538,7 +538,8 @@ plotPrincipalBoxplot <- function(data_path,
 #' @import ggpubr
 #' @import dplyr
 #' @import ggeasy
-#' @import ggcorrplot
+#' @importFrom ggcorrplot ggcorrplot
+#' @importFrom stats cor
 #' @export
 plotCorrelations <- function(data_path,
                              graph_title = "Correlation Matrix",
@@ -549,8 +550,8 @@ plotCorrelations <- function(data_path,
       `Slope (kHz/s)`, `Sinuosity`, `Mean Power (dB/Hz)`, `Tonality`, `Peak Freq (kHz)`
     )
 
-  corr.mat <- round(cor(excel_file), 1)
-  ggcorrplot(corr.mat,
+  sqkr_correlation_matrix <- round(cor(excel_file), 1)
+  ggcorrplot(sqkr_correlation_matrix,
     hc.order = TRUE, outline.color = "white",
     type = "lower", ggtheme = ggplot2::theme_gray, lab = TRUE
   ) +

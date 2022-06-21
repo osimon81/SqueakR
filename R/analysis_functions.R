@@ -1,6 +1,6 @@
 data(deepsqueak_data, envir=environment())
 
-globalVariables(c("group", "sd"))
+globalVariables(c("group", "sd", "index"))
 
 #' @title Analyze Factor
 #'
@@ -119,7 +119,7 @@ analyze_factor <- function(experiment, analysis_factor) {
 #'
 #' @import dplyr
 #' @import rlist
-#' @import rstatix
+#' @importFrom rstatix anova_test get_anova_table
 #' @export
 squeakrANOVA <- function(experiment, analysis_factor) {
   group_organized <- list.group(experiment$experimental_data, group)

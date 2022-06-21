@@ -1,8 +1,6 @@
 <!-- badges: start -->
 
-[![CRAN](https://www.r-pkg.org/badges/version/SqueakR?color=green)](https://cran.r-project.org/package=SqueakR) [![pkgdown](https://github.com/osimon81/SqueakR/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/osimon81/SqueakR/actions/workflows/pkgdown.yaml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://cran.r-project.org/web/licenses/MIT)
-[![GitHub contributors](https://img.shields.io/github/contributors/osimon81/SqueakR.svg?style=flat)]()
-[![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%40SimonOgundare)](https://twitter.com/SimonOgundare)
+[![CRAN](https://www.r-pkg.org/badges/version/SqueakR?color=green)](https://cran.r-project.org/package=SqueakR) [![pkgdown](https://github.com/osimon81/SqueakR/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/osimon81/SqueakR/actions/workflows/pkgdown.yaml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://cran.r-project.org/web/licenses/MIT) [![GitHub contributors](https://img.shields.io/github/contributors/osimon81/SqueakR.svg?style=flat)] [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%2540SimonOgundare)]
 
 <!-- badges: end -->
 
@@ -18,7 +16,7 @@ To install the CRAN release of the package, run the following code:
 
     install.packages(SqueakR)
     library(SqueakR)
-    
+
 ### From GitHub
 
 To install the development version of `SqueakR`, run the following code (ensure devtools is loaded first):

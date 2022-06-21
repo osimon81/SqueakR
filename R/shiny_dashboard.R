@@ -153,7 +153,7 @@ ui <- dashboardPage(
               ),
               fluidRow(
                 box(
-                  column(align = "center", div(style = 'overflow-x: scroll', DT::dataTableOutput("anova_groups")),
+                  column(align = "center", div(style = 'overflow-x: scroll', shiny::dataTableOutput("anova_groups")),
                   width = 12)
                   )
                 )
@@ -295,7 +295,7 @@ server <- function(input, output, session) {
       data
     })
 
-    output$anova_groups <- DT::renderDataTable({
+    output$anova_groups <- shiny::renderDataTable({
       squeakrANOVA(experiment = experiment, analysis_factor = input$pickdata_anova)
     })
 
