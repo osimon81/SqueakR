@@ -165,7 +165,7 @@ If we want to remove a call dataset from the experiment, we can run the followin
 experiment <- remove_experiment_data(experiment, data_id = 1)
 ```
 
-`data_id` corresponds to the index of data in the experiment object - for example, in the code above, the first data added to this `experiment` will be removed. This function also calls for the `experiment` to be updated (i.e., check the leftover data for leftover groups and/or experimenters), and updating the experiment metadata if there are any groups removed.
+`data_id` corresponds to the index of data in the experiment object - for example, in the code above, the first data added to this `experiment` will be removed. This function also calls for the `experiment` to be updated (i.e., check the leftover data for leftover groups and/or experimenters), and updating the experiment metadata if there are any groups removed. Data can be indexed in the usual R style — to remove datasets 4 -> 8 in an experiment, your `data_id` variable can be set to 4:8.
 
 Caution is advised for this function, since data that is removed cannot be undone. However, it can be reloaded by finding the original call data and adding it back to the experiment, or creating a new experiment using the pipelines detailed below (if many datasets were accidentally removed, and it would take too long to add data manually).
 
@@ -362,7 +362,7 @@ plotCorrelations(experiment$experimental_data[1]$call_data$raw)
 
 ## Preview Dataset Visualizations
 
-If you don't want to add data to the `experiment` object before visualizing data (in other words, preview the visualizations for an Excel file), you can run the same functions as above:
+If you don't want to add data to the `experiment` object before visualizing data (in other words, preview the visualizations for a single Excel file), you can run the same plotting functions as above, setting the first parameter to the full path to that file:
 
 ```{r preview excel file (1)}
 plotDensityStackedByFrequency("../inst/extdata/Example_Mouse_Data.xlsx")
@@ -431,9 +431,9 @@ In the above plot, we compare delta frequency (the average range of frequencies 
 
 We can assess other comparisons in this way, by ensuring that we set `analysis_factor` to the name of the variable previously specified in the [Data Structure](#data-structure) section, but written in "quotes". Keeping this format ensures that `SqueakR` knows which data to compare.
 
-## Inter-group Summary [Dev]
+## Inter-group Summary [Development Version]
 
-Once we've added all of our data to our experiment, we can request a summary of our variables, grouped by the experimental groups we've set in order to inspect how distributed the data are:
+Once we've added all of our data to our experiment, we can request a summary of our variables, grouped by the experimental groups we've set in order to inspect the data distribution between them:
 
 ```{r summarize descriptive statistics of data}
 squeakrSummary(experiment)
@@ -442,7 +442,7 @@ squeakrSummary(experiment)
 
 ## Inter-group ANOVA
 
-SqueakR also has a function for calculating ANOVA between the different groups, which can is run below:
+SqueakR also has a function for calculating ANOVA between the different groups, establishing the presence or absence of at least one significant difference between groups, which can is run below:
 
 ```{r anova for delta-frequency}
 squeakrANOVA(experiment = experiment, analysis_factor = "Delta_Freq")
@@ -473,6 +473,9 @@ squeakRDashboard()
 
 SqueakR was developed with the primary aim to streamline bio-acoustics data processing in experiments by processing data automatically. To this end, one of the future directions for this project include increasing the analytical post-processing functionalities. One way this may be accomplished is through adding a dependency to the Report package on [CRAN](https://cran.r-project.org/package=report/) and [GitHub](https://github.com/easystats/report/). Report aims to connect processed data with statistical analyses, and would be suitable for processing DeepSqueak data.
 
+This function is currently available in the GitHub release of this package, but not the CRAN version yet.
+
 Currently, the SqueakR Shiny Dashboard is a separate, non-CRAN repository which is downloaded independently of the SqueakR package. Consolidating the dashboard and package under a single CRAN package is a current aim of this package, where the Dashboard can be run as a separate function within the SqueakR package. The most recent build of SqueakR on GitHub features the dashboard embedded in the package as a function `squeakRDashboard()`, yet these changes have yet to be reflected on the CRAN release. At the point of the merge on CRAN, the SqueakR Dashboard repository on GitHub is planned to be deprecated.
+
 
 Any suggestions or feedback on current and future directions are welcome in the [SqueakR Discussions](https://github.com/osimon81/SqueakR/discussions/) page!

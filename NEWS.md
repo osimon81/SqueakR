@@ -6,6 +6,8 @@
 
 * Used `report` package for analyses: added functions for manual reporting and
   auto-reporting in SqueakR dashboard
+* Deprecated SqueakR Dashboard repository on GitHub and merged functions into
+  SqueakR
 
 ## version 1.2.5
 
