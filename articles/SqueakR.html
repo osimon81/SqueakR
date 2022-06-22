@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">SqueakR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.8</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -119,7 +119,7 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; List of 5</span>
 <span class="co">#&gt;  $ name             : chr "my_experiment"</span>
-<span class="co">#&gt;  $ last_saved       : POSIXct[1:1], format: "2022-06-22 12:50:54"</span>
+<span class="co">#&gt;  $ last_saved       : POSIXct[1:1], format: "2022-06-22 14:48:32"</span>
 <span class="co">#&gt;  $ groups           : NULL</span>
 <span class="co">#&gt;  $ experimenters    : NULL</span>
 <span class="co">#&gt;  $ experimental_data: list()</span></code></pre></div>
@@ -308,7 +308,7 @@
 <p>If we want to remove a call dataset from the experiment, we can run the following function:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">experiment</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/remove_experiment_data.html">remove_experiment_data</a></span><span class="op">(</span><span class="va">experiment</span>, data_id <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
-<p><code>data_id</code> corresponds to the index of data in the experiment object - for example, in the code above, the first data added to this <code>experiment</code> will be removed. This function also calls for the <code>experiment</code> to be updated (i.e., check the leftover data for leftover groups and/or experimenters), and updating the experiment metadata if there are any groups removed.</p>
+<p><code>data_id</code> corresponds to the index of data in the experiment object - for example, in the code above, the first data added to this <code>experiment</code> will be removed. This function also calls for the <code>experiment</code> to be updated (i.e., check the leftover data for leftover groups and/or experimenters), and updating the experiment metadata if there are any groups removed. Data can be indexed in the usual R style — to remove datasets 4 -&gt; 8 in an experiment, your <code>data_id</code> variable can be set to 4:8.</p>
 <p>Caution is advised for this function, since data that is removed cannot be undone. However, it can be reloaded by finding the original call data and adding it back to the experiment, or creating a new experiment using the pipelines detailed below (if many datasets were accidentally removed, and it would take too long to add data manually).</p>
 </div>
 <div class="section level3">
@@ -318,7 +318,7 @@
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-22 12:50:54</span>
+<span class="co">#&gt; Last saved: 2022-06-22 14:48:32</span>
 <span class="co">#&gt; Experimenter(s): my_name</span>
 <span class="co">#&gt; Experimental group(s): Control</span>
 <span class="co">#&gt; Total call datapoints: 1</span>
@@ -508,7 +508,7 @@
 <div class="section level3">
 <h3 id="preview-dataset-visualizations">Preview Dataset Visualizations<a class="anchor" aria-label="anchor" href="#preview-dataset-visualizations"></a>
 </h3>
-<p>If you don’t want to add data to the <code>experiment</code> object before visualizing data (in other words, preview the visualizations for an Excel file), you can run the same functions as above:</p>
+<p>If you don’t want to add data to the <code>experiment</code> object before visualizing data (in other words, preview the visualizations for a single Excel file), you can run the same plotting functions as above, setting the first parameter to the full path to that file:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotDensityStackedByFrequency.html">plotDensityStackedByFrequency</a></span><span class="op">(</span><span class="st">"../inst/extdata/Example_Mouse_Data.xlsx"</span><span class="op">)</span></code></pre></div>
 <p><img src="SqueakR_files/figure-html/preview%20excel%20file%20(1)-1.png" width="750"></p>
@@ -545,7 +545,7 @@
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-22 12:50:54</span>
+<span class="co">#&gt; Last saved: 2022-06-22 14:48:32</span>
 <span class="co">#&gt; Experimenter(s): my_name, new_experimenter</span>
 <span class="co">#&gt; Experimental group(s): Control, Drug</span>
 <span class="co">#&gt; Total call datapoints: 2</span>
@@ -568,7 +568,7 @@
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/describe_experiment.html">describe_experiment</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
 <span class="co">#&gt; Experiment name: my_experiment</span>
-<span class="co">#&gt; Last saved: 2022-06-22 12:50:54</span>
+<span class="co">#&gt; Last saved: 2022-06-22 14:48:32</span>
 <span class="co">#&gt; Experimenter(s): my_name, new_experimenter, experimenter_3</span>
 <span class="co">#&gt; Experimental group(s): Control, Drug, Sham</span>
 <span class="co">#&gt; Total call datapoints: 3</span>
@@ -588,10 +588,78 @@
 <p>We can assess other comparisons in this way, by ensuring that we set <code>analysis_factor</code> to the name of the variable previously specified in the <a href="#data-structure">Data Structure</a> section, but written in “quotes”. Keeping this format ensures that <code>SqueakR</code> knows which data to compare.</p>
 </div>
 <div class="section level3">
+<h3 id="inter-group-summary-development-version">Inter-group Summary [Development Version]<a class="anchor" aria-label="anchor" href="#inter-group-summary-development-version"></a>
+</h3>
+<p>Once we’ve added all of our data to our experiment, we can request a summary of our variables, grouped by the experimental groups we’ve set in order to inspect the data distribution between them:</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/squeakrSummary.html">squeakrSummary</a></span><span class="op">(</span><span class="va">experiment</span><span class="op">)</span>
+<span class="co">#&gt; The data contains 236 observations, grouped by group, of the following 19 variables:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; - Control (n = 94):</span>
+<span class="co">#&gt;   - ID: Mean = 58.50, SD = 27.28, range: [12, 105]</span>
+<span class="co">#&gt;   - Label: 10 entries, such as 18 (n = 36); 26 (n = 24); 2 (n = 9) and 7 others</span>
+<span class="co">#&gt;   - Accepted: 1 level, namely TRUE (n = 94)</span>
+<span class="co">#&gt;   - Score: Mean = 0.78, SD = 0.12, range: [0.51, 0.97]</span>
+<span class="co">#&gt;   - Begin_Time: Mean = 15.82, SD = 5.43, range: [5.36, 23.81]</span>
+<span class="co">#&gt;   - End_Time: Mean = 15.87, SD = 5.43, range: [5.38, 23.84]</span>
+<span class="co">#&gt;   - Call_Length: Mean = 0.04, SD = 0.02, range: [0.02, 0.13]</span>
+<span class="co">#&gt;   - Principal_Frequency: Mean = 61.87, SD = 3.80, range: [52.40, 68.79]</span>
+<span class="co">#&gt;   - Low_Freq: Mean = 48.80, SD = 4.54, range: [40.26, 66.21]</span>
+<span class="co">#&gt;   - High_Freq: Mean = 65.57, SD = 4.11, range: [57.64, 76.81]</span>
+<span class="co">#&gt;   - Delta_Freq: Mean = 16.77, SD = 5.60, range: [1.11, 31.58]</span>
+<span class="co">#&gt;   - Frequency_Standard_Deviation: Mean = 4.42, SD = 1.41, range: [0.27, 7.73]</span>
+<span class="co">#&gt;   - Slope: Mean = 318.38, SD = 200.15, range: [-111.24, 825.64]</span>
+<span class="co">#&gt;   - Sinuosity: Mean = 1.41, SD = 0.24, range: [1.09, 2.23]</span>
+<span class="co">#&gt;   - Mean_Power: Mean = -71.89, SD = 5.82, range: [-82.20, -55.35]</span>
+<span class="co">#&gt;   - Tonality: Mean = 0.46, SD = 0.11, range: [0.27, 0.75]</span>
+<span class="co">#&gt;   - Peak_Freq: Mean = 62.18, SD = 5.55, range: [49.57, 72.13]</span>
+<span class="co">#&gt;   - index: Mean = 47.50, SD = 27.28, range: [1, 94]</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; - Drug (n = 72):</span>
+<span class="co">#&gt;   - ID: Mean = 177.50, SD = 20.93, range: [142, 213]</span>
+<span class="co">#&gt;   - Label: 18 entries, such as 26 (n = 15); 18 (n = 13); 8 (n = 7) and 15 others</span>
+<span class="co">#&gt;   - Accepted: 1 level, namely TRUE (n = 72)</span>
+<span class="co">#&gt;   - Score: Mean = 0.79, SD = 0.11, range: [0.51, 0.96]</span>
+<span class="co">#&gt;   - Begin_Time: Mean = 36.19, SD = 5.56, range: [30.23, 49.85]</span>
+<span class="co">#&gt;   - End_Time: Mean = 36.25, SD = 5.56, range: [30.27, 49.86]</span>
+<span class="co">#&gt;   - Call_Length: Mean = 0.06, SD = 0.04, range: [8.84e-03, 0.17]</span>
+<span class="co">#&gt;   - Principal_Frequency: Mean = 63.92, SD = 7.04, range: [50.25, 89.37]</span>
+<span class="co">#&gt;   - Low_Freq: Mean = 50.77, SD = 5.23, range: [44.25, 77.71]</span>
+<span class="co">#&gt;   - High_Freq: Mean = 70.12, SD = 10.27, range: [50.70, 101.83]</span>
+<span class="co">#&gt;   - Delta_Freq: Mean = 19.35, SD = 9.09, range: [1.33, 49.35]</span>
+<span class="co">#&gt;   - Frequency_Standard_Deviation: Mean = 5.26, SD = 3.05, range: [0.34, 18.22]</span>
+<span class="co">#&gt;   - Slope: Mean = 153.64, SD = 317.19, range: [-1120.29, 860.86]</span>
+<span class="co">#&gt;   - Sinuosity: Mean = 1.50, SD = 0.28, range: [1.05, 2.54]</span>
+<span class="co">#&gt;   - Mean_Power: Mean = -65.07, SD = 7.94, range: [-87.28, -49.53]</span>
+<span class="co">#&gt;   - Tonality: Mean = 0.57, SD = 0.13, range: [0.20, 0.80]</span>
+<span class="co">#&gt;   - Peak_Freq: Mean = 65.07, SD = 7.82, range: [50.70, 90.45]</span>
+<span class="co">#&gt;   - index: Mean = 130.50, SD = 20.93, range: [95, 166]</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; - Sham (n = 70):</span>
+<span class="co">#&gt;   - ID: Mean = 366.50, SD = 20.35, range: [332, 401]</span>
+<span class="co">#&gt;   - Label: 15 entries, such as 12 (n = 12); 26 (n = 11); 25 (n = 8) and 12 others</span>
+<span class="co">#&gt;   - Accepted: 1 level, namely TRUE (n = 70)</span>
+<span class="co">#&gt;   - Score: Mean = 0.79, SD = 0.10, range: [0.54, 0.95]</span>
+<span class="co">#&gt;   - Begin_Time: Mean = 78.02, SD = 6.02, range: [70.05, 89.02]</span>
+<span class="co">#&gt;   - End_Time: Mean = 78.07, SD = 6.02, range: [70.11, 89.06]</span>
+<span class="co">#&gt;   - Call_Length: Mean = 0.05, SD = 0.03, range: [0.01, 0.13]</span>
+<span class="co">#&gt;   - Principal_Frequency: Mean = 65.71, SD = 10.31, range: [49.60, 95.91]</span>
+<span class="co">#&gt;   - Low_Freq: Mean = 54.92, SD = 7.58, range: [40.18, 76.24]</span>
+<span class="co">#&gt;   - High_Freq: Mean = 72.06, SD = 12.94, range: [53.43, 109.70]</span>
+<span class="co">#&gt;   - Delta_Freq: Mean = 17.14, SD = 9.73, range: [1.71, 51.85]</span>
+<span class="co">#&gt;   - Frequency_Standard_Deviation: Mean = 5.15, SD = 3.37, range: [0.70, 18.35]</span>
+<span class="co">#&gt;   - Slope: Mean = 237.79, SD = 274.02, range: [-457.94, 922.31]</span>
+<span class="co">#&gt;   - Sinuosity: Mean = 1.57, SD = 0.59, range: [1.08, 5.04]</span>
+<span class="co">#&gt;   - Mean_Power: Mean = -69.79, SD = 5.16, range: [-83.80, -56.80]</span>
+<span class="co">#&gt;   - Tonality: Mean = 0.50, SD = 0.09, range: [0.30, 0.73]</span>
+<span class="co">#&gt;   - Peak_Freq: Mean = 66.33, SD = 10.22, range: [47.23, 92.68]</span>
+<span class="co">#&gt;   - index: Mean = 201.50, SD = 20.35, range: [167, 236]</span></code></pre></div>
+</div>
+<div class="section level3">
 <h3 id="inter-group-anova">Inter-group ANOVA<a class="anchor" aria-label="anchor" href="#inter-group-anova"></a>
 </h3>
-<p>SqueakR also has a function for calculating ANOVA between the different groups, which can is run below:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<p>SqueakR also has a function for calculating ANOVA between the different groups, establishing the presence or absence of at least one significant difference between groups, which can is run below:</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/squeakrANOVA.html">squeakrANOVA</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span>, analysis_factor <span class="op">=</span> <span class="st">"Delta_Freq"</span><span class="op">)</span>
 <span class="co">#&gt; Coefficient covariances computed by hccm()</span>
 <span class="co">#&gt; ANOVA Table (type II tests)</span>
@@ -599,7 +667,7 @@
 <span class="co">#&gt;   Effect DFn DFd     F     p p&lt;.05   ges</span>
 <span class="co">#&gt; 1  group   2 233 2.266 0.106       0.019</span></code></pre></div>
 <p>We can use this function to justify our statistically-significant data:</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/squeakrANOVA.html">squeakrANOVA</a></span><span class="op">(</span>experiment <span class="op">=</span> <span class="va">experiment</span>, analysis_factor <span class="op">=</span> <span class="st">"Call_Length"</span><span class="op">)</span>
 <span class="co">#&gt; Coefficient covariances computed by hccm()</span>
 <span class="co">#&gt; ANOVA Table (type II tests)</span>
@@ -614,13 +682,14 @@
 <p>Finally, the SqueakR package features a Shiny Dashboard which can be used to explore data and conduct analyses between groups, as well as summarize call and experiment data, within a single R application.</p>
 <p>The primary benefit of this dashboard is it exists as a centralized interface for experimenters to upload their experiments and conduct analyses efficiently without using R code (if users happen to be less code inclined). Plots with relatively complicated syntax to access data can be easily graphed in the dashboard, by selecting the call dataset of interest in a drop-down widget.</p>
 <p>The dashboard is launched in the console using a SqueakR function:</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/squeakRDashboard.html">squeakRDashboard</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="future-directions">Future Directions<a class="anchor" aria-label="anchor" href="#future-directions"></a>
 </h2>
 <p>SqueakR was developed with the primary aim to streamline bio-acoustics data processing in experiments by processing data automatically. To this end, one of the future directions for this project include increasing the analytical post-processing functionalities. One way this may be accomplished is through adding a dependency to the Report package on <a href="https://cran.r-project.org/package=report/" class="external-link">CRAN</a> and <a href="https://github.com/easystats/report/" class="external-link">GitHub</a>. Report aims to connect processed data with statistical analyses, and would be suitable for processing DeepSqueak data.</p>
+<p>This function is currently available in the GitHub release of this package, but not the CRAN version yet.</p>
 <p>Currently, the SqueakR Shiny Dashboard is a separate, non-CRAN repository which is downloaded independently of the SqueakR package. Consolidating the dashboard and package under a single CRAN package is a current aim of this package, where the Dashboard can be run as a separate function within the SqueakR package. The most recent build of SqueakR on GitHub features the dashboard embedded in the package as a function <code><a href="../reference/squeakRDashboard.html">squeakRDashboard()</a></code>, yet these changes have yet to be reflected on the CRAN release. At the point of the merge on CRAN, the SqueakR Dashboard repository on GitHub is planned to be deprecated.</p>
 <p>Any suggestions or feedback on current and future directions are welcome in the <a href="https://github.com/osimon81/SqueakR/discussions/" class="external-link">SqueakR Discussions</a> page!</p>
 </div>
