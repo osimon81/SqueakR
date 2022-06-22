@@ -431,6 +431,15 @@ In the above plot, we compare delta frequency (the average range of frequencies 
 
 We can assess other comparisons in this way, by ensuring that we set `analysis_factor` to the name of the variable previously specified in the [Data Structure](#data-structure) section, but written in "quotes". Keeping this format ensures that `SqueakR` knows which data to compare.
 
+## Inter-group Summary [Dev]
+
+Once we've added all of our data to our experiment, we can request a summary of our variables, grouped by the experimental groups we've set in order to inspect how distributed the data are:
+
+```{r summarize descriptive statistics of data}
+squeakrSummary(experiment)
+```
+
+
 ## Inter-group ANOVA
 
 SqueakR also has a function for calculating ANOVA between the different groups, which can is run below:

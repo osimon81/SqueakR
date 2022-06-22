@@ -9,6 +9,8 @@
 #'
 #' @import shiny
 #' @import shinydashboard
+#' @import report
+#' @import rlist
 #' @importFrom utils object.size
 #' @export
 squeakRDashboard <- function() {
@@ -23,6 +25,7 @@ ui <- dashboardPage(
       menuItem("Density Plots", tabName = "densities"),
       menuItem("Supplemental Plots", tabName = "misc_graphs"),
       menuItem("Plot Differences", tabName = "compare_groups"),
+      menuItem("Descriptive Statistics", tabName = "desc_stats"),
       menuItem("ANOVA", tabName = "anova_groups"),
       div(img(imageOutput("package_image")), style="text-align: center;")
     )
@@ -138,6 +141,19 @@ ui <- dashboardPage(
               ),
               fluidRow(
                 box(plotOutput("compare_groups", width = "100%"), width = 12)
+              )
+      ),
+      tabItem(tabName = "desc_stats",
+              h2("Descriptive Statistics for Experiment"),
+              fluidRow(
+                box(
+                  title = "Summary statistics for experiment, grouped by experimental group:"),
+                width = 12
+              ),
+              fluidRow(
+                box(
+                  shiny::htmlOutput("summary_stats"), width = 12
+                )
               )
       ),
       tabItem(tabName = "anova_groups",
@@ -297,6 +313,17 @@ server <- function(input, output, session) {
 
     output$anova_groups <- shiny::renderDataTable({
       squeakrANOVA(experiment = experiment, analysis_factor = input$pickdata_anova)
+    })
+
+    # Summary statistics
+
+    output$summary_stats <- shiny::renderUI({
+      HTML(
+        paste(
+          c("<pre>", capture.output(print(squeakrSummary(experiment = experiment))), "</pre>"),
+          collapse = "<br>"
+        )
+      )
     })
 
   })

@@ -104,7 +104,6 @@ analyze_factor <- function(experiment, analysis_factor) {
     )
 }
 
-
 #' @title Generate ANOVA tables for Detected Calls
 #'
 #' @description Aggregates raw data tables for all data added to experiment object,
@@ -113,7 +112,7 @@ analyze_factor <- function(experiment, analysis_factor) {
 #' @param experiment The experiment object
 #' @param analysis_factor A string representing the factor to analyze between groups
 #'
-#' @return A bar graph comparing the analysis_factor between groups
+#' @return A table comparing the analysis_factor between groups
 #'
 #' @examples \dontrun{squeakrANOVA(experiment = experiment, analysis_factor = "Delta_Freq")}
 #'
@@ -142,6 +141,50 @@ squeakrANOVA <- function(experiment, analysis_factor) {
   return(get_anova_table(res.aov))
 }
 
+
+#' @title Summary Statistics for Experiment
+#'
+#' @description Aggregates raw data for experiment and summarizes descriptive
+#' statistics of the current results, grouped by experimental groups.
+#'
+#' @param experiment The experiment object
+#'
+#' @return Text which summarizes experiment data split by group
+#'
+#' @examples \dontrun{squeakrSTATS(experiment = experiment)}
+#'
+#' @import dplyr
+#' @import rlist
+#' @import report
+#' @export
+squeakrSummary <- function(experiment) {
+  group_organized <- list.group(experiment$experimental_data, group)
+
+  combined_df <- data.frame(matrix(ncol = ncol(experiment$experimental_data[1]$call_data$raw), nrow = 0))
+
+  for (selected_group in 1:length(names(group_organized))) {
+    for (dataset in 1:length(group_organized[[selected_group]])) {
+      set_to_add <- group_organized[[selected_group]][dataset]$call_data$raw %>%
+        mutate(group = names(group_organized)[selected_group])
+      combined_df <- rbind(combined_df, set_to_add)
+    }
+  }
+
+  combined_df_grouped <- combined_df %>%
+    mutate(index = 1:nrow(combined_df))
+  colnames(combined_df_grouped) <- trimws(gsub(r"{\s*\([^\)]+\)}","", as.character(names(combined_df_grouped))))
+  colnames(combined_df_grouped) <- gsub(" ", "_", names(combined_df_grouped), fixed = TRUE)
+
+  colnames(combined_df) <- trimws(gsub(r"{\s*\([^\)]+\)}","", as.character(names(combined_df))))
+  colnames(combined_df) <- gsub(" ", "_", names(combined_df), fixed = TRUE)
+
+  group_summary <- combined_df_grouped %>%
+    group_by(group) %>%
+    report() %>%
+    summary()
+
+  return(group_summary)
+}
 
 
 

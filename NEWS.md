@@ -1,4 +1,11 @@
-# SqueakR 1.2.5
+# SqueakR 1.2.8
+
+## version 1.2.8
+
+---
+
+* Used `report` package for analyses: added functions for manual reporting and
+  auto-reporting in SqueakR dashboard
 
 ## version 1.2.5
 

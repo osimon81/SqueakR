@@ -12,7 +12,7 @@ squeakrANOVA(experiment, analysis_factor)
 \item{analysis_factor}{A string representing the factor to analyze between groups}
 }
 \value{
-A bar graph comparing the analysis_factor between groups
+A table comparing the analysis_factor between groups
 }
 \description{
 Aggregates raw data tables for all data added to experiment object,
