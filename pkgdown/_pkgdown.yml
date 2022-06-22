@@ -30,6 +30,7 @@ reference:
   contents:
   - analyze_factor
   - squeakrANOVA
+  - squeakrSummary
   - starts_with("plot")
 - title: "Example Data"
   desc: "An example dataset exported from DeepSqueak."
