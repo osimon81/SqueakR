@@ -19,6 +19,7 @@ Imports:
     ggpubr,
     googlesheets4,
     readxl,
+    report,
     rlist,
     rstatix,
     shiny,
