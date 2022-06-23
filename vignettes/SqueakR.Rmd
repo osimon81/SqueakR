@@ -279,7 +279,7 @@ plotEthnogramSplitByTonality(experiment$experimental_data[1]$call_data$raw,
 
 ## 3D Cluster Plot
 
-We can also plot the call clusters (custom labels) on a 3D plane to examine the density of calls as a function of principal frequency, call length, and mean power (dB/kHz) below:
+We can also plot the call clusters (custom labels) on a 3D plane to examine the density of calls as a function of principal frequency (kHz), call length (s), and mean power (dB/kHz) below:
 
 ```{r 3D cluster plots, warning = FALSE}
 plotClusters(experiment$experimental_data[1]$call_data$raw)
