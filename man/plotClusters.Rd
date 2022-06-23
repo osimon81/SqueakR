@@ -4,12 +4,10 @@
 \alias{plotClusters}
 \title{3D Call Clusters (Custom Label) Plot}
 \usage{
-plotClusters(data_path, data_id)
+plotClusters(data_path)
 }
 \arguments{
 \item{data_path}{The path to the raw data}
-
-\item{data_id}{The number of the data-point to graph}
 }
 \value{
 3D Plotly plot

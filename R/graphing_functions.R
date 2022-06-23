@@ -570,7 +570,6 @@ plotCorrelations <- function(data_path,
 #' the z-axis.
 #'
 #' @param data_path The path to the raw data
-#' @param data_id The number of the data-point to graph
 #'
 #' @return 3D Plotly plot
 #'
@@ -579,7 +578,7 @@ plotCorrelations <- function(data_path,
 #' @importFrom plotly plot_ly add_markers add_lines layout
 #' @import RColorBrewer
 #' @export
-plotClusters <- function(data_path, data_id) {
+plotClusters <- function(data_path) {
   nb.cols <- length(unique(data_path$Label))
 
   plot_ly(data_path,
