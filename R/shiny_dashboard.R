@@ -21,6 +21,7 @@ ui <- dashboardPage(
     sidebarMenu(
       menuItem("Home", tabName = "main"),
       menuItem("Data Tables", tabName = "data_tables"),
+      menuItem("Spatial Cluster Plots", tabName = "spa_clus"),
       menuItem("Ethnogram Plots", tabName = "ethnograms"),
       menuItem("Density Plots", tabName = "densities"),
       menuItem("Supplemental Plots", tabName = "misc_graphs"),
@@ -66,6 +67,18 @@ ui <- dashboardPage(
               ),
               fluidRow(
                 div(style = 'overflow-x: scroll', tableOutput("table"))
+              )
+      ),
+
+      tabItem(tabName = "spa_clus",
+              h2("3D-Plotted Call Clusters"),
+              fluidRow(
+                selectInput('pickdata_cluster',
+                            label = "Data point to be graphed:",
+                            choices = c("Load an experiment first."),
+                            selected = 1)),
+              fluidRow(
+                plotlyOutput('cluster_plot', height = "600px")
               )
       ),
 
@@ -246,6 +259,14 @@ server <- function(input, output, session) {
     these_names <- gsub(" ", "_", these_names, fixed = TRUE)
 
     updateSelectInput(session, "pickdata_anova", choices = these_names, selected = 1)
+    updateSelectInput(session, "pickdata_cluster", choices = c(1:length(experiment$experimental_data)), selected = 1)
+
+    # Cluster Plots
+
+    output$cluster_plot <- renderPlotly({
+      data <- plotClusters(experiment$experimental_data[as.numeric(input$pickdata_cluster)]$call_data$raw)
+      data
+    })
 
     # Data Tables
 

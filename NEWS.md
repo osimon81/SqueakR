@@ -4,10 +4,13 @@
 
 ---
 
-* Used `report` package for analyses: added functions for manual reporting and
-  auto-reporting in SqueakR dashboard
+* Used `report` package for analyses: added functions for reporting summary stats
+  for grouped data in tab
 * Deprecated SqueakR Dashboard repository on GitHub and merged functions into
   SqueakR
+* Added 3D cluster plot visualization function `plotClusters()` against call
+  length (z), principal frequency (x) and mean power (y) using plotly, available
+  in base SqueakR and on dashboard
 
 ## version 1.2.5
 

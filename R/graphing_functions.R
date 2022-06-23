@@ -561,3 +561,41 @@ plotCorrelations <- function(data_path,
       caption = paste0("n = ", count(excel_file)[1], " observed calls.")
     )
 }
+
+
+#' @title 3D Call Clusters (Custom Label) Plot
+#'
+#' @description Plots call clusters within a data-point in a 3D Plotly graph, with
+#' principal frequency on the x-axis, mean power on the y-axis, and call length on
+#' the z-axis.
+#'
+#' @param experiment The experiment object
+#' @param data_id The number of the data-point to graph
+#'
+#' @return 3D Plotly plot
+#'
+#' @examples \dontrun{plotClusters(experiment = experiment, data_id = 1)}
+#'
+#' @importFrom plotly plot_ly add_markers add_lines layout
+#' @import RColorBrewer
+#' @export
+plotClusters <- function(data_path, data_id) {
+  nb.cols <- length(unique(data_path$Label))
+
+  plot_ly(data_path,
+          x = ~`Principal Frequency (kHz)`,
+          y = ~`Mean Power (dB/Hz)`,
+          z = ~`Call Length (s)`,
+          color = ~`Label`, colors = colorRampPalette(brewer.pal(8, "Set2"))(nb.cols)) %>%
+    add_markers() %>%
+    add_lines(showlegend = FALSE) %>%
+    layout(
+      scene = list(
+        xaxis = list(title = "Principal Frequency (kHz)"),
+        yaxis = list(title = "Mean Power (dB/Hz)"),
+        zaxis = list(title = "Call Length (s)")
+      )
+    )
+}
+
+
