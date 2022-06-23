@@ -1,11 +1,11 @@
-# SqueakR 1.2.8 [GitHub release]
+# SqueakR 1.2.8
 
-## version 1.2.8
+## version 1.2.8 [GitHub release]
 
 ---
 
-* Used `report` package for analyses: added functions for reporting summary stats
-  for grouped data in tab
+* Used `report` package for analyses: added functions for reporting descriptive
+  statistics for grouped data in SqueakR Dashboard tab
 * Deprecated SqueakR Dashboard repository on GitHub and merged functions into
   SqueakR
 * Added 3D cluster plot visualization function `plotClusters()` against call
