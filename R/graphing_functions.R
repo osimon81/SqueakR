@@ -569,7 +569,7 @@ plotCorrelations <- function(data_path,
 #' principal frequency on the x-axis, mean power on the y-axis, and call length on
 #' the z-axis.
 #'
-#' @param experiment The experiment object
+#' @param data_path The path to the raw data
 #' @param data_id The number of the data-point to graph
 #'
 #' @return 3D Plotly plot

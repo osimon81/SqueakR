@@ -9,9 +9,11 @@
 #'
 #' @import shiny
 #' @import shinydashboard
+#' @importFrom plotly plotlyOutput renderPlotly
+#' @import RColorBrewer
 #' @import report
 #' @import rlist
-#' @importFrom utils object.size
+#' @importFrom utils object.size capture.output
 #' @export
 squeakRDashboard <- function() {
 

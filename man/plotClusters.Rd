@@ -7,9 +7,9 @@
 plotClusters(data_path, data_id)
 }
 \arguments{
-\item{data_id}{The number of the data-point to graph}
+\item{data_path}{The path to the raw data}
 
-\item{experiment}{The experiment object}
+\item{data_id}{The number of the data-point to graph}
 }
 \value{
 3D Plotly plot
