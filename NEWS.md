@@ -1,4 +1,4 @@
-# SqueakR 1.2.8
+# SqueakR 1.2.8 [GitHub release]
 
 ## version 1.2.8
 
@@ -12,12 +12,12 @@
   length (z), principal frequency (x) and mean power (y) using plotly, available
   in base SqueakR and on dashboard
 
-## version 1.2.5
+## version 1.2.5 [CRAN release]
 
 ---
 
-* Merged SqueakR dashboard with SqueakR package. Dashboard can now be run after
-  loading the package by running `squeakRDashboard()'
+* Merged SqueakR dashboard into SqueakR package! Dashboard can now be run after
+  loading the package by running `squeakRDashboard()`
 * Added function for calculating ANOVA between groups
 * Added ANOVA tab on SqueakR Dashboard for determining statistical significance
   between call features
