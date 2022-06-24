@@ -17,7 +17,7 @@ test_that("add timepoint data for experiment", {
 })
 
 test_that("score data for experiment", {
-  expect_error(score_timepoint_data(deepsqueak_data, group = "Group1", animal = "2301", experimenter = "Exptr 1"), NA)
+  expect_error(score_timepoint_data(deepsqueak_data, id = "Mouse_Data.xlsx", group = "Group1", animal = "2301", experimenter = "Exptr 1"), NA)
 })
 
 test_that("experiment saves", {

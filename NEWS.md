@@ -20,6 +20,7 @@
   per animal per group
 * Added Plotly surface plot using 2D kernel density estimation to represent call
   density against Principal Frequency and Call Length.
+* Added functions for unblinding experimenters to data
 
 ## version 1.2.5 [CRAN release]
 

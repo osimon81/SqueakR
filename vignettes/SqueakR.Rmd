@@ -110,6 +110,7 @@ Once raw data is loaded into R, we can calculate some summary statistics on the 
 ```{r scored data}
 my_scored_data <- score_timepoint_data(data_subset = my_new_data,
                                     group = "Control",
+                                    id = "my_data.xlsx",
                                     animal = "3330",
                                     experimenter = "my_name")
 str(my_scored_data)
@@ -122,6 +123,7 @@ Since there is a lot of data contained in this object, here is a summary of the 
 The following variables are assigned to a single value:
 
 -   `animal`: The animal (or testing group) ID, specified in the `score_timepoint_data()` function.
+-   `id`: The name of the original file corresponding to the dataset, which can be accessed using the unblinding functions discussed [later](#unblinding-functions)
 -   `group`: The experimental group, specified in the `score_timepoint_data()` function.
 -   `experimenter`: The experimenter who collected the data, specified in the `score_timepoint_data()` function.
 -   `calls_n`: The number of detected calls in the following range (automatically calculated)
@@ -236,6 +238,27 @@ There are only a few requirements for the referenced Google Sheet (which SqueakR
 Besides these requirements, the order of rows or columns in the sheet can be according to whatever conventions the experimenter likes --- files **do not** have to be in the same order as they appear in the folder containing the data. The pipeline will prompt the user for the link to the Sheets document, the actual sheet number which contains the metadata (usually 1, unless it is added to a separate document), as well as ask the user which column corresponds to each metadata.
 
 From this point, the pipeline will loop through every file automatically, assigning the appropriate metadata based on your Google Sheet, and export the created experiment object (if requested).
+
+## Unblinding Functions {#unblinding-functions}
+
+At the point of an experiment where we want to unblind ourselves to the anonymized datasets SqueakR has created, there are a few functions which can accomplish this:
+
+```{r unblind entire dataset}
+unblind_all_ids(experiment)
+```
+
+Since we only have one dataset, this is the only set that displays in the list. If we had more, they would be arranged in the order that they appear in the experiment, allowing us to decode the anonymized datasets using the functions below. The first function allows us to find the corresponding dataset id for a filename:
+
+```{r finding the id for a particular filename}
+unblind_data_id(experiment, "my_data.xlsx")
+```
+
+The next function allows us to do the opposite — to find the name of a particular anonymized dataset:
+
+```{r finding the name of an anonymized dataset}
+unblind_data_name(experiment, 1)
+```
+
 
 # Data Visualization
 
@@ -425,7 +448,9 @@ In order to replicate analysis, let's add another file to our `experiment` by ru
 ```{r adding new data}
 additional_data <- add_timepoint_data(data_path = "../inst/extdata/Example_Mouse_Data.xlsx", t1 = 30, t2 = 50)
 
-additional_data <- score_timepoint_data(data_subset = additional_data, group = "AB",
+additional_data <- score_timepoint_data(data_subset = additional_data,
+                                        group = "AB",
+                                        id = "Example_Mouse_Data2.xlsx",
                                         animal = "2173",
                                         experimenter = "new_experimenter")
 
@@ -445,7 +470,9 @@ Let's try adding one more experimental group and looking at the `experiment` obj
 
 ```{r adding one last group}
 third_dataset <- add_timepoint_data(data_path = "../inst/extdata/Example_Mouse_Data.xlsx", t1 = 70, t2 = 90)
-third_dataset <- score_timepoint_data(data_subset = third_dataset, group = "Sham",
+third_dataset <- score_timepoint_data(data_subset = third_dataset,
+                                      group = "Sham",
+                                      id = "Example_Mouse_Data3",
                                       animal = "8072",
                                       experimenter = "experimenter_3")
 

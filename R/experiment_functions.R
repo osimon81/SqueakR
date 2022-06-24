@@ -44,6 +44,7 @@ add_timepoint_data <- function(data_path, t1 = "", t2 = "") {
 #'
 #' @param data_subset The object created in `add_timepoint_data()` which will be scored
 #' @param group The experimental group (i.e. "Control") these data correspond to
+#' @param id The full name of the experiment, including the extension.
 #' @param animal The animal or animal group ID for these data
 #' @param experimenter The experimenter who recorded these results
 #'
@@ -57,9 +58,10 @@ add_timepoint_data <- function(data_path, t1 = "", t2 = "") {
 #' @import readxl
 #' @import dplyr
 #' @export
-score_timepoint_data <- function(data_subset, group, animal, experimenter) {
+score_timepoint_data <- function(data_subset, group, animal, id, experimenter) {
   message("Summarizing call features for datapoint...")
   timepoint_metrics <- list(
+    id = id,
     animal = animal,
     group = group,
     experimenter = experimenter,
@@ -281,3 +283,68 @@ remove_experiment_data <- function(experiment, data_id) {
   experiment <- update_experiment(experiment)
   return(experiment)
 }
+
+
+#' @title Decode Experiment IDs
+#'
+#' @description Creates a vector of the original call file names, indexed
+#' by the order they are listed in the experiment. This allows experimenters
+#' to unblind themselves to the data they collect
+#'
+#' @param experiment The experiment object
+#'
+#' @return A vector representing the original call file names
+#'
+#' @examples \dontrun{decode_experiment_ids(experiment)}
+#'
+#' @export
+unblind_all_ids <- function(experiment) {
+  decode_vector <- c()
+  for (dataset in 1:length(experiment$experimental_data)) {
+    decode_vector <- c(decode_vector, experiment$experimental_data[dataset]$call_data$id)
+  }
+  return(decode_vector)
+}
+
+
+#' @title Find Matching Experiment ID
+#'
+#' @description Finds the index of a dataset matching a supplied file name
+#' in the experiment.
+#'
+#' @param experiment The experiment object
+#' @param filename The full name of the file, including the extension
+#'
+#' @return A number or numbers representing index or indices where that file
+#' appears in the experiment
+#'
+#' @examples \dontrun{unblind_data_id(experiment, "my_data1.xlsx")}
+#'
+#' @export
+unblind_data_id <- function(experiment, filename) {
+  expt_ids <- unblind_all_ids(experiment)
+  index <- which(expt_ids == filename)
+  return(index)
+}
+
+
+#' @title Find Matching Experiment Name
+#'
+#' @description Finds the name of a dataset matching a supplied index in the set of data
+#'
+#' @param experiment The experiment object
+#' @param id The dataset number to be unblinded
+#'
+#' @return The name of the original file, corresponding to the data at
+#' the requested index
+#'
+#' @examples \dontrun{unblind_data_name(experiment, 2)}
+#'
+#' @export
+unblind_data_name <- function(experiment, id) {
+  expt_ids <- unblind_all_ids(experiment)
+  name <- expt_ids[as.numeric(id)]
+  return(name)
+}
+
+

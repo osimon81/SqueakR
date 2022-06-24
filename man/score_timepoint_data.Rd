@@ -4,7 +4,7 @@
 \alias{score_timepoint_data}
 \title{Score Timepoint Data}
 \usage{
-score_timepoint_data(data_subset, group, animal, experimenter)
+score_timepoint_data(data_subset, group, animal, id, experimenter)
 }
 \arguments{
 \item{data_subset}{The object created in `add_timepoint_data()` which will be scored}
@@ -12,6 +12,8 @@ score_timepoint_data(data_subset, group, animal, experimenter)
 \item{group}{The experimental group (i.e. "Control") these data correspond to}
 
 \item{animal}{The animal or animal group ID for these data}
+
+\item{id}{The full name of the experiment, including the extension.}
 
 \item{experimenter}{The experimenter who recorded these results}
 }

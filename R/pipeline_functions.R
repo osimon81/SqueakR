@@ -80,6 +80,7 @@ semisqueakRpipeline <- function() {
   for (data_file in files) {
     message()
     message("File loaded: ", data_file)
+    id_data <- data_file
     t1_data <- readline(prompt = paste0("Enter the start time for call extraction for this file (leave blank to extract from the beginning): "))
     t2_data <- readline(prompt = paste0("Enter the end time for call extraction for this file (leave blank to extract calls until the end): "))
     animal_data <- readline(prompt = paste0("Enter the ID(s) for the animal(s) recorded for this file: "))
@@ -90,7 +91,7 @@ semisqueakRpipeline <- function() {
       data_path = file.path(data_directory, data_file),
       t1 = t1_data, t2 = t2_data
     )
-    new_data <- score_timepoint_data(new_data, group = data_group, animal = animal_data,
+    new_data <- score_timepoint_data(new_data, group = data_group, id = data_file, animal = animal_data,
                                      experimenter = data_experimenter)
 
     experiment <- add_to_experiment(experiment, new_data)
@@ -151,6 +152,9 @@ autosqueakRpipeline <- function() {
     index <- which(data_sheet$file == data_file)
     message("Matched with index ", as.character(index), " of remote metadata.")
 
+    id_data <- data_sheet$file[index]
+    message("ID assigned: ", as.character(id_data))
+
     t1_data <- data_sheet$timepoint1[index]
     message("T1 assigned: ", as.character(t1_data))
 
@@ -168,7 +172,8 @@ autosqueakRpipeline <- function() {
 
     new_data <- add_timepoint_data(data_path = file.path(data_directory, data_file),
                                    t1 = t1_data, t2 = t2_data)
-    new_data <- score_timepoint_data(new_data, group = data_group, animal = as.character(data_animal),
+    new_data <- score_timepoint_data(new_data, group = data_group, id = id_data,
+                                     animal = as.character(data_animal),
                                      experimenter = data_experimenter)
 
     experiment <- add_to_experiment(experiment, new_data)
