@@ -121,6 +121,15 @@
     <loc>/reference/squeakrSummary.html</loc>
   </url>
   <url>
+    <loc>/reference/unblind_all_ids.html</loc>
+  </url>
+  <url>
+    <loc>/reference/unblind_data_id.html</loc>
+  </url>
+  <url>
+    <loc>/reference/unblind_data_name.html</loc>
+  </url>
+  <url>
     <loc>/reference/update_experiment.html</loc>
   </url>
 </urlset>
