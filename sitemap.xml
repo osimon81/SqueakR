@@ -52,6 +52,9 @@
     <loc>/reference/index.html</loc>
   </url>
   <url>
+    <loc>/reference/plotCallDataSurface.html</loc>
+  </url>
+  <url>
     <loc>/reference/plotClusters.html</loc>
   </url>
   <url>
@@ -89,6 +92,12 @@
   </url>
   <url>
     <loc>/reference/plotSummaryPDF.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plotSunburstAnimals.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plotSunburstExperimenters.html</loc>
   </url>
   <url>
     <loc>/reference/remove_experiment_data.html</loc>
