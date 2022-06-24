@@ -44,6 +44,7 @@ add_timepoint_data <- function(data_path, t1 = "", t2 = "") {
 #'
 #' @param data_subset The object created in `add_timepoint_data()` which will be scored
 #' @param group The experimental group (i.e. "Control") these data correspond to
+#' @param animal The animal or animal group ID for these data
 #' @param experimenter The experimenter who recorded these results
 #'
 #' @return A list object containing statistics and metadata for each file.
@@ -56,9 +57,10 @@ add_timepoint_data <- function(data_path, t1 = "", t2 = "") {
 #' @import readxl
 #' @import dplyr
 #' @export
-score_timepoint_data <- function(data_subset, group, experimenter) {
+score_timepoint_data <- function(data_subset, group, animal, experimenter) {
   message("Summarizing call features for datapoint...")
   timepoint_metrics <- list(
+    animal = animal,
     group = group,
     experimenter = experimenter,
     calls_n = count(data_subset)[[1]],
@@ -141,6 +143,7 @@ create_experiment <- function(experiment_name) {
     name = experiment_name,
     last_saved = Sys.time(),
     groups = c(),
+    animals = c(),
     experimenters = c(),
     experimental_data = list()
   )
@@ -173,13 +176,13 @@ add_to_experiment <- function(experiment, added_data) {
 
 #' @title Updates Experiment Object Metadata
 #'
-#' @description Auto-populates `groups` and `experimenters` fields in experiment object
+#' @description Auto-populates `groups`, `experimenters`, and `animals` fields in experiment object
 #' by checking experimental data (within the experiment object) for new data.
 #'
 #' @param experiment The experiment object
 #'
 #' @return A list object containing statistics and metadata for the entire experiment.
-#' The `groups` and `experimenters` field will auto-populate based on added data using
+#' The `groups`, `experimenters`, and `animals` fields will auto-populate based on added data using
 #' the `update_experiment()` function.
 #'
 #' @examples \dontrun{update_experiment(experiment)}
@@ -189,6 +192,7 @@ update_experiment <- function(experiment) {
   message("Updating experiment metadata...")
   extracted_groups <- c()
   extracted_experimenters <- c()
+  extracted_animals <- c()
 
   for (i in 1:length(experiment$experimental_data)) {
     extracted_groups <- append(extracted_groups, experiment$experimental_data[i]$call_data$group)
@@ -198,8 +202,13 @@ update_experiment <- function(experiment) {
     extracted_experimenters <- append(extracted_experimenters, experiment$experimental_data[i]$call_data$experimenter)
   }
 
+  for (i in 1:length(experiment$experimental_data)) {
+    extracted_animals <- append(extracted_animals, experiment$experimental_data[i]$call_data$animal)
+  }
+
   experiment$groups <- unique(extracted_groups)
   experiment$experimenters <- unique(extracted_experimenters)
+  experiment$animals <- unique(extracted_animals)
   return(experiment)
 }
 
@@ -239,8 +248,9 @@ describe_experiment <- function(experiment) {
   message("Experiment name: ", experiment$name)
   message("Last saved: ", as.character(experiment$last_saved))
   message("Experimenter(s): ", paste(experiment$experimenters, collapse = ", "))
+  message("Animal(s): ", paste(experiment$animals, collapse = ", "))
   message("Experimental group(s): ", paste(experiment$groups, collapse = ", "))
-  message("Total call datapoints: ", as.character(length(experiment$experimental_data)))
+  message("Total call datasets: ", as.character(length(experiment$experimental_data)))
   for (this_group in experiment$groups) {
     group_count <- 0
     for (i in 1:length(experiment$experimental_data)) {

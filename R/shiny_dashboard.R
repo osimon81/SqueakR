@@ -22,14 +22,16 @@ ui <- dashboardPage(
   dashboardSidebar(
     sidebarMenu(
       menuItem("Home", tabName = "main"),
-      menuItem("Data Tables", tabName = "data_tables"),
-      menuItem("Spatial Cluster Plots", tabName = "spa_clus"),
+      menuItem("Descriptive Statistics", tabName = "desc_stats"),
+      menuItem("Metadata Distribution Plots", tabName = "meta_dist"),
       menuItem("Ethnogram Plots", tabName = "ethnograms"),
       menuItem("Density Plots", tabName = "densities"),
       menuItem("Supplemental Plots", tabName = "misc_graphs"),
-      menuItem("Plot Differences", tabName = "compare_groups"),
-      menuItem("Descriptive Statistics", tabName = "desc_stats"),
-      menuItem("ANOVA", tabName = "anova_groups"),
+      menuItem("Data Tables", tabName = "data_tables"),
+      menuItem("3D Cluster Plots", tabName = "spa_clus"),
+      menuItem("3D Surface Plots", tabName = "spa_surf"),
+      menuItem("Group Difference Plots", tabName = "compare_groups"),
+      menuItem("ANOVA Table", tabName = "anova_groups"),
       div(img(imageOutput("package_image")), style="text-align: center;")
     )
   ),
@@ -56,6 +58,20 @@ ui <- dashboardPage(
               tags$a(href="https://osimon81.github.io/SqueakR", "Click here to learn more about the SqueakR package.")
       ),
 
+      tabItem(tabName = "meta_dist",
+              h2("Metadata Distribution"),
+              fluidRow(
+                box(
+                  title = "Sunburst plots with animal distribution (left) and experimenter distribution (right) across groups",
+                  width = 12),
+                box(
+                    column(
+                    plotlyOutput("ani_dist"), width = 6),
+                    column(
+                      plotlyOutput("expt_dist"), width = 6), width = 12)
+                ),
+      ),
+
       tabItem(tabName = "data_tables",
               h2("Data Tables"),
               fluidRow(
@@ -75,12 +91,28 @@ ui <- dashboardPage(
       tabItem(tabName = "spa_clus",
               h2("3D-Plotted Call Clusters"),
               fluidRow(
-                selectInput('pickdata_cluster',
-                            label = "Data point to be graphed:",
-                            choices = c("Load an experiment first."),
-                            selected = 1)),
+                box(
+                  selectInput('pickdata_cluster',
+                              label = "Data point to be graphed:",
+                              choices = c("Load an experiment first."),
+                              selected = 1))
+              ),
               fluidRow(
                 plotlyOutput('cluster_plot', height = "600px")
+              )
+      ),
+
+      tabItem(tabName = "spa_surf",
+              h2("3D-Plotted Call Surface"),
+              fluidRow(
+                box(
+                  selectInput('pickdata_surface',
+                              label = "Data point to be graphed:",
+                              choices = c("Load an experiment first."),
+                              selected = 1))
+              ),
+              fluidRow(
+                plotlyOutput('surface_plot', height = "600px")
               )
       ),
 
@@ -189,7 +221,7 @@ ui <- dashboardPage(
                   )
                 )
       )
-    )
+      )
   )
 )
 
@@ -243,6 +275,18 @@ server <- function(input, output, session) {
       infoBox("Experiment Size", format(object.size(experiment), units = "auto"), icon = icon("desktop"), fill = FALSE, color = "yellow")
     })
 
+    # Metadata Distributions
+
+    output$ani_dist <- renderPlotly({
+      data <- plotSunburstAnimals(experiment)
+      data
+    })
+
+    output$expt_dist <- renderPlotly({
+      data <- plotSunburstExperimenters(experiment)
+      data
+    })
+
     # Select inputs
 
     updateSelectInput(session, "pickdata_tab", choices = c(1:length(experiment$experimental_data)), selected = 1)
@@ -262,13 +306,20 @@ server <- function(input, output, session) {
 
     updateSelectInput(session, "pickdata_anova", choices = these_names, selected = 1)
     updateSelectInput(session, "pickdata_cluster", choices = c(1:length(experiment$experimental_data)), selected = 1)
+    updateSelectInput(session, "pickdata_surface", choices = c(1:length(experiment$experimental_data)), selected = 1)
 
-    # Cluster Plots
+    # 3D Plots
 
     output$cluster_plot <- renderPlotly({
       data <- plotClusters(experiment$experimental_data[as.numeric(input$pickdata_cluster)]$call_data$raw)
       data
     })
+
+    output$surface_plot <- renderPlotly({
+      data <- plotCallDataSurface(experiment$experimental_data[as.numeric(input$pickdata_surface)]$call_data$raw)
+      data
+    })
+
 
     # Data Tables
 

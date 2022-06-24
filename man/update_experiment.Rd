@@ -11,11 +11,11 @@ update_experiment(experiment)
 }
 \value{
 A list object containing statistics and metadata for the entire experiment.
-The `groups` and `experimenters` field will auto-populate based on added data using
+The `groups`, `experimenters`, and `animals` fields will auto-populate based on added data using
 the `update_experiment()` function.
 }
 \description{
-Auto-populates `groups` and `experimenters` fields in experiment object
+Auto-populates `groups`, `experimenters`, and `animals` fields in experiment object
 by checking experimental data (within the experiment object) for new data.
 }
 \examples{

@@ -71,9 +71,10 @@ We can see from the `str()` function that the `experiment` object has 5 main gro
 
 -   `name`: The name we just set for this experiment
 -   `last_saved`: A timestamp for the last time this `experiment` was saved (in this case, this is the time the object was created)
--   `groups`: An empty variable which will be configured to show the experimental groups
--   `experimenters`: An empty variable which will be configured to show the experimenters who collected data
--   `experimental_data`: An empty list which will store all of the data for this experiment
+-   `groups`: An empty variable which will show the experimental groups
+-   `animals`: An empty variable which will show the distinct animal (IDs) tested
+-   `experimenters`: An empty variable which will show the experimenters who collected data
+-   `experimental_data`: An empty list which will store all of the raw and processed data for this experiment
 
 Now that our `experiment` is created, we can start to add data to it.
 
@@ -109,6 +110,7 @@ Once raw data is loaded into R, we can calculate some summary statistics on the 
 ```{r scored data}
 my_scored_data <- score_timepoint_data(data_subset = my_new_data,
                                     group = "Control",
+                                    animal = "3330",
                                     experimenter = "my_name")
 str(my_scored_data)
 ```
@@ -119,9 +121,10 @@ Since there is a lot of data contained in this object, here is a summary of the 
 
 The following variables are assigned to a single value:
 
--   `group`: The experimental group specified in the score_timepoint_data() function.
--   `experimenter`: The experimenter who collected the data
--   `calls_n`: The number of detected calls in the following range
+-   `animal`: The animal (or testing group) ID, specified in the `score_timepoint_data()` function.
+-   `group`: The experimental group, specified in the `score_timepoint_data()` function.
+-   `experimenter`: The experimenter who collected the data, specified in the `score_timepoint_data()` function.
+-   `calls_n`: The number of detected calls in the following range (automatically calculated)
 
 The rest of these variables are extracted from the `my_new_data` object have sub-variables stored under them: mean, standard_deviation, and range:
 
@@ -147,7 +150,7 @@ The rest of these variables are extracted from the `my_new_data` object have sub
 
 More information about the above variables can be found on the [DeepSqueak wiki](https://github.com/DrCoffey/DeepSqueak/wiki/export-to-excel). Finally, the `raw` variable contains the entire extracted dataset (the `my_new_data` object), which can be referenced when plotting these data.
 
-The data may appear complicated, but this will be useful later on to organize the data!
+The data structure may appear complicated, but this will be useful later on to organize the data!
 
 ## Adding Scored Data to Experiment
 
@@ -177,7 +180,7 @@ Now, our new data is added to our `experiment` object! As seen in the previous s
 describe_experiment(experiment = experiment)
 ```
 
-This can be a great way to inspect the contents of our experiment, and it condenses some of the parameters we set earlier. To clarify the last two lines of this output: Total call datapoints shows the total number of call data sheets stored in the `experiment` (i.e. how many scored datasets were added to the `experiment` in total), and "Data for Control" indicates how many of these datasets are part of this particular experimental group. In this way, the function allows us to get a feel for how much of our data is part of any given experimental group, to ensure the data are balanced.
+This can be a great way to inspect the contents of our experiment, and it condenses the large list of parameters we set earlier. To clarify the last two lines of this output: `Total call datasets` shows the total number of call data sheets stored in the `experiment` (i.e. how many separately scored datasets were added to the `experiment` in total), and "Data for Control" indicates how many of these datasets are part of this particular experimental group. In this way, the function allows us to get a feel for how much of our data is part of any given experimental group, to ensure the data are balanced.
 
 ### Updating the Experiment
 
@@ -202,19 +205,21 @@ experiment <- save_experiment(experiment = experiment,
 
 The file will be saved as an RData file, with the name "[experiment name] ([current date]).RData"
 
-Note: The values in square brachets will populate differently, based on the name you set for the `experiment` (based on the Creating an Experiment section) and the current date. This saving convention ensures you never lose more than a day of progress if any mistakes are made.
+Note: The values in square brackets will auto-populate, based on the name you set for the `experiment` (based on the Creating an Experiment section) and the current date. This saving convention using day-by-day timestamps ensures you never lose more than a day of progress if any critical data deletions occur.
 
 ## Experiment Pipelines
 
-Usually, when there are many datasets present in an experiment, it can be unwieldy to switch between these various functions to create an `experiment` and add data to it. `SqueakR` has interactive pipeline functions which enable data to be added either semi-automatically (with experimenter input) or automatically (without experimenter input). The semi-automatic pipeline can be run using the following code:
+Usually, when there are many datasets present in an experiment, it can be unwieldy to switch between these various functions to create an `experiment` and add data to it. `SqueakR` has interactive pipeline functions which enable data to be added either semi-automatically (with experimenter input of metadata for every file) or automatically (without experimenter input for metadata). The semi-automatic pipeline can be run using the following code:
 
 ```{r semi-automatic pipeline, eval=FALSE, echo=FALSE}
-my_semi_automaticaly_loaded_experiment <- semisqueakRpipeline()
+my_semi_automatically_loaded_experiment <- semisqueakRpipeline()
 ```
 
 The data can be easily added this way, since the user will be prompted for parameters like experimenter, group, etc for specific data. It can also be helpful to supply descriptive names for the excel files (which may include information about experimenter name, experimental group, time range to subset, etc) when using this function, in order to ensure no mistakes are made while entering these data.
 
-SqueakR also has a pipeline that can be used to automatically add data and metadata to an `experiment` without direct experimenter prompting. The way the pipeline works is it references a [Google Sheets document](#google-sheets-formatting) which contains the metadata about the object. The pipeline prompts the user to validate columns in the sheet (confirm which column the "experimental groups" column is in), before adding data (which is stored in a specified local directory) to the new `experiment`. The advantage of automatic pipeline is that all metadata can be entered in an external document --- if any mistakes are made in data entry, they can be easily corrected. Running the automatic pipeline is done the same way as the semi-automatic pipeline:
+SqueakR also has a pipeline that can be used to automatically add data and metadata to an `experiment` without direct experimenter prompting. The way the pipeline works is it references a [Google Sheets document](#google-sheets-formatting) which contains the metadata about the object. The pipeline prompts the user to validate columns in the sheet (confirm which column the "experimental groups" column is in), before adding data (which is stored in a specified local directory) to the new `experiment`. The advantage of automatic pipeline is that all metadata can be entered in an external Google Sheets document — if any mistakes are made in metadata entry, they can be easily corrected before running the pipeline.
+
+On the other hand, if mistakes are made during metadata entry for the semi-automatic pipeline, the function will have to be stopped and re-run. Running the automatic pipeline is done the same way as the semi-automatic pipeline:
 
 ```{r automatic pipeline, eval = FALSE, echo = FALSE}
 my_automatically_loaded_experiment <- autosqueakRpipeline()
@@ -277,7 +282,7 @@ plotEthnogramSplitByTonality(experiment$experimental_data[1]$call_data$raw,
               graph_title = "My Tonality-Split Ethnogram")
 ```
 
-## 3D Cluster Plot
+## 3D Cluster Plot [GitHub Release]
 
 We can also plot the call clusters (custom labels) on a 3D plane to examine the density of calls as a function of principal frequency (kHz), call length (s), and mean power (dB/kHz) below:
 
@@ -285,6 +290,28 @@ We can also plot the call clusters (custom labels) on a 3D plane to examine the 
 plotClusters(experiment$experimental_data[1]$call_data$raw)
 ```
 
+## 3D Surface Plot [GitHub Release]
+
+We can use the MASS package to provide 2-dimensional kernel density estimations on a given call dataset, and plot it as a surface against principal frequency and call length (two important metrics of calls):
+
+```{r surface plot}
+plotCallDataSurface(experiment$experimental_data[1]$call_data$raw)
+```
+
+
+## Sunburst Plots [GitHub Release]
+
+In order to inspect the distributions of metadata (i.e. how much experimenters contributed to an experiment, or how many datasets an animal contributed to an experimental group), SqueakR has sunburst plotting functions which can be called, as shown below. These graphs are interactive — a group can be clicked to expand that subsection of the graph.
+
+```{r plot animal distributions}
+plotSunburstAnimals(experiment)
+```
+
+The same can be done for experimenter distributions:
+
+```{r plot experimenter distributions}
+plotSunburstExperimenters(experiment)
+```
 
 ## Density-Style Plots
 
@@ -313,9 +340,7 @@ plotDensitySplitByFrequency(experiment$experimental_data[1]$call_data$raw)
 
 ### Custom Label Density Plot (Stacked)
 
-In DeepSqueak, we can label calls either manually, or using computer vision to assess calls based on the frequency regions in which they predominate, length, or shape of calls, among some other factors. These labels are exported from DeepSqueak along with the other call data, and as a result exist in our `experiment` object.
-
-*Note: Custom labels were arbitrarily set for the example data file, for sake of example.*
+In DeepSqueak, we can label calls either manually, or automatically, using computer vision to assess calls based on the frequency regions in which they predominate, call length, or shape of call contours, among some other factors. These manual or auto-assigned labels are exported from DeepSqueak along with the other call data, and as a result are stored in our `experiment` object.
 
 Density plots can also be configured for these custom labels, as shown below:
 
@@ -381,8 +406,14 @@ Keep in mind these plots will generate for the entire set of data, not a subset 
 
 If we want to view an entire set of visualizations (shown in the above sections) for an Excel file as a PDF, we can also run the following function:
 
-```{r preview excel file (2), warning=FALSE}
+```{r preview excel file as PDF (2), warning=FALSE}
 plotSummaryPDF("../inst/extdata/Example_Mouse_Data.xlsx", save_path = tempdir())
+```
+
+Note that the same function can be run for a specific dataset stored within the `experiment`, using the same path conventions discussed earlier:
+
+```{r preview experiment dataset as PDF, warning=FALSE}
+plotSummaryPDF(experiment$experimental_data[1]$call_data$raw, save_path = tempdir())
 ```
 
 # Data Analysis
@@ -394,7 +425,8 @@ In order to replicate analysis, let's add another file to our `experiment` by ru
 ```{r adding new data}
 additional_data <- add_timepoint_data(data_path = "../inst/extdata/Example_Mouse_Data.xlsx", t1 = 30, t2 = 50)
 
-additional_data <- score_timepoint_data(data_subset = additional_data, group = "Drug",
+additional_data <- score_timepoint_data(data_subset = additional_data, group = "AB",
+                                        animal = "2173",
                                         experimenter = "new_experimenter")
 
 experiment <- add_to_experiment(experiment = experiment, added_data = additional_data)
@@ -414,6 +446,7 @@ Let's try adding one more experimental group and looking at the `experiment` obj
 ```{r adding one last group}
 third_dataset <- add_timepoint_data(data_path = "../inst/extdata/Example_Mouse_Data.xlsx", t1 = 70, t2 = 90)
 third_dataset <- score_timepoint_data(data_subset = third_dataset, group = "Sham",
+                                      animal = "8072",
                                       experimenter = "experimenter_3")
 
 experiment <- add_to_experiment(experiment = experiment, added_data = third_dataset)
@@ -425,6 +458,17 @@ Here, we've picked a new range within the same file and added this information t
 ```{r inspecting experiment for three groups}
 describe_experiment(experiment)
 ```
+
+Let's also try checking out how the sunburst plots have changed:
+
+```{r rechecking animal sunburst}
+plotSunburstAnimals(experiment)
+```
+
+```{r rechecking experimenter sunburst}
+plotSunburstExperimenters(experiment)
+```
+
 
 ## Inter-group comparison plots
 
@@ -440,7 +484,7 @@ In the above plot, we compare delta frequency (the average range of frequencies 
 
 We can assess other comparisons in this way, by ensuring that we set `analysis_factor` to the name of the variable previously specified in the [Data Structure](#data-structure) section, but written in "quotes". Keeping this format ensures that `SqueakR` knows which data to compare.
 
-## Inter-group Summary [Development Version]
+## Inter-group Summary [GitHub Release]
 
 Once we've added all of our data to our experiment, we can request a summary of our variables, grouped by the experimental groups we've set in order to inspect the data distribution between them:
 
@@ -474,17 +518,14 @@ The primary benefit of this dashboard is it exists as a centralized interface fo
 
 The dashboard is launched in the console using a SqueakR function:
 
-```{r SqueakR dashboard, eval = FALSE}
+```{r SqueakR dashboard, eval = FALSE, warning = FALSE}
 squeakRDashboard()
 ```
 
 # Future Directions
 
-SqueakR was developed with the primary aim to streamline bio-acoustics data processing in experiments by processing data automatically. To this end, one of the future directions for this project include increasing the analytical post-processing functionalities. One way this may be accomplished is through adding a dependency to the Report package on [CRAN](https://cran.r-project.org/package=report/) and [GitHub](https://github.com/easystats/report/). Report aims to connect processed data with statistical analyses, and would be suitable for processing DeepSqueak data.
+SqueakR was developed with a primary aim to streamline bioacoustics data processing in experiments by processing data automatically — allowing busy experimenters to go straight from data collection to results. To this end, one of the future directions for this project include increasing the analytical post-processing capabilities of the package.
 
-This function is currently available in the GitHub release of this package, but not the CRAN version yet.
-
-Currently, the SqueakR Shiny Dashboard is a separate, non-CRAN repository which is downloaded independently of the SqueakR package. Consolidating the dashboard and package under a single CRAN package is a current aim of this package, where the Dashboard can be run as a separate function within the SqueakR package. The most recent build of SqueakR on GitHub features the dashboard embedded in the package as a function `squeakRDashboard()`, yet these changes have yet to be reflected on the CRAN release. At the point of the merge on CRAN, the SqueakR Dashboard repository on GitHub is planned to be deprecated.
-
+Adding more uses of Report package functions (on [CRAN](https://cran.r-project.org/package=report/) and [GitHub](https://github.com/easystats/report/)) to SqueakR will allow processed data to connect directly to statistical analyses, and would be useful for processing DeepSqueak data.
 
 Any suggestions or feedback on current and future directions are welcome in the [SqueakR Discussions](https://github.com/osimon81/SqueakR/discussions/) page!

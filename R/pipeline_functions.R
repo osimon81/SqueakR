@@ -1,5 +1,58 @@
 data(deepsqueak_data, envir=environment())
 
+######### Hidden Functions #########
+
+#' Loads and cleans Google Sheets metadata sheet, through user prompting
+#' @keywords internal
+#' @noRd
+load_cleaned_sheet <- function() {
+  picked_link = readline(prompt = "Insert the link to your Google Sheets file which contains your experimental metadata (may require authentification): ")
+  picked_sheet = as.numeric(readline(prompt = "Write the sheet number you want to load (default is 1): "))
+
+  if (picked_sheet == "") {
+    picked_sheet <-  1
+    message("Setting sheet number to default: 1")
+  }
+
+  data <- read_sheet(picked_link, sheet = picked_sheet)
+
+  happywithsettings <- FALSE
+
+  while (happywithsettings == FALSE) {
+    filecol <- as.numeric(readline(prompt = "Enter the column number which corresponds to your file names: "))
+    groupcol <- as.numeric(readline(prompt = "Enter the column number which corresponds to your experimental group names: "))
+    exptrcol <- as.numeric(readline(prompt = "Enter the column number which corresponds to the name of the experimenter who collected data: "))
+    animalcol <- as.numeric(readline(prompt = "Enter the column number which corresponds to which animal was recorded: "))
+    t1col <- as.numeric(readline(prompt = "Enter the column number which corresponds to T1 (when calls will START being extracted): "))
+    t2col <- as.numeric(readline(prompt = "Enter the column number which corresponds to T2 (when calls will STOP being extracted): "))
+
+    message("Filename column: ", as.character(filecol))
+    message("Group column: ", as.character(groupcol))
+    message("Experimenter column: ", as.character(exptrcol))
+    message("Animal column: ", as.character(animalcol))
+    message("Timepoint 1 column: ", as.character(t1col))
+    message("Timepoint 2 column: ", as.character(t2col))
+
+    confirm <- readline(prompt = paste0("You have assigned the columns shown above. Are these settings correct? (y/n): "))
+    if (confirm == "y") {
+      happywithsettings = TRUE
+
+    } else {
+      message("Reassigning columns...")
+    }
+  }
+
+  names(data)[filecol] = "file"
+  names(data)[groupcol] = "group"
+  names(data)[exptrcol] = "experimenter"
+  names(data)[animalcol] = "animal"
+  names(data)[t1col] = "timepoint1"
+  names(data)[t2col] = "timepoint2"
+
+  return(data)
+}
+
+
 ######### Pipeline Functions #########
 
 #' @title Semi-Automatic Experiment Creation
@@ -29,14 +82,15 @@ semisqueakRpipeline <- function() {
     message("File loaded: ", data_file)
     t1_data <- readline(prompt = paste0("Enter the start time for call extraction for this file (leave blank to extract from the beginning): "))
     t2_data <- readline(prompt = paste0("Enter the end time for call extraction for this file (leave blank to extract calls until the end): "))
-    data_group <- readline(prompt = paste0("Enter the group for this file: "))
+    animal_data <- readline(prompt = paste0("Enter the ID(s) for the animal(s) recorded for this file: "))
+    data_group <- readline(prompt = paste0("Enter the experimental group for this file: "))
     data_experimenter <- readline(prompt = paste0("Enter the experimenter who collected data for this file: "))
 
     new_data <- add_timepoint_data(
       data_path = file.path(data_directory, data_file),
       t1 = t1_data, t2 = t2_data
     )
-    new_data <- score_timepoint_data(new_data, group = data_group,
+    new_data <- score_timepoint_data(new_data, group = data_group, animal = animal_data,
                                      experimenter = data_experimenter)
 
     experiment <- add_to_experiment(experiment, new_data)
@@ -65,53 +119,6 @@ semisqueakRpipeline <- function() {
 
   return(experiment)
 }
-
-library(googlesheets4)
-
-load_cleaned_sheet <- function() {
-  picked_link = readline(prompt = "Insert the link to your file (may require authentification): ")
-  picked_sheet = as.numeric(readline(prompt = "Write the sheet number you want to load (default is 1): "))
-
-  if (picked_sheet == "") {
-    picked_sheet <-  1
-    message("Setting sheet number to default: 1")
-  }
-
-  data <- read_sheet(picked_link, sheet = picked_sheet)
-
-  happywithsettings <- FALSE
-
-  while (happywithsettings == FALSE) {
-    filecol <- as.numeric(readline(prompt = "Enter the column number which corresponds to your file names: "))
-    groupcol <- as.numeric(readline(prompt = "Enter the column number which corresponds to your experimental group names: "))
-    exptrcol <- as.numeric(readline(prompt = "Enter the column number which corresponds to the name of the experimenter who collected data: "))
-    t1col <- as.numeric(readline(prompt = "Enter the column number which corresponds to T1 (when calls will START being extracted): "))
-    t2col <- as.numeric(readline(prompt = "Enter the column number which corresponds to T2 (when calls will STOP being extracted): "))
-
-    message("Filename column: ", as.character(filecol))
-    message("Group column: ", as.character(groupcol))
-    message("Experimenter column: ", as.character(exptrcol))
-    message("Timepoint 1 column: ", as.character(t1col))
-    message("Timepoint 2 column: ", as.character(t2col))
-
-    confirm <- readline(prompt = paste0("You have assigned the columns shown above. Are these settings correct? (y/n): "))
-    if (confirm == "y") {
-      happywithsettings = TRUE
-
-    } else {
-      message("Reassigning columns...")
-    }
-  }
-
-  names(data)[filecol] = "file"
-  names(data)[groupcol] = "group"
-  names(data)[exptrcol] = "experimenter"
-  names(data)[t1col] = "timepoint1"
-  names(data)[t2col] = "timepoint2"
-
-  return(data)
-}
-
 
 
 #' @title Fully-Automatic Experiment Creation
@@ -153,12 +160,15 @@ autosqueakRpipeline <- function() {
     data_group <- data_sheet$group[index]
     message("Group assigned: ", as.character(data_group))
 
+    data_animal <- data_sheet$animal[index]
+    message("Animal assigned: ", as.character(data_animal))
+
     data_experimenter <- data_sheet$experimenter[index]
     message("Experimenter assigned: ", as.character(data_experimenter))
 
     new_data <- add_timepoint_data(data_path = file.path(data_directory, data_file),
                                    t1 = t1_data, t2 = t2_data)
-    new_data <- score_timepoint_data(new_data, group = data_group,
+    new_data <- score_timepoint_data(new_data, group = data_group, animal = as.character(data_animal),
                                      experimenter = data_experimenter)
 
     experiment <- add_to_experiment(experiment, new_data)

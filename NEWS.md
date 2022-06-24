@@ -11,6 +11,15 @@
 * Added 3D cluster plot visualization function `plotClusters()` against call
   length (z), principal frequency (x) and mean power (y) using plotly, available
   in base SqueakR and on dashboard
+* Added `animal` field for each added experiment data, which updates experiment
+  metadata for `animals` field. Updated compatibility to match semi-automatic and
+  automatic SqueakR pipelines, as well as `describe_experiment()` function. Updated
+  documentation to reflect the change
+* Added Plotly sunburst plot (to functions list and dashboard) to graph
+  proportions of collected data done per experimenter, as well as data collected
+  per animal per group
+* Added Plotly surface plot using 2D kernel density estimation to represent call
+  density against Principal Frequency and Call Length.
 
 ## version 1.2.5 [CRAN release]
 

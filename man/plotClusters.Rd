@@ -18,6 +18,6 @@ principal frequency on the x-axis, mean power on the y-axis, and call length on
 the z-axis.
 }
 \examples{
-\dontrun{plotClusters(experiment = experiment, data_id = 1)}
+\dontrun{plotClusters(data_path = "path")}
 
 }
