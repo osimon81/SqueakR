@@ -52,10 +52,10 @@
     <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/plotCallDataSurface.html</loc>
+    <loc>/reference/plotClusters.html</loc>
   </url>
   <url>
-    <loc>/reference/plotClusters.html</loc>
+    <loc>/reference/plotContours.html</loc>
   </url>
   <url>
     <loc>/reference/plotCorrelations.html</loc>
@@ -98,6 +98,9 @@
   </url>
   <url>
     <loc>/reference/plotSunburstExperimenters.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plotSurface.html</loc>
   </url>
   <url>
     <loc>/reference/remove_experiment_data.html</loc>
