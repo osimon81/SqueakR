@@ -326,7 +326,7 @@ plotSurface(experiment$experimental_data[1]$call_data$raw)
 We can plot a similar, non-interactive form of the plot using the function below. The benefit to using a 2D contour plot is its axes are flanked by histograms representing the distributions of call length and principal frequency across its axes:
 
 ```{r 2d contour plot}
-plotContours
+plotContours(experiment$experimental_data[1]$call_data$raw)
 ```
 
 
