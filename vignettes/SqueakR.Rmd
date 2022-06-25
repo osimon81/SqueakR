@@ -305,7 +305,7 @@ plotEthnogramSplitByTonality(experiment$experimental_data[1]$call_data$raw,
               graph_title = "My Tonality-Split Ethnogram")
 ```
 
-## 3D Cluster Plot [GitHub Release]
+## 3D Cluster Plot
 
 We can also plot the call clusters (custom labels) on a 3D plane to examine the density of calls as a function of principal frequency (kHz), call length (s), and mean power (dB/kHz) below:
 
@@ -313,7 +313,7 @@ We can also plot the call clusters (custom labels) on a 3D plane to examine the 
 plotClusters(experiment$experimental_data[1]$call_data$raw)
 ```
 
-## 3D Surface Plot [GitHub Release]
+## 3D Surface Plot
 
 We can use the MASS package to provide 2-dimensional kernel density estimations on a given call dataset, and plot it as a surface against principal frequency and call length (two important metrics of calls):
 
@@ -321,7 +321,7 @@ We can use the MASS package to provide 2-dimensional kernel density estimations 
 plotSurface(experiment$experimental_data[1]$call_data$raw)
 ```
 
-## 2D Contour Plot [GitHub Release]
+## 2D Contour Plot
 
 We can plot a similar, non-interactive form of the plot using the function below. The benefit to using a 2D contour plot is its axes are flanked by histograms representing the distributions of call length and principal frequency across its axes:
 
@@ -330,7 +330,7 @@ plotContours
 ```
 
 
-## Sunburst Plots [GitHub Release]
+## Sunburst Plots
 
 In order to inspect the distributions of metadata (i.e. how much experimenters contributed to an experiment, or how many datasets an animal contributed to an experimental group), SqueakR has sunburst plotting functions which can be called, as shown below. These graphs are interactive — a group can be clicked to expand that subsection of the graph.
 
@@ -519,7 +519,7 @@ In the above plot, we compare delta frequency (the average range of frequencies 
 
 We can assess other comparisons in this way, by ensuring that we set `analysis_factor` to the name of the variable previously specified in the [Data Structure](#data-structure) section, but written in "quotes". Keeping this format ensures that `SqueakR` knows which data to compare.
 
-## Inter-group Summary [GitHub Release]
+## Inter-group Summary
 
 Once we've added all of our data to our experiment, we can request a summary of our variables, grouped by the experimental groups we've set in order to inspect the data distribution between them:
 
@@ -559,8 +559,4 @@ squeakRDashboard()
 
 # Future Directions
 
-SqueakR was developed with a primary aim to streamline bioacoustics data processing in experiments by processing data automatically — allowing busy experimenters to go straight from data collection to results. To this end, one of the future directions for this project include increasing the analytical post-processing capabilities of the package.
-
-Adding more uses of Report package functions (on [CRAN](https://cran.r-project.org/package=report/) and [GitHub](https://github.com/easystats/report/)) to SqueakR will allow processed data to connect directly to statistical analyses, and would be useful for processing DeepSqueak data.
-
-Any suggestions or feedback on current and future directions are welcome in the [SqueakR Discussions](https://github.com/osimon81/SqueakR/discussions/) page!
+SqueakR was developed with a primary aim to streamline bioacoustics data processing in experiments by processing data automatically — allowing busy experimenters to go straight from data collection to results. To this end, any suggestions or feedback on current and future directions are welcome in the [SqueakR Discussions](https://github.com/osimon81/SqueakR/discussions/) page!
