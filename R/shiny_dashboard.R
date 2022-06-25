@@ -28,8 +28,8 @@ ui <- dashboardPage(
       menuItem("Density Plots", tabName = "densities"),
       menuItem("Supplemental Plots", tabName = "misc_graphs"),
       menuItem("Data Tables", tabName = "data_tables"),
-      menuItem("3D Cluster Plots", tabName = "spa_clus"),
-      menuItem("3D Surface Plots", tabName = "spa_surf"),
+      menuItem("Cluster Plots", tabName = "spa_clus"),
+      menuItem("Surface Plots", tabName = "spa_surf"),
       menuItem("Group Difference Plots", tabName = "compare_groups"),
       menuItem("ANOVA Table", tabName = "anova_groups"),
       div(img(imageOutput("package_image")), style="text-align: center;")
@@ -103,7 +103,7 @@ ui <- dashboardPage(
       ),
 
       tabItem(tabName = "spa_surf",
-              h2("3D-Plotted Call Surface"),
+              h2("Call Surface Plots (Contour & Surface)"),
               fluidRow(
                 box(
                   selectInput('pickdata_surface',
@@ -112,8 +112,12 @@ ui <- dashboardPage(
                               selected = 1))
               ),
               fluidRow(
+                plotlyOutput('contour_plot', height = "600px")
+              ),
+              fluidRow(
                 plotlyOutput('surface_plot', height = "600px")
               )
+
       ),
 
       tabItem(tabName = "ethnograms",
@@ -316,7 +320,12 @@ server <- function(input, output, session) {
     })
 
     output$surface_plot <- renderPlotly({
-      data <- plotCallDataSurface(experiment$experimental_data[as.numeric(input$pickdata_surface)]$call_data$raw)
+      data <- plotSurface(experiment$experimental_data[as.numeric(input$pickdata_surface)]$call_data$raw)
+      data
+    })
+
+    output$contour_plot <- renderPlotly({
+      data <- plotContours(experiment$experimental_data[as.numeric(input$pickdata_surface)]$call_data$raw)
       data
     })
 

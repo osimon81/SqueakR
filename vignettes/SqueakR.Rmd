@@ -318,7 +318,15 @@ plotClusters(experiment$experimental_data[1]$call_data$raw)
 We can use the MASS package to provide 2-dimensional kernel density estimations on a given call dataset, and plot it as a surface against principal frequency and call length (two important metrics of calls):
 
 ```{r surface plot}
-plotCallDataSurface(experiment$experimental_data[1]$call_data$raw)
+plotSurface(experiment$experimental_data[1]$call_data$raw)
+```
+
+## 2D Contour Plot [GitHub Release]
+
+We can plot a similar, non-interactive form of the plot using the function below. The benefit to using a 2D contour plot is its axes are flanked by histograms representing the distributions of call length and principal frequency across its axes:
+
+```{r 2d contour plot}
+plotContours
 ```
 
 

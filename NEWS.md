@@ -1,6 +1,24 @@
-# SqueakR 1.2.8
+# SqueakR 1.3.0
 
-## version 1.2.8 [GitHub release]
+## version 1.3.0 [GitHub release]
+
+---
+
+* Added `animal` field for each added experiment data, which updates experiment
+  metadata for `animals` field. Updated compatibility to match semi-automatic and
+  automatic SqueakR pipelines, as well as `describe_experiment()` function. Updated
+  documentation to reflect the change
+* Added Plotly sunburst plot (to functions list and dashboard) to graph
+  proportions of collected data done per experimenter, as well as data collected
+  per animal per group
+* Added Plotly 3D surface plot (`plotSurface()`) using 2D kernel density estimation to represent 
+  call density against principal frequency and call length
+* Added functions for unblinding experimenters to data
+* Added function — `plotContours()` — which renders `plotSurface()` as a 2D rendering, flanked by
+  histograms displaying distributions of principal frequency and call length
+* Standardized some function naming (plotSurface instead of plotCallDataSurface, etc)
+
+## version 1.2.8
 
 ---
 
@@ -11,16 +29,6 @@
 * Added 3D cluster plot visualization function `plotClusters()` against call
   length (z), principal frequency (x) and mean power (y) using plotly, available
   in base SqueakR and on dashboard
-* Added `animal` field for each added experiment data, which updates experiment
-  metadata for `animals` field. Updated compatibility to match semi-automatic and
-  automatic SqueakR pipelines, as well as `describe_experiment()` function. Updated
-  documentation to reflect the change
-* Added Plotly sunburst plot (to functions list and dashboard) to graph
-  proportions of collected data done per experimenter, as well as data collected
-  per animal per group
-* Added Plotly surface plot using 2D kernel density estimation to represent call
-  density against Principal Frequency and Call Length.
-* Added functions for unblinding experimenters to data
 
 ## version 1.2.5 [CRAN release]
 

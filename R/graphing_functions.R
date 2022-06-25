@@ -591,6 +591,39 @@ plotCorrelations <- function(data_path,
     )
 }
 
+#### 2D Renderings of 3D Graphs ####
+
+#' @title 2D Call Contours
+#'
+#' @description Plots call density against principal frequency and call
+#' length as a contoured heatmap. Histograms for these variables are
+#' displayed across their respective axes.
+#'
+#' @param data_path The path to the raw data
+#'
+#' @return 2D contour plot
+#'
+#' @examples \dontrun{plotContours(data_path = "path")}
+#'
+#' @importFrom plotly plot_ly plotly_empty layout subplot
+#' @export
+plotContours <- function(data_path) {
+  x <- data_path$`Principal Frequency (kHz)`
+  y <- data_path$`Call Length (s)`
+  s <- subplot(
+    plot_ly(x = x, type = "histogram"),
+    plotly_empty(type = 'scatter',
+                 mode='markers'),
+    plot_ly(x = x, y = y, type = "histogram2dcontour"),
+    plot_ly(y = y, type = "histogram"),
+    nrows = 2, heights = c(0.2, 0.8), widths = c(0.8, 0.2), margin = 0,
+    shareX = TRUE, shareY = TRUE, titleX = FALSE, titleY = FALSE
+  )
+  fig <- layout(s, showlegend = FALSE, title = "2D Contour Plot of Principal Frequency (x) against Call Length (y)")
+
+  fig
+}
+
 #### 3D Graphs ####
 
 #' @title 3D Call Clusters (Custom Label) Plot
@@ -601,7 +634,7 @@ plotCorrelations <- function(data_path,
 #'
 #' @param data_path The path to the raw data
 #'
-#' @return 3D Plotly plot
+#' @return 3D scatterplot
 #'
 #' @examples \dontrun{plotClusters(data_path = "path")}
 #'
@@ -638,12 +671,12 @@ plotClusters <- function(data_path) {
 #'
 #' @return 3D surface plot for the selected call dataset
 #'
-#' @examples \dontrun{plotCallDataSurface(data_path = "path")}
+#' @examples \dontrun{plotSurface(data_path = "path")}
 #'
 #' @importFrom plotly plot_ly add_surface
 #' @importFrom MASS kde2d
 #' @export
-plotCallDataSurface <- function(data_path, res = 60) {
+plotSurface <- function(data_path, res = 60) {
   kd <- kde2d(data_path$`Principal Frequency (kHz)`,
               data_path$`Call Length (s)`,
               n = res)

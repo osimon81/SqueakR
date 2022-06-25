@@ -52,7 +52,7 @@ add_timepoint_data <- function(data_path, t1 = "", t2 = "") {
 #'
 #' @examples \dontrun{score_timepoint_data(
 #'   data_subset = my_subsetted_data, group = "Control",
-#'   experimenter = "Experimenter 1"
+#'   experimenter = "Experimenter 1", animal = "4207", id = "Data_sheet.xlsx"
 #' )}
 #'
 #' @import readxl

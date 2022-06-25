@@ -26,7 +26,7 @@ Transforms data into a list of mean, standard deviation, and range of several ca
 \examples{
 \dontrun{score_timepoint_data(
   data_subset = my_subsetted_data, group = "Control",
-  experimenter = "Experimenter 1"
+  experimenter = "Experimenter 1", animal = "4207", id = "Data_sheet.xlsx"
 )}
 
 }

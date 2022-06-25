@@ -10,7 +10,7 @@ plotClusters(data_path)
 \item{data_path}{The path to the raw data}
 }
 \value{
-3D Plotly plot
+3D scatterplot
 }
 \description{
 Plots call clusters within a data-point in a 3D Plotly graph, with
