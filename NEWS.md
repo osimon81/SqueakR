@@ -1,6 +1,6 @@
 # SqueakR 1.3.0
 
-## version 1.3.0 [GitHub release]
+## version 1.3.0 [GitHub release] [CRAN release]
 
 ---
 
@@ -30,7 +30,7 @@
   length (z), principal frequency (x) and mean power (y) using plotly, available
   in base SqueakR and on dashboard
 
-## version 1.2.5 [CRAN release]
+## version 1.2.5
 
 ---
 
